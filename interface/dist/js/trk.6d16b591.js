@@ -1,2 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["trk"],{"705d":function(e,n,t){"use strict";t.r(n);var r=function(){var e=this,n=e.$createElement;e._self._c;return e._m(0)},s=[function(){var e=this,n=e.$createElement,t=e._self._c||n;return t("div",[t("h1",[e._v("This is an trk page")])])}],a=t("2877"),c={},i=Object(a["a"])(c,r,s,!1,null,null,null);n["default"]=i.exports}}]);
-//# sourceMappingURL=trk.6d16b591.js.map

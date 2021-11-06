@@ -1,2 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["lbt"],{8457:function(e,n,t){"use strict";t.r(n);var l=function(){var e=this,n=e.$createElement;e._self._c;return e._m(0)},r=[function(){var e=this,n=e.$createElement,t=e._self._c||n;return t("div",[t("h1",[e._v("This is an lbt page")])])}],s=t("2877"),a={},c=Object(s["a"])(a,l,r,!1,null,null,null);n["default"]=c.exports}}]);
-//# sourceMappingURL=lbt.51e0be31.js.map

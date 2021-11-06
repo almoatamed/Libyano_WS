@@ -1,0 +1,9 @@
+mode,change_action,action_retry_count,mode_flag,retract_mode
+nav,interactive/set_face/circular_hollow_eyes|navigation/switch/goal_scrapper,0,mnl:1/grt:1/str:1/nav:1/chg:1/sth:1/lbt:1/stp:1/str:1,grt
+mnl,navigation/switch/manual,0,mnl:1/grt:0/str:0/nav:0/chg:0/sth:0/lbt:0/stp:0/str:0,nav
+str,startup/begin,0,mnl:0/grt:0/nav:0/chg:0/sth:0/lbt:0/stp:0/str:0,nav
+grt,interactive/speak/hi.mp3|interactive/set_face/circular_filled_eyes,0,mnl:1/grt:1/str:1/nav:1/chg:1/sth:1/lbt:1/stp:1/str:1,nav
+chg,null,0,mnl:1/grt:1/str:1/nav:1/chg:1/sth:1/lbt:1/stp:1/str:1,nav
+sth,navigation/switch/go_home,0,mnl:1/grt:1/str:1/nav:1/chg:1/sth:1/lbt:1/stp:1/str:1,nav
+stp,navigation/switch/pass,0,mnl:1/grt:1/str:1/nav:1/chg:1/sth:1/lbt:1/stp:1/str:1,nav
+lbt,navigation/switch/go_home,0,mnl:1/grt:1/str:1/nav:1/chg:1/sth:1/lbt:1/stp:1/str:1,nav

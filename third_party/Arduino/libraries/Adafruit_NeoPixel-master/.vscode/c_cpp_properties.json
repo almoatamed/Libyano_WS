@@ -1,0 +1,21 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "",
+        "limitSymbolsToIncludedHeaders": true
+      },
+      "includePath": [
+        "/home/salem/catkin_ws/devel/include/**",
+        "/opt/ros/melodic/include/**",
+        "/home/salem/catkin_ws/src/exception_handler/include/**",
+        "/home/salem/catkin_ws/src/slamware_ros_sdk/include/**",
+        "/home/salem/catkin_ws/src/slamware_sdk/include/**",
+        "/home/salem/catkin_ws/src/third_party/Arduino/libraries/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS"
+    }
+  ],
+  "version": 4
+}

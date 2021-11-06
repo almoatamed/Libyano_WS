@@ -1,0 +1,18 @@
+
+
+def transformer(inputPose, parentFrame):
+    tfListener = tf.TransformListener()
+
+    print(tfListener.frameExists('tf/odom'))
+
+if __name__=='__main__':
+    rospy.init_node('location_initializer')
+
+    inputPose = PoseStamped()
+    inputPose.header.frame_id = 'odom'
+    inputPose.header.stamp = rospy.Time(0)
+    inputPose.pose.position.x = rospy.get_param('initial_pose_x')
+    inputPose.pose.position.y = rospy.get_param('initial_pose_y')
+    inputPose.pose.orientation.w = 1.0
+    parentFrame = 'map'
+    transformer(inputPose, parentFrame)

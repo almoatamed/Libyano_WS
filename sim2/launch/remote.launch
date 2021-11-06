@@ -1,0 +1,24 @@
+<launch>
+  <!-- 
+    Summary
+    - this file basically initiates the robot state publisher, whcih publishes 
+      the states of the robot-links in tht /tf topic (tranformation frames topic)
+  -->
+  
+  <!-- initiate the robot_description parameter -->
+  <include file="$(find sim2)/launch/includes/description.launch.xml">
+  </include>
+
+  <!-- 
+    robot state publisher, the joint state publisher is embedeed within the differential drive plugin used by the robot simulator at the 
+    gazebo.xacro file of the curresponding robot model in the description package, the publish rate for the robot_state of 50, while the joint
+    state publisher is publisheed with rate of 30,
+
+    joint state publisher publishes the state of the joints of the robot, including pusition and volicity of each joint, it uses robot_description param for that
+
+    robot state publisher publishes the tf frame on the /tf for the links of the robot, it uses joint state publisher and robot description for that
+  -->
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+    <param name="publish_frequency" type="double" value="5.0" />
+  </node>
+</launch>

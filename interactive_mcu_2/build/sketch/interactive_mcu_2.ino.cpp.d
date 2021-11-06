@@ -1,0 +1,34 @@
+/home/salem/catkin_ws/src/interactive_mcu_2/build/sketch/interactive_mcu_2.ino.cpp.o: \
+ /home/salem/catkin_ws/src/interactive_mcu_2/build/sketch/interactive_mcu_2.ino.cpp \
+ /home/salem/.arduino15/packages/arduino/hardware/avr/1.8.3/cores/arduino/Arduino.h \
+ /home/salem/.arduino15/packages/arduino/hardware/avr/1.8.3/cores/arduino/binary.h \
+ /home/salem/.arduino15/packages/arduino/hardware/avr/1.8.3/cores/arduino/WCharacter.h \
+ /home/salem/.arduino15/packages/arduino/hardware/avr/1.8.3/cores/arduino/WString.h \
+ /home/salem/.arduino15/packages/arduino/hardware/avr/1.8.3/cores/arduino/HardwareSerial.h \
+ /home/salem/.arduino15/packages/arduino/hardware/avr/1.8.3/cores/arduino/Stream.h \
+ /home/salem/.arduino15/packages/arduino/hardware/avr/1.8.3/cores/arduino/Print.h \
+ /home/salem/.arduino15/packages/arduino/hardware/avr/1.8.3/cores/arduino/Printable.h \
+ /home/salem/.arduino15/packages/arduino/hardware/avr/1.8.3/cores/arduino/USBAPI.h \
+ /home/salem/.arduino15/packages/arduino/hardware/avr/1.8.3/cores/arduino/Arduino.h \
+ /home/salem/.arduino15/packages/arduino/hardware/avr/1.8.3/cores/arduino/USBDesc.h \
+ /home/salem/.arduino15/packages/arduino/hardware/avr/1.8.3/cores/arduino/USBCore.h \
+ /home/salem/.arduino15/packages/arduino/hardware/avr/1.8.3/variants/leonardo/pins_arduino.h \
+ /home/salem/Arduino/libraries/ros_lib/ros.h \
+ /home/salem/Arduino/libraries/ros_lib/ros/node_handle.h \
+ /home/salem/Arduino/libraries/ros_lib/std_msgs/Time.h \
+ /home/salem/Arduino/libraries/ros_lib/ros/msg.h \
+ /home/salem/Arduino/libraries/ros_lib/ros/time.h \
+ /home/salem/Arduino/libraries/ros_lib/ros/duration.h \
+ /home/salem/Arduino/libraries/ros_lib/rosserial_msgs/TopicInfo.h \
+ /home/salem/Arduino/libraries/ros_lib/rosserial_msgs/Log.h \
+ /home/salem/Arduino/libraries/ros_lib/rosserial_msgs/RequestParam.h \
+ /home/salem/Arduino/libraries/ros_lib/ros/publisher.h \
+ /home/salem/Arduino/libraries/ros_lib/ros/node_handle.h \
+ /home/salem/Arduino/libraries/ros_lib/ros/subscriber.h \
+ /home/salem/Arduino/libraries/ros_lib/ros/service_server.h \
+ /home/salem/Arduino/libraries/ros_lib/ros/service_client.h \
+ /home/salem/Arduino/libraries/ros_lib/ArduinoHardware.h \
+ /home/salem/.arduino15/packages/arduino/hardware/avr/1.8.3/cores/arduino/HardwareSerial.h \
+ /home/salem/Arduino/libraries/ros_lib/geometry_msgs/Vector3.h \
+ /home/salem/catkin_ws/src/interactive_mcu_2/build/sketch/mcu.h \
+ /home/salem/catkin_ws/src/interactive_mcu_2/build/sketch/./led_strip/led_strip.h

@@ -1,0 +1,3 @@
+float32 phase_resistance
+float32 phase_inductance
+string error

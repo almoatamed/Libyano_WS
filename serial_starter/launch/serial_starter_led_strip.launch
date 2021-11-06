@@ -1,0 +1,12 @@
+<launch>
+    <param name="/serial/serial_path" value="/dev/serial/by-id/" />
+    <param name="/serial/serial_starter_rate" value="0.5" />
+    
+    <!-- <param name="/serial/specific_port_name" value="/dev/ttyTHS0" /> -->
+
+    <node name="serial_starter_led_strip" pkg="serial_starter" type="serial_starter.py" output="screen" >    
+        <param name="keyword_serial" value="__0043_55834323832351A0E1A2" />
+        <param name="specific_port" value="no" />
+        <param name="node_name" value="led_strip" />
+    </node>
+</launch>

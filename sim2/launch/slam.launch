@@ -1,0 +1,32 @@
+<launch>
+  <!-- Arguments -->
+  <!-- 
+    Summary
+    - this file launches the robot state desription publisher (/tf)
+    - launches the mapping (default of gmapping) package with the correspnding configuration file
+    - launches rviz gui
+  -->  
+
+  <!-- slam method used to build the map, default is gmapping, passible values are hector, kart, frontier_exploration -->
+  <arg name="slam_methods" default="gmapping" doc="slam type [gmapping, cartographer, hector, karto, frontier_exploration]"/>
+  <!-- rviz gui lanche flag -->
+  <arg name="open_rviz" default="false"/>
+
+  <!-- 
+    creates the robot_state_publisher node for the corresponding module
+  -->
+  <include file="$(find sim2)/launch/remote.launch">
+  </include>
+
+
+  <!-- SLAM: Gmapping, Cartographer, Hector, Karto, Frontier_exploration, RTAB-Map -->
+  <!-- basically launches the mapping package (gmapping) -->
+  <include file="$(find sim2)/launch/gmapping.launch">
+  </include>
+
+  <!-- rviz -->
+  <group if="$(arg open_rviz)"> 
+    <node pkg="rviz" type="rviz" name="rviz" required="true"
+          args="-d $(find sim2)/rviz/gmapping.rviz"/>
+  </group>
+</launch>

@@ -1,0 +1,107 @@
+[
+  {
+    "Sourcefile": null,
+    "Include": "",
+    "Includepath": "/home/salem/.arduino15/packages/arduino/hardware/avr/1.8.3/cores/arduino"
+  },
+  {
+    "Sourcefile": null,
+    "Include": "",
+    "Includepath": "/home/salem/.arduino15/packages/arduino/hardware/avr/1.8.3/variants/leonardo"
+  },
+  {
+    "Sourcefile": "/home/salem/catkin_ws/src/interactive_mcu/build/sketch/interactive_mcu.ino.cpp",
+    "Include": "ros.h",
+    "Includepath": "/home/salem/Arduino/libraries/ros_lib"
+  },
+  {
+    "Sourcefile": "/home/salem/catkin_ws/src/interactive_mcu/build/sketch/interactive_mcu.ino.cpp",
+    "Include": "Adafruit_NeoPixel.h",
+    "Includepath": "/home/salem/Arduino/libraries/Adafruit_NeoPixel-master2"
+  },
+  {
+    "Sourcefile": "/home/salem/catkin_ws/src/interactive_mcu/build/sketch/interactive_mcu.ino.cpp",
+    "Include": "DFRobot_BMP280.h",
+    "Includepath": "/home/salem/Arduino/libraries/DFRobot_BMP280-master"
+  },
+  {
+    "Sourcefile": "/home/salem/catkin_ws/src/interactive_mcu/build/sketch/interactive_mcu.ino.cpp",
+    "Include": "Wire.h",
+    "Includepath": "/home/salem/.arduino15/packages/arduino/hardware/avr/1.8.3/libraries/Wire/src"
+  },
+  {
+    "Sourcefile": "/home/salem/catkin_ws/src/interactive_mcu/build/sketch/interactive_mcu.ino.cpp",
+    "Include": "DFRobot_BNO055.h",
+    "Includepath": "/home/salem/Arduino/libraries/DFRobot_BNO055-master"
+  },
+  {
+    "Sourcefile": "/home/salem/catkin_ws/src/interactive_mcu/build/sketch/interactive_mcu.ino.cpp",
+    "Include": "Herkulex.h",
+    "Includepath": "/home/salem/Arduino/libraries/Herkulex"
+  },
+  {
+    "Sourcefile": "/home/salem/catkin_ws/src/interactive_mcu/build/sketch/interactive_mcu.ino.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "/home/salem/Arduino/libraries/ros_lib/duration.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "/home/salem/Arduino/libraries/ros_lib/time.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "/home/salem/Arduino/libraries/Adafruit_NeoPixel-master2/Adafruit_NeoPixel.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "/home/salem/Arduino/libraries/Adafruit_NeoPixel-master2/esp.c",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "/home/salem/Arduino/libraries/Adafruit_NeoPixel-master2/esp8266.c",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "/home/salem/Arduino/libraries/Adafruit_NeoPixel-master2/kendyte_k210.c",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "/home/salem/Arduino/libraries/Adafruit_NeoPixel-master2/rp2040.c",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "/home/salem/Arduino/libraries/DFRobot_BMP280-master/DFrobot_BMP280.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "/home/salem/.arduino15/packages/arduino/hardware/avr/1.8.3/libraries/Wire/src/Wire.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "/home/salem/.arduino15/packages/arduino/hardware/avr/1.8.3/libraries/Wire/src/utility/twi.c",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "/home/salem/Arduino/libraries/DFRobot_BNO055-master/DFRobot_BNO055.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "/home/salem/Arduino/libraries/Herkulex/Herkulex.cpp",
+    "Include": "",
+    "Includepath": null
+  }
+]

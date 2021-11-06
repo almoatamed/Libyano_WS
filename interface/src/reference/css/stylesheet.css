@@ -1,0 +1,17 @@
+.btn-lg {
+    padding: 20px 86px;
+    font-size: 30px;
+    border-radius: 40px;
+}
+
+.btn-md {
+    padding: 36px 90px;
+    font-size: 32px;
+    border-radius: 40px;
+    font-weight: 500;
+}
+
+.navbar {
+    background-color: #0F0F33;
+    padding: 20px;
+}

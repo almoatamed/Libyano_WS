@@ -1,0 +1,10 @@
+control:R
+navigation:J
+interactive:J
+system:S
+act:J
+cash_reader:J
+global_actions:J
+bluetooth:J
+startup:J
+interface:J

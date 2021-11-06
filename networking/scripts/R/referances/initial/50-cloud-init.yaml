@@ -1,0 +1,21 @@
+network:
+    version: 2
+    renderer: networkd
+    ethernets:
+        eth0:
+            dhcp4: false
+            dhcp6: false
+            addresses: [10.0.0.2/24]
+            nameservers:
+                addresses: [172.16.1.254, 8.8.8.8, 192.168.1.1, 8.8.4.4]
+    wifis:
+        wlan0:
+            dhcp4: true
+            dhcp6: true
+#            addresses: [172.16.1.144/24]
+#            nameservers:
+#                addresses: [172.16.1.254, 192.168.1.1, 8.8.8.8, 8.8.4.4]
+#            gateway4: 172.16.1.254
+            access-points:
+                Streamers:
+                    password: "Join@stream2021"

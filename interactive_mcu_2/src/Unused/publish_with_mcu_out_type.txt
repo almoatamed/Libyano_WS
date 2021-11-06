@@ -1,0 +1,165 @@
+
+// void Mcu::publish_(){  
+//     const u8 LENGTH = 20;
+//     mcu_msgs::mcu_input pub_msg[LENGTH];
+// 
+//     //  ################## touch #################
+//     pub_msg[0].Element = TOUCH_ELEMENT;
+//     pub_msg[0].Part_and_function = 1;
+//     float touch_values[TOUCHS_NUMBER];
+//     for(uint8_t i = 0; i < TOUCHS_NUMBER ; i++){
+//         touch_values[i] = (float)this->touch_controller_.readings[i];
+//     }
+//     pub_msg[0].values = touch_values;
+//     pub_msg[0].values_length = TOUCHS_NUMBER;
+// 
+//     //  ################## ultrasonic ################
+//     pub_msg[1].Element = ULTRASONIC_ELEMENT;
+//     pub_msg[1].Part_and_function = 1;
+//     float ultrasonic_values[ULTRASONICS_NUMBER];
+//     for(uint8_t i = 0; i < ULTRASONICS_NUMBER ; i++){
+//         ultrasonic_values[i] = (float)this->ultrasonic_controller_.readings[i];
+//     }
+//     pub_msg[1].values = ultrasonic_values;
+//     pub_msg[1].values_length = ULTRASONICS_NUMBER;
+// 
+//     //  ################## temp #################
+//     pub_msg[2].Element = TEMP_ELEMENT;
+//     pub_msg[2].Part_and_function = 1;
+//     float temp_values[TEMPERATURE_AND_HUMIDITY_NUMBER];
+//     for(uint8_t i = 0; i < TEMPERATURE_AND_HUMIDITY_NUMBER ; i++){
+//         temp_values[i] = (float)this->t_and_h_controller_.temperature_readings[i];
+//     }
+//     pub_msg[2].values = temp_values;
+//     pub_msg[2].values_length = TEMPERATURE_AND_HUMIDITY_NUMBER;
+// 
+//     //  ################## humidity #################
+//     pub_msg[3].Element = HUMIDITY_ELEMENT;
+//     pub_msg[3].Part_and_function = 1;
+//     float humidity_values[TEMPERATURE_AND_HUMIDITY_NUMBER];
+//     for(uint8_t i = 0; i < TEMPERATURE_AND_HUMIDITY_NUMBER ; i++){
+//         humidity_values[i] = (float)this->t_and_h_controller_.humidity_readings[i];
+//     }
+//     pub_msg[3].values = humidity_values;
+//     pub_msg[3].values_length = TEMPERATURE_AND_HUMIDITY_NUMBER;
+// 
+//     //  ################## imu bno status #################
+//     pub_msg[4].Element = IMU_ELEMENT;
+//     pub_msg[4].Part_and_function = BNO055_PART_STATUS;
+//     float bno055_status[] = {this->imu_controller_.BNO055_STATUS};
+//     pub_msg[4].values = bno055_status;
+//     pub_msg[4].values_length = 1;
+// 
+//     //  ################## imu acceleration #################
+//     pub_msg[5].Element = IMU_ELEMENT;
+//     pub_msg[5].Part_and_function = BNO055_PART_ACCELERATION;
+//     float bno055_accel[] = {this->imu_controller_.sAccAnalog.x,this->imu_controller_.sAccAnalog.y,this->imu_controller_.sAccAnalog.z};
+//     pub_msg[5].values = bno055_accel;
+//     pub_msg[5].values_length = 3;
+// 
+//     //  ################## imu linear acceleration #################
+//     pub_msg[6].Element = IMU_ELEMENT;
+//     pub_msg[6].Part_and_function = BNO055_PART_LINEAR_ACCELERATION;
+//     float bno055_lin_accel[] = {this->imu_controller_.sLiaAnalog.x,this->imu_controller_.sLiaAnalog.y,this->imu_controller_.sLiaAnalog.z};
+//     pub_msg[6].values = bno055_lin_accel;
+//     pub_msg[6].values_length = 3;
+// 
+//     //  ################## imu gyroscop #################
+//     pub_msg[7].Element = IMU_ELEMENT;
+//     pub_msg[7].Part_and_function = BNO055_PART_GYROSCOPE;
+//     float bno055_gyro[] = {this->imu_controller_.sGyrAnalog.x,this->imu_controller_.sGyrAnalog.y,this->imu_controller_.sGyrAnalog.z};
+//     pub_msg[7].values = bno055_gyro;
+//     pub_msg[7].values_length = 3;
+// 
+//     //  ################## imu gravity #################
+//     pub_msg[8].Element = IMU_ELEMENT;
+//     pub_msg[8].Part_and_function = BNO055_PART_GRAVITY;
+//     float bno055_gravity[] = {this->imu_controller_.sGrvAnalog.x,this->imu_controller_.sGrvAnalog.y,this->imu_controller_.sGrvAnalog.z};
+//     pub_msg[8].values = bno055_gravity;
+//     pub_msg[8].values_length = 3;
+// 
+//     //  ################## imu geomagnatic #################
+//     pub_msg[9].Element = IMU_ELEMENT;
+//     pub_msg[9].Part_and_function = BNO055_PART_GEOMAGNATIC;
+//     float bno055_mag[] = {this->imu_controller_.sMagAnalog.x,this->imu_controller_.sMagAnalog.y,this->imu_controller_.sMagAnalog.z};
+//     pub_msg[9].values = bno055_mag;
+//     pub_msg[9].values_length = 3;
+// 
+//     //  ################## imu eular angles #################
+//     pub_msg[10].Element = IMU_ELEMENT;
+//     pub_msg[10].Part_and_function = BNO055_PART_EULAR;
+//     float bno055_eular[] = {this->imu_controller_.sEulAnalog.pitch,this->imu_controller_.sEulAnalog.roll,this->imu_controller_.sEulAnalog.head};
+//     pub_msg[10].values = bno055_eular;
+//     pub_msg[10].values_length = 3;
+// 
+//     //  ################## imu quaternions angles #################
+//     pub_msg[11].Element = IMU_ELEMENT;
+//     pub_msg[11].Part_and_function = BNO055_PART_QUATERNION;
+//     float bno055_quat[] = {this->imu_controller_.sQuaAnalog.w,this->imu_controller_.sQuaAnalog.x,this->imu_controller_.sQuaAnalog.y,this->imu_controller_.sQuaAnalog.z};
+//     pub_msg[11].values = bno055_quat;
+//     pub_msg[11].values_length = 4;
+// 
+//     //  ################## imu bmp status #################
+//     pub_msg[12].Element = IMU_ELEMENT;
+//     pub_msg[12].Part_and_function = BMP280_PART_STATUS;
+//     float bmp280_status[] = {this->imu_controller_.BMP280_STATUS};
+//     pub_msg[12].values = bmp280_status;
+//     pub_msg[12].values_length = 1;
+// 
+//     //  ################## imu temp #################
+//     pub_msg[13].Element = IMU_ELEMENT;
+//     pub_msg[13].Part_and_function = BMP280_PART_TEMP;
+//     float bmp280_temp[] = {this->imu_controller_.temp};
+//     pub_msg[13].values = bmp280_temp;
+//     pub_msg[13].values_length = 1;
+//
+//     //  ################## imu pressure #################
+//     pub_msg[14].Element = IMU_ELEMENT;
+//     pub_msg[14].Part_and_function = BMP280_PART_PRESSURE;
+//     float bmp280_pressure[] = {(float)this->imu_controller_.pressure};
+//     pub_msg[14].values = bmp280_pressure;
+//     pub_msg[14].values_length = 1;
+//
+//     //  ################## imu altitude #################
+//     pub_msg[15].Element = IMU_ELEMENT;
+//     pub_msg[15].Part_and_function = BMP280_PART_ALTITUDE;
+//     float bmp280_altitude[] = {this->imu_controller_.altitude};
+//     pub_msg[15].values = bmp280_altitude;
+//     pub_msg[15].values_length = 1;
+//
+//     //  ################## relays #################
+//     pub_msg[16].Element = RELAY_ELEMENT;
+//     pub_msg[16].Part_and_function = RELAY_PART_BASE;
+//     float relays[NUMBER_OF_RELAYS];
+//     for(uint8_t i; i < NUMBER_OF_RELAYS; i++){
+//         relays[i] = (float)this->relay_controller_.get(uint8_t(RELAY_PIN_BASE+i));
+//     }
+//     pub_msg[16].values = relays;
+//     pub_msg[16].values_length = NUMBER_OF_RELAYS;
+//
+//     //  ################## pixel grid color #################
+//     pub_msg[17].Element = PIXEL_ELEMENT;
+//     pub_msg[17].Part_and_function = PIXEL_COLOR;
+//     float colors[] = {(float)this->pixel_controller_.color[0],(float)this->pixel_controller_.color[1],(float)this->pixel_controller_.color[2]};
+//     pub_msg[17].values = colors;
+//     pub_msg[17].values_length = 3;
+//
+//     //  ################## pixel grid face #################
+//     pub_msg[18].Element = PIXEL_ELEMENT;
+//     pub_msg[18].Part_and_function = PIXEL_FACE;
+//     float face[] = {(float)this->pixel_controller_.face};
+//     pub_msg[18].values = face;
+//     pub_msg[18].values_length = 1;
+//
+//     //  ################## pixel grid face #################
+//     pub_msg[19].Element = PIXEL_ELEMENT;
+//     pub_msg[19].Part_and_function = PIXEL_BRIGHTNESS;
+//     float brightness[] = {(float)this->pixel_controller_.brighness};
+//     pub_msg[19].values = brightness;
+//     pub_msg[19].values_length = 1;
+//
+//     this->output_msg_.output = pub_msg;
+//     this->output_msg_.output_length = LENGTH;
+//
+//     this->output_.publish(&this->output_msg_);
+// }

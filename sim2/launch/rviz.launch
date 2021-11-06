@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<launch>
+  
+  <include file="$(find sim2)/launch/includes/description.launch.xml">
+  </include>
+
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+    <param name="publish_frequency" type="double" value="10.0" />
+  </node>
+
+  <!-- Show in Rviz   -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find sim2)/rviz/basic.rviz" />
+  <!--node name="rviz" pkg="rviz" type="rviz" args="-d $(find robot_description)/launch/apolo.rviz"/-->
+
+</launch>

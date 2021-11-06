@@ -1,0 +1,7 @@
+<launch>
+        <!-- <include file="$(find mode_and_status_publishers)/launch/mode.launch" /> -->
+        <include file="$(find serial_starter)/launch/serial_starter_interactive.launch" />
+        <include file="$(find serial_starter)/launch/serial_starter_led_strip.launch" />
+        <include file="$(find action_handler)/launch/action_server_R.launch" />
+        <!-- <node name="exception_server_R" pkg="exception_handler" type="handler.py" output="screen" /> -->
+</launch>

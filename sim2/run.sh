@@ -1,0 +1,1 @@
+roslaunch /home/salem/catkin_ws/src/sim2/launch/house.launch

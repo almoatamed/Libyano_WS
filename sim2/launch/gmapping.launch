@@ -1,0 +1,27 @@
+<launch>
+  <!-- 
+    Summary
+    - starts the gmapping package with the proper frame names and gmapping configuration file
+   -->
+
+  <!-- Arguments -->
+  <!-- base link -->
+  <arg name="set_base_frame" default="base_footprint"/>
+
+  <!-- odomotry frame name -->
+  <arg name="set_odom_frame" default="odom"/>
+
+  <!-- map frame name -->
+  <arg name="set_map_frame"  default="map"/>
+
+  <!-- Gmapping, uses gmapping package with the slam gmapping node -->
+  <node pkg="gmapping" type="slam_gmapping" name="apolo_slam_gmapping" output="screen">
+    <!-- passing the essential frames as arguments -->
+    <param name="base_frame" value="$(arg set_base_frame)"/>
+    <param name="odom_frame" value="$(arg set_odom_frame)"/>
+    <param name="map_frame"  value="$(arg set_map_frame)"/>
+
+    <!-- load the configuration file for the gmapping, from the sim2 packages -->
+    <rosparam command="load" file="$(find sim2)/config/gmapping_params.yaml" />
+  </node>
+</launch>

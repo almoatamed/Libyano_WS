@@ -1,0 +1,11 @@
+<launch>
+  <arg name="baud" default="57600" />
+  <arg name="port"  />
+  <arg name="name" default="mcu" />
+
+  <node name="rosserial_arduino_$(arg name)" pkg="rosserial_arduino" type="serial_node.py" output="screen">
+  <param name = "baud"                value = "$(arg baud)"/>
+  <param name = "port"                value = "$(arg port)"/>
+  </node>
+
+</launch>

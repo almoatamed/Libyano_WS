@@ -1,0 +1,15 @@
+{
+  "name": "testapp",
+  "version": "1.0.0",
+  "description": "Testing app",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron . --no-sandbox",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Me You",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^13.2.2"
+  }
+}

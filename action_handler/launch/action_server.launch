@@ -1,0 +1,5 @@
+<launch>
+    <param name="/action/action_service_name" value="/action" />
+    <node name="action_handler_G" pkg="action_handler" type="action_handler.py" output="screen"/>
+    <node name="action_server_G" pkg="action_handler" type="action_server.py" output="screen"/>
+</launch>

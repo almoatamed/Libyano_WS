@@ -1,0 +1,11 @@
+<launch>
+
+    <arg name="initial_pose_x" default="-4.815"/>
+    <arg name="initial_pose_y" default="1.486"/>
+    <arg name="initial_pose_a" default="0.0"/>
+
+    <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch"></include>
+    <node pkg="sim2" type="Fake_charging.py" name="Fake_charging" output="screen"></node>
+    <node pkg="sim2" type="status_publisher.py" name="status_publisher" output="screen"></node>
+    <node pkg="sim2" type="navigation_starter.py" name="navigation_starter" output="screen"></node>
+</launch>

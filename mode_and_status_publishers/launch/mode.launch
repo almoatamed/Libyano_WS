@@ -1,0 +1,10 @@
+<launch> 
+    <param name="/mode/csv_path" value="$(find mode_and_status_publishers)/csv/modes.csv"/>
+    <param name="/mode/mode_topic" value="/mode"/>
+    <param name="/mode/mode_rate" value="5"/>
+    <param name="/mode/premode_topic" value="/mode/premode"/>
+    <param name="/mode/change_mode_topic" value="/mode/change_mode"/>
+    <param name="/status/status_topic" value="/status"/>
+    <param name="/action/action_topic" value="/action"/>
+    <node name="mode_handler" pkg="mode_and_status_publishers" type="mode.py" output="screen" />
+</launch>

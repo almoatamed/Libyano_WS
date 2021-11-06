@@ -1,0 +1,193 @@
+<?xml version="1.0"?>
+<!-- 
+  Summary
+  - gazebo desription of, sensors, plugins, differential drive system
+ -->
+<!-- declaration of the robot model simulation, the inclusion of the xacro url is IMPORTANT -->
+<robot name="apolo_sim" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- arguments to visualize the sensors  -->
+  <xacro:arg name="laser_visual" default="true"/>
+  <xacro:arg name="imu_visual"   default="true"/>
+
+  <!-- colorign the base link -->
+  <gazebo reference="base_link">
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+
+  <!-- Inertia measurement unit sensor -->
+  <gazebo reference="imu_link">
+    <sensor type="imu" name="imu">
+      <always_on>true</always_on>
+      <visualize>$(arg imu_visual)</visualize>
+    </sensor>
+    <material>Gazebo/FlatBlack</material>
+  </gazebo>
+
+  <!-- uses differential drive plugin in order to control the robot -->
+  <gazebo>
+    <plugin name="differential_controller" filename="libgazebo_ros_diff_drive.so">
+      <commandTopic>cmd_vel</commandTopic>
+
+      <!-- specify the topic name and the frame name of the odometry -->
+      <odometryTopic>odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+
+      <!-- the referance of the odometry -->
+      <odometrySource>world</odometrySource>
+
+      <!-- publish odometry TF, which is the odometry transformations frame in TF -->
+      <publishOdomTF>true</publishOdomTF>
+
+      <!-- here specify the name of the base line -->
+      <robotBaseFrame>base_footprint</robotBaseFrame>
+
+      <!-- publish the wheel transformations, not necessary -->
+      <publishWheelTF>false</publishWheelTF>
+
+      <!-- publish the transformation frames of the robot -->
+      <publishTf>true</publishTf>
+
+      <!-- publish joint state, instead of the joint state publisher package -->
+      <publishWheelJointState>true</publishWheelJointState>
+
+      <!-- legacy code -->
+      <legacyMode>false</legacyMode>
+
+      <!-- the publish rate -->
+      <updateRate>30</updateRate>
+
+      <!-- the name of the left and right wheel joint in the URDF file -->
+      <leftJoint>wheel_left_joint</leftJoint>
+      <rightJoint>wheel_right_joint</rightJoint>
+
+      <!-- wheel base length -->
+      <wheelSeparation>0.50</wheelSeparation>
+
+      <!-- wheel diameter in meter -->
+      <wheelDiameter>0.137</wheelDiameter>
+
+      <!-- the wheel acceleration  -->
+      <!-- <wheelAcceleration>1</wheelAcceleration> -->
+
+      <!-- the wheel turque provided by the motor -->
+      <wheelTorque>25</wheelTorque>
+
+      <rosDebugLevel>na</rosDebugLevel>
+    </plugin>
+  </gazebo>
+
+  <!-- imu sensor plugin -->
+  <gazebo>
+    <plugin name="imu_plugin" filename="libgazebo_ros_imu.so">
+      <alwaysOn>true</alwaysOn>
+      <bodyName>imu_link</bodyName>
+      <frameName>imu_link</frameName>
+      <topicName>imu</topicName>
+      <serviceName>imu_service</serviceName>
+      <gaussianNoise>0.0</gaussianNoise>
+      <updateRate>0</updateRate>
+      <imu>
+        <noise>
+          <type>gaussian</type>
+          <rate>
+            <mean>0.0</mean>
+            <stddev>2e-4</stddev>
+            <bias_mean>0.0000075</bias_mean>
+            <bias_stddev>0.0000008</bias_stddev>
+          </rate>
+          <accel>
+            <mean>0.0</mean>
+            <stddev>1.7e-2</stddev>
+            <bias_mean>0.1</bias_mean>
+            <bias_stddev>0.001</bias_stddev>
+          </accel>
+        </noise>
+      </imu>
+    </plugin>
+  </gazebo>
+
+  <!-- laser lidar scanner sensor -->
+  <gazebo reference="base_scan">
+    <material>Gazebo/FlatBlack</material>
+    <sensor type="ray" name="lds_lfcd_sensor">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>$(arg laser_visual)</visualize>
+      <update_rate>5</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>360</samples>
+            <resolution>1</resolution>
+
+            <!-- this means that the lidar is 360 degrees  -->
+            <min_angle>-1.3</min_angle>
+            <max_angle>1.3</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <!-- 12cm to 3.5m -->
+          <min>0.120</min>
+          <max>3.5</max>
+
+          <!-- resolution of 1.5cm -->
+          <resolution>0.015</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="gazebo_ros_lds_lfcd_controller" filename="libgazebo_ros_laser.so">
+        <topicName>scan</topicName>
+
+        <!-- the name of the link of the lidar -->
+        <frameName>base_scan</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <!-- <gazebo reference="Link_ultrasonic_front">
+    <sensor name="Link_ultrasonic_front_camera" type="depth">
+      <update_rate>20</update_rate>
+      <camera>
+        <horizontal_fov>1.047198</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.05</near>
+          <far>3</far>
+        </clip>
+      </camera>
+      <plugin name="Link_ultrasonic_front_controller" filename="libgazebo_ros_openni_kinect.so">
+        <baseline>0.2</baseline>
+        <alwaysOn>true</alwaysOn>
+        <updateRate>1.0</updateRate>
+        <cameraName>camera_ir</cameraName>
+        <imageTopicName>/camera/color/image_raw</imageTopicName>
+        <cameraInfoTopicName>/camera/color/camera_info</cameraInfoTopicName>
+        <depthImageTopicName>/camera/depth/image_raw</depthImageTopicName>
+        <depthImageInfoTopicName>/camera/depth/camera_info</depthImageInfoTopicName>
+        <pointCloudTopicName>point_cloud</pointCloudTopicName>
+        <frameName>base_depth</frameName>
+        <pointCloudCutoff>0.5</pointCloudCutoff>
+        <pointCloudCutoffMax>3.0</pointCloudCutoffMax>
+        <distortionK1>0.00000001</distortionK1>
+        <distortionK2>0.00000001</distortionK2>
+        <distortionK3>0.00000001</distortionK3>
+        <distortionT1>0.00000001</distortionT1>
+        <distortionT2>0.00000001</distortionT2>
+        <CxPrime>0</CxPrime>
+        <Cx>0</Cx>
+        <Cy>0</Cy>
+        <focalLength>0</focalLength>
+        <hackBaseline>0</hackBaseline>
+      </plugin>
+    </sensor>
+  </gazebo> -->
+
+</robot>

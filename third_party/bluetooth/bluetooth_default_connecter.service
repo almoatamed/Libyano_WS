@@ -1,0 +1,11 @@
+[Unit]
+Description=bluetooth default connecter
+After=network.target bluetooth.target syslog.target
+
+[Service]
+User=ubuntu
+ExecStart=/usr/bin/python /usr/sbin/bluetooth_default_connecter/start.py
+ExecStop=echo "Done!"
+
+[Install]
+WantedBy=multi-user.target

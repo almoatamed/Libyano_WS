@@ -1,0 +1,5 @@
+{
+    "sketch": "examples/ODriveArduinoTest/ODriveArduinoTest.ino",
+    "configuration": "cpu=atmega2560",
+    "board": "arduino:avr:mega"
+}

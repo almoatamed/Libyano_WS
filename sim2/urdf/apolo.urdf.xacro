@@ -1,0 +1,437 @@
+<?xml version="1.0" ?>
+
+<!-- 
+  Summary 
+  - totla roboto desription using the Xacro configuration built on URDF file
+ -->
+
+<robot name="apolo" xmlns:xacro="http://ros.org/wiki/xacro">
+  <!-- the common properties are colors and materials (not big deal) -->
+  <xacro:include filename="$(find sim2)/urdf/common_properties.xacro"/>
+  <!-- includes the gazebo file for the urdf below -->
+  <xacro:include filename="$(find sim2)/urdf/apolo.gazebo.xacro"/>
+
+  <link name="base_footprint"/>
+
+  <link name="base_link">
+    <inertial>
+      <origin
+        xyz="-2.7117E-05 7.4585E-08 0.11021"
+        rpy="0 0 0" />
+      <mass
+        value="35.933" />
+      <inertia
+        ixx="0.30028"
+        ixy="9.9121E-09"
+        ixz="-5.0539E-06"
+        iyy="0.32792"
+        iyz="8.4184E-09"
+        izz="0.52114" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sim2/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sim2/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="base_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+    <origin xyz="0.0 0.0 0.01" rpy="0 0 0"/>
+  </joint>
+
+  <link name="wheel_left_link">
+    <inertial>
+      <origin
+        xyz="-8.8905E-17 0.011395 1.6653E-16"
+        rpy="1.57 0 0" />
+      <mass
+        value="0.37351" />
+      <inertia
+        ixx="0.00045424"
+        ixy="5.2222E-20"
+        ixz="7.9623E-20"
+        iyy="0.0008746"
+        iyz="6.4134E-20"
+        izz="0.00045424" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="1.57 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sim2/meshes/wheel_right_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79608 0.82353 0.93725 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="1.57 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sim2/meshes/wheel_right_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="wheel_left_joint"
+    type="continuous">
+    <origin
+      xyz="0.00055917 0.183 0.0667"
+      rpy="-1.57 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="wheel_left_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+  <link name="wheel_right_link">
+    <inertial>
+      <origin
+        xyz="-1.4311E-17 -0.011395 8.3267E-17"
+        rpy="1.57 0 0" />
+      <mass
+        value="0.37351" />
+      <inertia
+        ixx="0.00045424"
+        ixy="-2.3857E-21"
+        ixz="3.2273E-36"
+        iyy="0.0008746"
+        iyz="1.0048E-20"
+        izz="0.00045424" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="1.57 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sim2/meshes/wheel_right_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79608 0.82353 0.93725 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="1.57 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sim2/meshes/wheel_right_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="wheel_right_joint"
+    type="continuous">
+    <origin
+      xyz="0.00055917 -0.183 0.0667"
+      rpy="-1.57 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="wheel_right_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  
+  <link name="base_scan">
+    <inertial>
+      <origin
+        xyz="-0.000284 -0.00089655 -0.011698"
+        rpy="0 0 0" />
+      <mass
+        value="0.093353" />
+      <inertia
+        ixx="3.171E-05"
+        ixy="-6.726E-08"
+        ixz="2.7337E-07"
+        iyy="3.1517E-05"
+        iyz="8.6367E-07"
+        izz="4.9042E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 -0.025"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sim2/meshes/base_scan.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 -0.025"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sim2/meshes/base_scan.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="Joint_lidar"
+    type="fixed">
+    <origin
+      xyz="0.049688 0.0002844 0.247"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="base_scan" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+`
+
+  <!-- imu sensor -->
+  <link name="imu_link"/>
+  <joint name="imu_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="imu_link"/>
+    <origin xyz="-0.032 0 0.068" rpy="0 0 0"/>
+  </joint>
+
+  <link name="Link_body">
+    <inertial>
+      <origin
+        xyz="-0.0086758 -5.5287E-05 0.26813"
+        rpy="0 0 0" />
+      <mass
+        value="14.828" />
+      <inertia
+        ixx="0.27865"
+        ixy="-8.2459E-05"
+        ixz="0.0051991"
+        iyy="0.29604"
+        iyz="3.0659E-05"
+        izz="0.48127" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sim2/meshes/Link_body.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sim2/meshes/Link_body.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="Joint_body"
+    type="fixed">
+    <origin
+      xyz="0 0 0.038"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="Link_body" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+  <link name="Link_ultrasonic_right">
+    <inertial>
+      <origin
+        xyz="0.00062831 0.0057674 -5.1893E-06"
+        rpy="0 0 0" />
+      <mass
+        value="0.0101" />
+      <inertia
+        ixx="1.8422E-06"
+        ixy="1.6242E-07"
+        ixz="1.4105E-08"
+        iyy="1.911E-06"
+        iyz="-1.1431E-08"
+        izz="5.0038E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sim2/meshes/Link_ultrasonic_right.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sim2/meshes/Link_ultrasonic_right.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="Joint_ultrasonic_right"
+    type="fixed">
+    <origin
+      xyz="0.14411 0.19229 0.149"
+      rpy="0 0 0" />
+    <parent
+      link="Link_body" />
+    <child
+      link="Link_ultrasonic_right" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+  <link name="Link_ultrasonic_front">
+    <inertial>
+      <origin
+        xyz="0.004991 0.0011536 -6.5714E-05"
+        rpy="0 0 0" />
+      <mass
+        value="0.0101" />
+      <inertia
+        ixx="2.042E-06"
+        ixy="-1.4586E-08"
+        ixz="-9.4325E-22"
+        iyy="1.7115E-06"
+        iyz="4.077E-21"
+        izz="5.001E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sim2/meshes/Link_ultrasonic_front.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sim2/meshes/Link_ultrasonic_front.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="Joint_ultrasonic_front"
+    type="fixed">
+    <origin
+      xyz="0.24031 0.00020236 0.14883"
+      rpy="0 0 0" />
+    <parent
+      link="Link_body" />
+    <child
+      link="Link_ultrasonic_front" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+  <link name="Link_ultrasonic_lift">
+    <inertial>
+      <origin
+        xyz="0.0027506 -0.0041791 -0.00012729"
+        rpy="0 0 0" />
+      <mass
+        value="0.0101" />
+      <inertia
+        ixx="1.8441E-06"
+        ixy="-1.6264E-07"
+        ixz="-5.1675E-20"
+        iyy="1.9094E-06"
+        iyz="-4.2479E-20"
+        izz="5.001E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sim2/meshes/Link_ultrasonic_lift.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://sim2/meshes/Link_ultrasonic_lift.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="Joint_ultrasonic_lift"
+    type="fixed">
+    <origin
+      xyz="0.1431 -0.19305 0.14883"
+      rpy="0 0 0" />
+    <parent
+      link="Link_body" />
+    <child
+      link="Link_ultrasonic_lift" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+</robot>

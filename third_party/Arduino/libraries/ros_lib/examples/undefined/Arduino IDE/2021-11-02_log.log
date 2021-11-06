@@ -1,0 +1,339 @@
+2021-11-02 23:15:40 Using browser-only version of superagent in non-browser environment
+2021-11-02 23:15:40 Configuring to accept webviews on '^.+\.webview\..+$' hostname.
+2021-11-02 23:15:40 root INFO Configuration directory URI: 'file:///home/salem/.theia'
+2021-11-02 23:15:40 root ERROR (node:6136) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2021-11-02 23:15:40 root INFO Theia app listening on http://localhost:40289.
+2021-11-02 23:15:40 root WARN The local plugin referenced by local-dir:/home/salem/.arduinoIDE/plugins does not exist.
+2021-11-02 23:15:40 root WARN The local plugin referenced by local-dir:/home/salem/.arduinoIDE/extensions does not exist.
+2021-11-02 23:15:40 root WARN The local plugin referenced by local-dir:/home/salem/.arduinoProIDE/plugins does not exist.
+2021-11-02 23:15:40 root INFO PluginTheiaDirectoryHandler: accepting plugin with path
+2021-11-02 23:15:40 root INFO Resolved "cortex-debug" to a VS Code extension "cortex-debug@0.3.10" with engines:
+2021-11-02 23:15:40 root INFO PluginTheiaDirectoryHandler: accepting plugin with path
+2021-11-02 23:15:40 root INFO Resolved "vscode-arduino-tools" to a VS Code extension "vscode-arduino-tools@0.0.1-beta.1" with engines:
+2021-11-02 23:15:40 root INFO PluginTheiaDirectoryHandler: accepting plugin with path
+2021-11-02 23:15:40 root INFO Resolved "vscode-builtin-cpp" to a VS Code extension "cpp@1.52.1" with engines:
+2021-11-02 23:15:40 root INFO PluginTheiaDirectoryHandler: accepting plugin with path
+2021-11-02 23:15:40 root INFO Resolved "vscode-builtin-json" to a VS Code extension "json@1.46.1" with engines:
+2021-11-02 23:15:40 root INFO PluginTheiaDirectoryHandler: accepting plugin with path
+2021-11-02 23:15:40 root INFO Resolved "vscode-builtin-json-language-features" to a VS Code extension "json-language-features@1.46.1" with engines:
+2021-11-02 23:15:40 root INFO Deploying backend plugin "cortex-debug@0.3.10" from "/home/salem/Downloads/arduino-ide_2.0.0-beta.12_Linux_64bit/resources/app/plugins/cortex-debug/extension/dist/extension"
+2021-11-02 23:15:40 root INFO Deploying backend plugin "vscode-arduino-tools@0.0.1-beta.1" from "/home/salem/Downloads/arduino-ide_2.0.0-beta.12_Linux_64bit/resources/app/plugins/vscode-arduino-tools/extension/dist/bundle"
+2021-11-02 23:15:40 root INFO Deploying backend plugin "cpp@1.52.1" from "/home/salem/Downloads/arduino-ide_2.0.0-beta.12_Linux_64bit/resources/app/plugins/vscode-builtin-cpp/extension"
+2021-11-02 23:15:40 root INFO Deploying backend plugin "json@1.46.1" from "/home/salem/Downloads/arduino-ide_2.0.0-beta.12_Linux_64bit/resources/app/plugins/vscode-builtin-json/extension"
+2021-11-02 23:15:40 root INFO Deploying backend plugin "json-language-features@1.46.1" from "/home/salem/Downloads/arduino-ide_2.0.0-beta.12_Linux_64bit/resources/app/plugins/vscode-builtin-json-language-features/extension/client/dist/jsonMain"
+2021-11-02 23:15:40 root INFO Deploy plugins list took: 95.2 ms
+2021-11-02 23:15:40 root WARN Backend ConfigServiceImpl.onStart is slow, took: 162.5 ms
+2021-11-02 23:15:40 daemon INFO Starting daemon from /home/salem/Downloads/arduino-ide_2.0.0-beta.12_Linux_64bit/resources/app/node_modules/arduino-ide-extension/build/arduino-cli...
+2021-11-02 23:15:40 daemon INFO Using config file: /home/salem/.arduinoIDE/arduino-cli.yaml
+2021-11-02 23:15:40 daemon INFO arduino-cli version 0.19.1
+2021-11-02 23:15:40 daemon INFO Setting up Prometheus metrics on :9090/metrics
+2021-11-02 23:15:40 daemon INFO Starting daemon on TCP address 127.0.0.1:50051
+2021-11-02 23:15:40 daemon INFO Daemon is now listening on 127.0.0.1:50051...
+2021-11-02 23:15:40 daemon INFO Daemon is running.
+2021-11-02 23:15:42 daemon INFO Checking if CLI is Bundled into the IDE
+2021-11-02 23:15:42 daemon INFO Adding libraries dir [dir: /home/salem/Arduino/libraries, location: user]
+2021-11-02 23:15:42 daemon INFO URL: https://downloads.arduino.cc/packages/package_index.json
+2021-11-02 23:15:42 daemon INFO Updating index [url: https://downloads.arduino.cc/packages/package_index.json]
+2021-11-02 23:15:42 root INFO Git askpass helper is listening on http://127.0.0.1:46609.
+2021-11-02 23:15:42 root INFO Using Git [2.17.1] from the PATH. (/usr/bin/git)
+2021-11-02 23:15:42 root WARN Frontend CommonFrontendContribution.configure is slow, took: 230.2 ms
+2021-11-02 23:15:42 root WARN Failed to resolve module: @theia/application-package
+2021-11-02 23:15:42 root WARN Failed to resolve module: @types/body-parser
+2021-11-02 23:15:42 root WARN Failed to resolve module: @types/cookie
+2021-11-02 23:15:42 root WARN Failed to resolve module: @types/dompurify
+2021-11-02 23:15:42 root WARN Failed to resolve module: @types/express
+2021-11-02 23:15:42 root WARN Failed to resolve module: @types/fs-extra
+2021-11-02 23:15:42 root WARN Failed to resolve module: @types/lodash.debounce
+2021-11-02 23:15:42 root WARN Failed to resolve module: @types/lodash.throttle
+2021-11-02 23:15:42 root WARN Failed to resolve module: @types/react
+2021-11-02 23:15:42 root WARN Failed to resolve module: @types/react-dom
+2021-11-02 23:15:42 root WARN Failed to resolve module: @types/react-virtualized
+2021-11-02 23:15:42 root WARN Failed to resolve module: @types/route-parser
+2021-11-02 23:15:42 root WARN Failed to resolve module: @types/safer-buffer
+2021-11-02 23:15:42 root WARN Failed to resolve module: @types/ws
+2021-11-02 23:15:42 root WARN Failed to resolve module: @types/yargs
+2021-11-02 23:15:42 root WARN Failed to resolve module: @theia/monaco
+2021-11-02 23:15:42 root WARN Failed to resolve module: @theia/editor
+2021-11-02 23:15:42 root WARN Failed to resolve module: @types/multer
+2021-11-02 23:15:42 root WARN Failed to resolve module: @types/rimraf
+2021-11-02 23:15:42 root WARN Failed to resolve module: @types/tar-fs
+2021-11-02 23:15:42 root WARN Failed to resolve module: @types/uuid
+2021-11-02 23:15:42 root WARN Failed to resolve module: @theia/navigator
+2021-11-02 23:15:42 root WARN Failed to resolve module: @types/p-queue
+2021-11-02 23:15:42 root WARN Failed to resolve module: @theia/preferences
+2021-11-02 23:15:42 root WARN Failed to resolve module: @theia/editor-preview
+2021-11-02 23:15:42 root WARN Failed to resolve module: @theia/keymaps
+2021-11-02 23:15:42 root WARN Failed to resolve module: @theia/messages
+2021-11-02 23:15:42 root WARN Failed to resolve module: @types/diff
+2021-11-02 23:15:42 root WARN Failed to resolve module: @types/mime
+2021-11-02 23:15:42 root WARN Failed to resolve module: @types/request
+2021-11-02 23:15:42 root WARN Failed to resolve module: @types/atob
+2021-11-02 23:15:42 root WARN Failed to resolve module: @types/auth0-js
+2021-11-02 23:15:42 root WARN Failed to resolve module: @types/btoa
+2021-11-02 23:15:42 root WARN Failed to resolve module: @types/dateformat
+2021-11-02 23:15:42 root WARN Failed to resolve module: @types/deepmerge
+2021-11-02 23:15:42 root WARN Failed to resolve module: @types/glob
+2021-11-02 23:15:42 root WARN Failed to resolve module: @types/google-protobuf
+2021-11-02 23:15:42 root WARN Failed to resolve module: @types/js-yaml
+2021-11-02 23:15:42 root WARN Failed to resolve module: @types/keytar
+2021-11-02 23:15:42 root WARN Failed to resolve module: @types/ncp
+2021-11-02 23:15:42 root WARN Failed to resolve module: @types/node-fetch
+2021-11-02 23:15:42 root WARN Failed to resolve module: @types/ps-tree
+2021-11-02 23:15:42 root WARN Failed to resolve module: @types/react-select
+2021-11-02 23:15:42 root WARN Failed to resolve module: @types/react-tabs
+2021-11-02 23:15:42 root WARN Failed to resolve module: @types/sinon
+2021-11-02 23:15:42 root WARN Failed to resolve module: @types/temp
+2021-11-02 23:15:42 root WARN Failed to resolve module: @types/which
+2021-11-02 23:15:46 root INFO Updating index: package_index.json completed.
+2021-11-02 23:15:46 root INFO Updating index: package_index.json.sig completed.
+2021-11-02 23:15:46 daemon INFO Checking signature [error: opening signature file: open /tmp/229523263.sig: no such file or directory, index: /tmp/229523263, signaturefile: /tmp/229523263.sig]
+2021-11-02 23:15:46 daemon INFO Updating libraries index
+2021-11-02 23:15:49 root INFO Updating index: library_index.json.gz completed.
+2021-11-02 23:15:50 root INFO Updating index: library_index.json.sig completed.
+2021-11-02 23:15:50 daemon INFO Checking signature [index: /home/salem/.arduino15/package_index.json, signaturefile: /home/salem/.arduino15/package_index.json.sig, trusted: true]
+2021-11-02 23:15:50 daemon INFO Loading hardware from: /home/salem/.arduino15/packages
+2021-11-02 23:15:50 daemon INFO Loading package arduino from: /home/salem/.arduino15/packages/arduino/hardware
+2021-11-02 23:15:50 daemon INFO Checking signature [error: opening signature file: open /home/salem/.arduino15/packages/arduino/hardware/avr/1.8.3/installed.json.sig: no such file or directory, index: /home/salem/.arduino15/packages/arduino/hardware/avr/1.8.3/installed.json, signaturefile: /home/salem/.arduino15/packages/arduino/hardware/avr/1.8.3/installed.json.sig]
+2021-11-02 23:15:50 daemon INFO Loaded platform [platform: {ID:"arduino:avr",Installed:"1.8.3",Latest:"1.8.3",Name:"Arduino AVR Boards"}]
+2021-11-02 23:15:50 daemon INFO Checking signature [error: opening signature file: open /home/salem/.arduino15/packages/arduino/hardware/megaavr/1.8.7/installed.json.sig: no such file or directory, index: /home/salem/.arduino15/packages/arduino/hardware/megaavr/1.8.7/installed.json, signaturefile: /home/salem/.arduino15/packages/arduino/hardware/megaavr/1.8.7/installed.json.sig]
+2021-11-02 23:15:50 daemon INFO Loaded platform [platform: {ID:"arduino:megaavr",Installed:"1.8.7",Latest:"1.8.7",Name:"Arduino megaAVR Boards"}]
+2021-11-02 23:15:50 daemon INFO Checking signature [error: opening signature file: open /home/salem/.arduino15/packages/arduino/hardware/sam/1.6.11/installed.json.sig: no such file or directory, index: /home/salem/.arduino15/packages/arduino/hardware/sam/1.6.11/installed.json, signaturefile: /home/salem/.arduino15/packages/arduino/hardware/sam/1.6.11/installed.json.sig]
+2021-11-02 23:15:50 daemon INFO Loaded platform [platform: {ID:"arduino:sam",Installed:"1.6.11",Latest:"1.6.12",Name:"Arduino SAM Boards (32-bits ARM Cortex-M3)"}]
+2021-11-02 23:15:50 daemon INFO Checking signature [error: opening signature file: open /home/salem/.arduino15/packages/arduino/hardware/sam/1.6.12/installed.json.sig: no such file or directory, index: /home/salem/.arduino15/packages/arduino/hardware/sam/1.6.12/installed.json, signaturefile: /home/salem/.arduino15/packages/arduino/hardware/sam/1.6.12/installed.json.sig]
+2021-11-02 23:15:50 daemon INFO Loaded platform [platform: {ID:"arduino:sam",Installed:"1.6.12",Latest:"1.6.12",Name:"Arduino SAM Boards (32-bits ARM Cortex-M3)"}]
+2021-11-02 23:15:50 daemon INFO Checking existence of 'tools' path: /home/salem/.arduino15/packages/arduino/tools
+2021-11-02 23:15:50 daemon INFO Loading tools from dir: /home/salem/.arduino15/packages/arduino/tools
+2021-11-02 23:15:50 daemon INFO Loaded tool [tool: Version: 1.3.0 Systems: [OS: i686-linux-gnu, OS: x86_64-linux-gnu, OS: arm-linux-gnueabihf, OS: aarch64-linux-gnu, OS: i386-apple-darwin11, OS: i686-mingw32]]
+2021-11-02 23:15:50 daemon INFO Loaded tool [tool: Version: 4.8.3-2014q1 Systems: [OS: arm-linux-gnueabihf, OS: i686-mingw32, OS: x86_64-apple-darwin, OS: x86_64-pc-linux-gnu, OS: i686-pc-linux-gnu]]
+2021-11-02 23:15:50 daemon INFO Loaded tool [tool: Version: 7.3.0-atmel3.6.1-arduino5 Systems: [OS: arm-linux-gnueabihf, OS: aarch64-linux-gnu, OS: x86_64-apple-darwin14, OS: i686-mingw32, OS: i686-linux-gnu, OS: x86_64-linux-gnu]]
+2021-11-02 23:15:50 daemon INFO Loaded tool [tool: Version: 7.3.0-atmel3.6.1-arduino7 Systems: [OS: arm-linux-gnueabihf, OS: aarch64-linux-gnu, OS: x86_64-apple-darwin14, OS: i686-mingw32, OS: i686-linux-gnu, OS: x86_64-linux-gnu]]
+2021-11-02 23:15:50 daemon INFO Loaded tool [tool: Version: 6.3.0-arduino17 Systems: [OS: arm-linux-gnueabihf, OS: aarch64-linux-gnu, OS: x86_64-apple-darwin12, OS: x86_64-linux-gnu, OS: i686-linux-gnu, OS: i686-mingw32]]
+2021-11-02 23:15:50 daemon INFO Loaded tool [tool: Version: 1.6.1-arduino Systems: [OS: arm-linux-gnueabihf, OS: i686-mingw32, OS: x86_64-apple-darwin, OS: x86_64-pc-linux-gnu, OS: i686-pc-linux-gnu]]
+2021-11-02 23:15:50 daemon INFO Loading package builtin from: /home/salem/.arduino15/packages/builtin
+2021-11-02 23:15:50 daemon INFO Checking existence of 'tools' path: /home/salem/.arduino15/packages/builtin/tools
+2021-11-02 23:15:50 daemon INFO Loading tools from dir: /home/salem/.arduino15/packages/builtin/tools
+2021-11-02 23:15:50 daemon INFO Loaded tool [tool: Version: 5.8-arduino11 Systems: [OS: i686-pc-linux-gnu, OS: x86_64-pc-linux-gnu, OS: i686-mingw32, OS: x86_64-apple-darwin, OS: arm-linux-gnueabihf, OS: aarch64-linux-gnu]]
+2021-11-02 23:15:50 daemon INFO Loaded tool [tool: Version: 0.9.2 Systems: [OS: i686-pc-linux-gnu, OS: x86_64-pc-linux-gnu, OS: i686-mingw32, OS: x86_64-mingw32, OS: x86_64-apple-darwin, OS: arm-linux-gnueabihf, OS: arm64-linux-gnueabihf]]
+2021-11-02 23:15:50 daemon INFO Loaded tool [tool: Version: 1.3.0-rc1 Systems: [OS: i686-pc-linux-gnu, OS: x86_64-pc-linux-gnu, OS: i686-mingw32, OS: x86_64-mingw32, OS: x86_64-apple-darwin, OS: arm-linux-gnueabihf, OS: arm64-linux-gnueabihf]]
+2021-11-02 23:15:50 daemon INFO Adding libraries dir [dir: /home/salem/.arduino15/packages/arduino/hardware/avr/1.8.3/libraries, location: platform]
+2021-11-02 23:15:50 daemon INFO Adding libraries dir [dir: /home/salem/.arduino15/packages/arduino/hardware/sam/1.6.12/libraries, location: platform]
+2021-11-02 23:15:50 daemon INFO Adding libraries dir [dir: /home/salem/.arduino15/packages/arduino/hardware/megaavr/1.8.7/libraries, location: platform]
+2021-11-02 23:15:50 daemon INFO starting discovery builtin:mdns-discovery process
+2021-11-02 23:15:50 daemon INFO starting discovery builtin:serial-discovery process
+2021-11-02 23:15:50 daemon INFO started discovery builtin:mdns-discovery process
+2021-11-02 23:15:50 daemon INFO sending command HELLO 1 "arduino-cli 0.19.1" to discovery builtin:mdns-discovery
+2021-11-02 23:15:50 daemon INFO started discovery builtin:serial-discovery process
+2021-11-02 23:15:50 daemon INFO sending command HELLO 1 "arduino-cli 0.19.1" to discovery builtin:serial-discovery
+2021-11-02 23:15:50 daemon INFO from discovery builtin:serial-discovery received message type: hello, message: OK, protocol version: 1
+2021-11-02 23:15:50 daemon INFO from discovery builtin:mdns-discovery received message type: hello, message: OK, protocol version: 1
+2021-11-02 23:15:50 daemon INFO sending command START_SYNC to discovery builtin:serial-discovery
+2021-11-02 23:15:50 daemon INFO sending command START_SYNC to discovery builtin:mdns-discovery
+2021-11-02 23:15:50 daemon INFO from discovery builtin:mdns-discovery received message type: start_sync, message: OK
+2021-11-02 23:15:50 daemon INFO from discovery builtin:serial-discovery received message type: start_sync, message: OK
+2021-11-02 23:16:05 root WARN Could not load sketch from /home/salem/Arduino/cd.
+2021-11-02 23:16:05 root WARN Frontend EditorNavigationContribution.onStart is slow, took: 22280.6 ms
+2021-11-02 23:16:05 root INFO Checking whether '--no-optional-locks' can be used with the current Git executable. Minimum required version is '2.15.0'.
+2021-11-02 23:16:05 root INFO '--no-optional-locks' is a valid Git option for the current Git version: '2.17.1'.
+2021-11-02 23:16:05 root WARN Frontend WorkspaceService.onStart is slow, took: 158.6 ms
+2021-11-02 23:16:05 root INFO Board config changed: 
+2021-11-02 23:16:05 root INFO Changed application state from 'init' to 'started_contributions'.
+2021-11-02 23:16:05 root INFO Changed application state from 'started_contributions' to 'attached_shell'.
+2021-11-02 23:16:05 root INFO >>> Restoring the layout state...
+2021-11-02 23:16:05 root INFO <<< Nothing to restore.
+2021-11-02 23:16:05 root INFO [hosted-plugin: 6548] PLUGIN_HOST(6548) starting instance
+2021-11-02 23:16:06 root INFO Changed application state from 'attached_shell' to 'initialized_layout'.
+2021-11-02 23:16:06 root INFO [9e02849f-23f8-463a-853d-0ef5b268e679] Sync of 5 plugins took: 744.2 ms
+2021-11-02 23:16:06 root INFO [9e02849f-23f8-463a-853d-0ef5b268e679][marus25.cortex-debug]: Loaded contributions.
+2021-11-02 23:16:06 root INFO [9e02849f-23f8-463a-853d-0ef5b268e679][arduino.vscode-arduino-tools]: Loaded contributions.
+2021-11-02 23:16:06 root INFO [9e02849f-23f8-463a-853d-0ef5b268e679][vscode.cpp]: Loaded contributions.
+2021-11-02 23:16:06 root INFO [9e02849f-23f8-463a-853d-0ef5b268e679][vscode.json]: Loaded contributions.
+2021-11-02 23:16:06 root INFO [9e02849f-23f8-463a-853d-0ef5b268e679][vscode.json-language-features]: Loaded contributions.
+2021-11-02 23:16:06 root INFO [9e02849f-23f8-463a-853d-0ef5b268e679] Load contributions of 5 plugins took: 69.1 ms
+2021-11-02 23:16:06 root WARN 'cpp' language is remapped from 'source.cpp.embedded.macro' to 'source.cpp' scope
+2021-11-02 23:16:06 root WARN a registered grammar configuration for 'cpp' language is overridden
+2021-11-02 23:16:07 root INFO Changed application state from 'initialized_layout' to 'ready'.
+2021-11-02 23:16:08 root INFO [hosted-plugin: 6548] PLUGIN_HOST(6548): PluginManagerExtImpl/init()
+2021-11-02 23:16:08 root INFO [hosted-plugin: 6548] PLUGIN_HOST(6548): initializing(cortex-debug@0.3.10 with /home/salem/Downloads/arduino-ide_2.0.0-beta.12_Linux_64bit/resources/app/node_modules/@theia/plugin-ext-vscode/lib/node/plugin-vscode-init)
+2021-11-02 23:16:08 root INFO [hosted-plugin: 6548] Debugger contribution has been registered: cortex-debug
+2021-11-02 23:16:08 root INFO [hosted-plugin: 6548] PLUGIN_HOST(6548): initializing(vscode-arduino-tools@0.0.1-beta.1 with /home/salem/Downloads/arduino-ide_2.0.0-beta.12_Linux_64bit/resources/app/node_modules/@theia/plugin-ext-vscode/lib/node/plugin-vscode-init)
+2021-11-02 23:16:08 root INFO [hosted-plugin: 6548] PLUGIN_HOST(6548): initializing(cpp@1.52.1 with /home/salem/Downloads/arduino-ide_2.0.0-beta.12_Linux_64bit/resources/app/node_modules/@theia/plugin-ext-vscode/lib/node/plugin-vscode-init)
+2021-11-02 23:16:08 root INFO [hosted-plugin: 6548] PLUGIN_HOST(6548): initializing(json@1.46.1 with /home/salem/Downloads/arduino-ide_2.0.0-beta.12_Linux_64bit/resources/app/node_modules/@theia/plugin-ext-vscode/lib/node/plugin-vscode-init)
+2021-11-02 23:16:08 root INFO [hosted-plugin: 6548] PLUGIN_HOST(6548): initializing(json-language-features@1.46.1 with /home/salem/Downloads/arduino-ide_2.0.0-beta.12_Linux_64bit/resources/app/node_modules/@theia/plugin-ext-vscode/lib/node/plugin-vscode-init)
+2021-11-02 23:16:08 root INFO [hosted-plugin: 6548] PLUGIN_HOST(6548): PluginManagerExtImpl/loadPlugin(/home/salem/Downloads/arduino-ide_2.0.0-beta.12_Linux_64bit/resources/app/plugins/vscode-builtin-json-language-features/extension/client/dist/jsonMain)
+2021-11-02 23:16:08 root INFO [9e02849f-23f8-463a-853d-0ef5b268e679][marus25.cortex-debug]: Started plugin.
+2021-11-02 23:16:08 root INFO [9e02849f-23f8-463a-853d-0ef5b268e679][arduino.vscode-arduino-tools]: Started plugin.
+2021-11-02 23:16:08 root INFO [9e02849f-23f8-463a-853d-0ef5b268e679][vscode.cpp]: Started plugin.
+2021-11-02 23:16:08 root INFO [9e02849f-23f8-463a-853d-0ef5b268e679][vscode.json]: Started plugin.
+2021-11-02 23:16:08 root INFO [9e02849f-23f8-463a-853d-0ef5b268e679][vscode.json-language-features]: Started plugin.
+2021-11-02 23:16:09 root INFO [9e02849f-23f8-463a-853d-0ef5b268e679] Start of 5 plugins took: 2904.2 ms
+2021-11-02 23:16:09 root INFO Starting language server: arduino:avr:mega
+2021-11-02 23:16:09 root INFO [hosted-plugin: 6548] PLUGIN_HOST(6548): PluginManagerExtImpl/loadPlugin(/home/salem/Downloads/arduino-ide_2.0.0-beta.12_Linux_64bit/resources/app/plugins/vscode-arduino-tools/extension/dist/bundle)
+2021-11-02 23:16:10 root WARN monospace assumptions have been violated, therefore disabling monospace optimizations!
+2021-11-02 23:16:11 root WARN monospace assumptions have been violated, therefore disabling monospace optimizations!
+2021-11-02 23:16:33 daemon INFO inventory.Store.ConfigFileUsed() /home/salem/.arduino15/inventory.yaml
+2021-11-02 23:16:33 daemon INFO inventory.Store.ConfigFileUsed() /home/salem/.arduino15/inventory.yaml
+2021-11-02 23:16:33 daemon INFO Searching tools required for board arduino:avr:mega
+2021-11-02 23:16:33 daemon INFO Required tool [tool: {ToolName:"arduinoOTA",ToolVersion:"1.3.0",ToolPackager:"arduino"}]
+2021-11-02 23:16:33 daemon INFO Required tool [tool: {ToolName:"avr-gcc",ToolVersion:"7.3.0-atmel3.6.1-arduino7",ToolPackager:"arduino"}]
+2021-11-02 23:16:33 daemon INFO Required tool [tool: {ToolName:"avrdude",ToolVersion:"6.3.0-arduino17",ToolPackager:"arduino"}]
+2021-11-02 23:16:33 daemon INFO Adding libraries dir [dir: /home/salem/Downloads/arduino-1.8.15-linux64/arduino-1.8.15/libraries, location: ide]
+2021-11-02 23:16:33 daemon INFO Adding libraries dir [dir: /home/salem/.arduino15/packages/arduino/hardware/avr/1.8.3/libraries, location: platform]
+2021-11-02 23:16:33 daemon INFO Adding libraries dir [dir: /home/salem/Arduino/libraries, location: user]
+2021-11-02 23:16:33 daemon INFO Resolving include ros.h for arch avr
+2021-11-02 23:16:33 daemon INFO   found better lib [lib: ros_lib, prio: 517]
+2021-11-02 23:16:39 root WARN Could not load sketch from /home/salem/Arduino/cd.
+2021-11-02 23:16:39 root WARN Could not load sketch from /home/salem/Arduino/cd.
+2021-11-02 23:16:39 daemon INFO inventory.Store.ConfigFileUsed() /home/salem/.arduino15/inventory.yaml
+2021-11-02 23:16:39 daemon INFO inventory.Store.ConfigFileUsed() /home/salem/.arduino15/inventory.yaml
+2021-11-02 23:16:39 daemon INFO Searching tools required for board arduino:avr:mega
+2021-11-02 23:16:39 daemon INFO Required tool [tool: {ToolName:"arduinoOTA",ToolVersion:"1.3.0",ToolPackager:"arduino"}]
+2021-11-02 23:16:39 daemon INFO Required tool [tool: {ToolName:"avr-gcc",ToolVersion:"7.3.0-atmel3.6.1-arduino7",ToolPackager:"arduino"}]
+2021-11-02 23:16:39 daemon INFO Required tool [tool: {ToolName:"avrdude",ToolVersion:"6.3.0-arduino17",ToolPackager:"arduino"}]
+2021-11-02 23:16:39 daemon INFO Adding libraries dir [dir: /home/salem/Downloads/arduino-1.8.15-linux64/arduino-1.8.15/libraries, location: ide]
+2021-11-02 23:16:39 daemon INFO Adding libraries dir [dir: /home/salem/.arduino15/packages/arduino/hardware/avr/1.8.3/libraries, location: platform]
+2021-11-02 23:16:39 daemon INFO Adding libraries dir [dir: /home/salem/Arduino/libraries, location: user]
+2021-11-02 23:16:39 daemon INFO Resolving include ros.h for arch avr
+2021-11-02 23:16:39 daemon INFO   found better lib [lib: ros_lib, prio: 517]
+2021-11-02 23:17:13 root INFO Board config changed: 
+2021-11-02 23:17:13 root INFO Starting language server: arduino:avr:uno
+2021-11-02 23:17:15 daemon INFO inventory.Store.ConfigFileUsed() /home/salem/.arduino15/inventory.yaml
+2021-11-02 23:17:15 daemon INFO inventory.Store.ConfigFileUsed() /home/salem/.arduino15/inventory.yaml
+2021-11-02 23:17:15 daemon INFO Searching tools required for board arduino:avr:uno
+2021-11-02 23:17:15 daemon INFO Required tool [tool: {ToolName:"arduinoOTA",ToolVersion:"1.3.0",ToolPackager:"arduino"}]
+2021-11-02 23:17:15 daemon INFO Required tool [tool: {ToolName:"avr-gcc",ToolVersion:"7.3.0-atmel3.6.1-arduino7",ToolPackager:"arduino"}]
+2021-11-02 23:17:15 daemon INFO Required tool [tool: {ToolName:"avrdude",ToolVersion:"6.3.0-arduino17",ToolPackager:"arduino"}]
+2021-11-02 23:17:15 daemon INFO Adding libraries dir [dir: /home/salem/Downloads/arduino-1.8.15-linux64/arduino-1.8.15/libraries, location: ide]
+2021-11-02 23:17:15 daemon INFO Adding libraries dir [dir: /home/salem/.arduino15/packages/arduino/hardware/avr/1.8.3/libraries, location: platform]
+2021-11-02 23:17:15 daemon INFO Adding libraries dir [dir: /home/salem/Arduino/libraries, location: user]
+2021-11-02 23:17:15 daemon INFO Resolving include ros.h for arch avr
+2021-11-02 23:17:15 daemon INFO   found better lib [lib: ros_lib, prio: 517]
+2021-11-02 23:17:15 daemon INFO Searching tools required for board arduino:avr:uno
+2021-11-02 23:17:15 daemon INFO Required tool [tool: {ToolName:"arduinoOTA",ToolVersion:"1.3.0",ToolPackager:"arduino"}]
+2021-11-02 23:17:15 daemon INFO Required tool [tool: {ToolName:"avr-gcc",ToolVersion:"7.3.0-atmel3.6.1-arduino7",ToolPackager:"arduino"}]
+2021-11-02 23:17:15 daemon INFO Required tool [tool: {ToolName:"avrdude",ToolVersion:"6.3.0-arduino17",ToolPackager:"arduino"}]
+2021-11-02 23:17:15 daemon INFO Tool required for upload [tool: Version: 1.3.0 Systems: [OS: i686-linux-gnu, OS: x86_64-linux-gnu, OS: arm-linux-gnueabihf, OS: aarch64-linux-gnu, OS: i386-apple-darwin11, OS: i686-mingw32]]
+2021-11-02 23:17:15 daemon INFO Tool required for upload [tool: Version: 7.3.0-atmel3.6.1-arduino7 Systems: [OS: arm-linux-gnueabihf, OS: aarch64-linux-gnu, OS: x86_64-apple-darwin14, OS: i686-mingw32, OS: i686-linux-gnu, OS: x86_64-linux-gnu]]
+2021-11-02 23:17:15 daemon INFO Tool required for upload [tool: Version: 6.3.0-arduino17 Systems: [OS: arm-linux-gnueabihf, OS: aarch64-linux-gnu, OS: x86_64-apple-darwin12, OS: x86_64-linux-gnu, OS: i686-linux-gnu, OS: i686-mingw32]]
+2021-11-02 23:17:15 daemon INFO Tool required for upload [tool: Version: 5.8-arduino11 Systems: [OS: i686-pc-linux-gnu, OS: x86_64-pc-linux-gnu, OS: i686-mingw32, OS: x86_64-apple-darwin, OS: arm-linux-gnueabihf, OS: aarch64-linux-gnu]]
+2021-11-02 23:17:15 daemon INFO Tool required for upload [tool: Version: 1.3.0-rc1 Systems: [OS: i686-pc-linux-gnu, OS: x86_64-pc-linux-gnu, OS: i686-mingw32, OS: x86_64-mingw32, OS: x86_64-apple-darwin, OS: arm-linux-gnueabihf, OS: arm64-linux-gnueabihf]]
+2021-11-02 23:17:15 daemon INFO Tool required for upload [tool: Version: 0.9.2 Systems: [OS: i686-pc-linux-gnu, OS: x86_64-pc-linux-gnu, OS: i686-mingw32, OS: x86_64-mingw32, OS: x86_64-apple-darwin, OS: arm-linux-gnueabihf, OS: arm64-linux-gnueabihf]]
+2021-11-02 23:17:15 daemon INFO Tool required for upload [tool: Version: 4.8.3-2014q1 Systems: [OS: arm-linux-gnueabihf, OS: i686-mingw32, OS: x86_64-apple-darwin, OS: x86_64-pc-linux-gnu, OS: i686-pc-linux-gnu]]
+2021-11-02 23:17:15 daemon INFO Tool required for upload [tool: Version: 1.6.1-arduino Systems: [OS: arm-linux-gnueabihf, OS: i686-mingw32, OS: x86_64-apple-darwin, OS: x86_64-pc-linux-gnu, OS: i686-pc-linux-gnu]]
+2021-11-02 23:17:15 root ERROR Request upload failed with error: 13 INTERNAL: Failed uploading: no upload port provided
+2021-11-02 23:17:53 root INFO Board config changed: 
+2021-11-02 23:17:54 root INFO Starting language server: arduino:avr:leonardo
+2021-11-02 23:17:55 daemon INFO inventory.Store.ConfigFileUsed() /home/salem/.arduino15/inventory.yaml
+2021-11-02 23:17:55 daemon INFO inventory.Store.ConfigFileUsed() /home/salem/.arduino15/inventory.yaml
+2021-11-02 23:17:55 daemon INFO Searching tools required for board arduino:avr:leonardo
+2021-11-02 23:17:55 daemon INFO Required tool [tool: {ToolName:"arduinoOTA",ToolVersion:"1.3.0",ToolPackager:"arduino"}]
+2021-11-02 23:17:55 daemon INFO Required tool [tool: {ToolName:"avr-gcc",ToolVersion:"7.3.0-atmel3.6.1-arduino7",ToolPackager:"arduino"}]
+2021-11-02 23:17:55 daemon INFO Required tool [tool: {ToolName:"avrdude",ToolVersion:"6.3.0-arduino17",ToolPackager:"arduino"}]
+2021-11-02 23:17:55 daemon INFO Adding libraries dir [dir: /home/salem/Downloads/arduino-1.8.15-linux64/arduino-1.8.15/libraries, location: ide]
+2021-11-02 23:17:55 daemon INFO Adding libraries dir [dir: /home/salem/.arduino15/packages/arduino/hardware/avr/1.8.3/libraries, location: platform]
+2021-11-02 23:17:55 daemon INFO Adding libraries dir [dir: /home/salem/Arduino/libraries, location: user]
+2021-11-02 23:17:55 daemon INFO Resolving include ros.h for arch avr
+2021-11-02 23:17:55 daemon INFO   found better lib [lib: ros_lib, prio: 517]
+2021-11-02 23:17:56 root ERROR Request upload failed with error: 13 INTERNAL: data section exceeds available space in board
+2021-11-02 23:19:44 daemon INFO inventory.Store.ConfigFileUsed() /home/salem/.arduino15/inventory.yaml
+2021-11-02 23:19:44 daemon INFO inventory.Store.ConfigFileUsed() /home/salem/.arduino15/inventory.yaml
+2021-11-02 23:19:44 daemon INFO Searching tools required for board arduino:avr:leonardo
+2021-11-02 23:19:44 daemon INFO Required tool [tool: {ToolName:"arduinoOTA",ToolVersion:"1.3.0",ToolPackager:"arduino"}]
+2021-11-02 23:19:44 daemon INFO Required tool [tool: {ToolName:"avr-gcc",ToolVersion:"7.3.0-atmel3.6.1-arduino7",ToolPackager:"arduino"}]
+2021-11-02 23:19:44 daemon INFO Required tool [tool: {ToolName:"avrdude",ToolVersion:"6.3.0-arduino17",ToolPackager:"arduino"}]
+2021-11-02 23:19:44 daemon INFO Adding libraries dir [dir: /home/salem/Downloads/arduino-1.8.15-linux64/arduino-1.8.15/libraries, location: ide]
+2021-11-02 23:19:44 daemon INFO Adding libraries dir [dir: /home/salem/.arduino15/packages/arduino/hardware/avr/1.8.3/libraries, location: platform]
+2021-11-02 23:19:44 daemon INFO Adding libraries dir [dir: /home/salem/Arduino/libraries, location: user]
+2021-11-02 23:19:44 daemon INFO Resolving include ros.h for arch avr
+2021-11-02 23:19:44 daemon INFO   found better lib [lib: ros_lib, prio: 517]
+2021-11-02 23:19:45 root ERROR Request compile failed with error: 13 INTERNAL: data section exceeds available space in board
+2021-11-02 23:20:23 root INFO Board config changed: 
+2021-11-02 23:20:23 root INFO Starting language server: arduino:avr:uno
+2021-11-02 23:20:25 daemon INFO inventory.Store.ConfigFileUsed() /home/salem/.arduino15/inventory.yaml
+2021-11-02 23:20:25 daemon INFO inventory.Store.ConfigFileUsed() /home/salem/.arduino15/inventory.yaml
+2021-11-02 23:20:25 daemon INFO Searching tools required for board arduino:avr:uno
+2021-11-02 23:20:25 daemon INFO Required tool [tool: {ToolName:"arduinoOTA",ToolVersion:"1.3.0",ToolPackager:"arduino"}]
+2021-11-02 23:20:25 daemon INFO Required tool [tool: {ToolName:"avr-gcc",ToolVersion:"7.3.0-atmel3.6.1-arduino7",ToolPackager:"arduino"}]
+2021-11-02 23:20:25 daemon INFO Required tool [tool: {ToolName:"avrdude",ToolVersion:"6.3.0-arduino17",ToolPackager:"arduino"}]
+2021-11-02 23:20:25 daemon INFO Adding libraries dir [dir: /home/salem/Downloads/arduino-1.8.15-linux64/arduino-1.8.15/libraries, location: ide]
+2021-11-02 23:20:25 daemon INFO Adding libraries dir [dir: /home/salem/.arduino15/packages/arduino/hardware/avr/1.8.3/libraries, location: platform]
+2021-11-02 23:20:25 daemon INFO Adding libraries dir [dir: /home/salem/Arduino/libraries, location: user]
+2021-11-02 23:20:25 daemon INFO Resolving include ros.h for arch avr
+2021-11-02 23:20:25 daemon INFO   found better lib [lib: ros_lib, prio: 517]
+2021-11-02 23:22:11 root INFO Board config changed: 
+2021-11-02 23:22:12 root INFO Starting language server: arduino:avr:leonardo
+2021-11-02 23:22:14 daemon INFO inventory.Store.ConfigFileUsed() /home/salem/.arduino15/inventory.yaml
+2021-11-02 23:22:14 daemon INFO inventory.Store.ConfigFileUsed() /home/salem/.arduino15/inventory.yaml
+2021-11-02 23:22:14 daemon INFO Searching tools required for board arduino:avr:leonardo
+2021-11-02 23:22:14 daemon INFO Required tool [tool: {ToolName:"arduinoOTA",ToolVersion:"1.3.0",ToolPackager:"arduino"}]
+2021-11-02 23:22:14 daemon INFO Required tool [tool: {ToolName:"avr-gcc",ToolVersion:"7.3.0-atmel3.6.1-arduino7",ToolPackager:"arduino"}]
+2021-11-02 23:22:14 daemon INFO Required tool [tool: {ToolName:"avrdude",ToolVersion:"6.3.0-arduino17",ToolPackager:"arduino"}]
+2021-11-02 23:22:14 daemon INFO Adding libraries dir [dir: /home/salem/Downloads/arduino-1.8.15-linux64/arduino-1.8.15/libraries, location: ide]
+2021-11-02 23:22:14 daemon INFO Adding libraries dir [dir: /home/salem/.arduino15/packages/arduino/hardware/avr/1.8.3/libraries, location: platform]
+2021-11-02 23:22:14 daemon INFO Adding libraries dir [dir: /home/salem/Arduino/libraries, location: user]
+2021-11-02 23:22:14 daemon INFO Resolving include ros.h for arch avr
+2021-11-02 23:22:14 daemon INFO   found better lib [lib: ros_lib, prio: 517]
+2021-11-02 23:22:15 root ERROR Request compile failed with error: 13 INTERNAL: data section exceeds available space in board
+2021-11-02 23:22:35 root INFO Board config changed: 
+2021-11-02 23:22:35 root INFO Starting language server: arduino:avr:uno
+2021-11-02 23:22:37 daemon INFO inventory.Store.ConfigFileUsed() /home/salem/.arduino15/inventory.yaml
+2021-11-02 23:22:37 daemon INFO inventory.Store.ConfigFileUsed() /home/salem/.arduino15/inventory.yaml
+2021-11-02 23:22:37 daemon INFO Searching tools required for board arduino:avr:uno
+2021-11-02 23:22:37 daemon INFO Required tool [tool: {ToolName:"arduinoOTA",ToolVersion:"1.3.0",ToolPackager:"arduino"}]
+2021-11-02 23:22:37 daemon INFO Required tool [tool: {ToolName:"avr-gcc",ToolVersion:"7.3.0-atmel3.6.1-arduino7",ToolPackager:"arduino"}]
+2021-11-02 23:22:37 daemon INFO Required tool [tool: {ToolName:"avrdude",ToolVersion:"6.3.0-arduino17",ToolPackager:"arduino"}]
+2021-11-02 23:22:37 daemon INFO Adding libraries dir [dir: /home/salem/Downloads/arduino-1.8.15-linux64/arduino-1.8.15/libraries, location: ide]
+2021-11-02 23:22:37 daemon INFO Adding libraries dir [dir: /home/salem/.arduino15/packages/arduino/hardware/avr/1.8.3/libraries, location: platform]
+2021-11-02 23:22:37 daemon INFO Adding libraries dir [dir: /home/salem/Arduino/libraries, location: user]
+2021-11-02 23:22:37 daemon INFO Resolving include ros.h for arch avr
+2021-11-02 23:22:37 daemon INFO   found better lib [lib: ros_lib, prio: 517]
+2021-11-02 23:23:47 root INFO Board config changed: 
+2021-11-02 23:23:47 root INFO Starting language server: arduino:avr:leonardo
+2021-11-02 23:23:49 daemon INFO inventory.Store.ConfigFileUsed() /home/salem/.arduino15/inventory.yaml
+2021-11-02 23:23:49 daemon INFO inventory.Store.ConfigFileUsed() /home/salem/.arduino15/inventory.yaml
+2021-11-02 23:23:49 daemon INFO Searching tools required for board arduino:avr:leonardo
+2021-11-02 23:23:49 daemon INFO Required tool [tool: {ToolName:"arduinoOTA",ToolVersion:"1.3.0",ToolPackager:"arduino"}]
+2021-11-02 23:23:49 daemon INFO Required tool [tool: {ToolName:"avr-gcc",ToolVersion:"7.3.0-atmel3.6.1-arduino7",ToolPackager:"arduino"}]
+2021-11-02 23:23:49 daemon INFO Required tool [tool: {ToolName:"avrdude",ToolVersion:"6.3.0-arduino17",ToolPackager:"arduino"}]
+2021-11-02 23:23:49 daemon INFO Adding libraries dir [dir: /home/salem/Downloads/arduino-1.8.15-linux64/arduino-1.8.15/libraries, location: ide]
+2021-11-02 23:23:49 daemon INFO Adding libraries dir [dir: /home/salem/.arduino15/packages/arduino/hardware/avr/1.8.3/libraries, location: platform]
+2021-11-02 23:23:49 daemon INFO Adding libraries dir [dir: /home/salem/Arduino/libraries, location: user]
+2021-11-02 23:23:49 daemon INFO Resolving include ros.h for arch avr
+2021-11-02 23:23:49 daemon INFO   found better lib [lib: ros_lib, prio: 517]
+2021-11-02 23:23:50 root ERROR Request compile failed with error: 13 INTERNAL: data section exceeds available space in board
+2021-11-02 23:24:26 root INFO Board config changed: 
+2021-11-02 23:24:27 root INFO Starting language server: arduino:avr:uno
+2021-11-02 23:24:28 daemon INFO inventory.Store.ConfigFileUsed() /home/salem/.arduino15/inventory.yaml
+2021-11-02 23:24:28 daemon INFO inventory.Store.ConfigFileUsed() /home/salem/.arduino15/inventory.yaml
+2021-11-02 23:24:28 daemon INFO Searching tools required for board arduino:avr:uno
+2021-11-02 23:24:28 daemon INFO Required tool [tool: {ToolName:"arduinoOTA",ToolVersion:"1.3.0",ToolPackager:"arduino"}]
+2021-11-02 23:24:28 daemon INFO Required tool [tool: {ToolName:"avr-gcc",ToolVersion:"7.3.0-atmel3.6.1-arduino7",ToolPackager:"arduino"}]
+2021-11-02 23:24:28 daemon INFO Required tool [tool: {ToolName:"avrdude",ToolVersion:"6.3.0-arduino17",ToolPackager:"arduino"}]
+2021-11-02 23:24:28 daemon INFO Adding libraries dir [dir: /home/salem/Downloads/arduino-1.8.15-linux64/arduino-1.8.15/libraries, location: ide]
+2021-11-02 23:24:28 daemon INFO Adding libraries dir [dir: /home/salem/.arduino15/packages/arduino/hardware/avr/1.8.3/libraries, location: platform]
+2021-11-02 23:24:28 daemon INFO Adding libraries dir [dir: /home/salem/Arduino/libraries, location: user]
+2021-11-02 23:24:28 daemon INFO Resolving include ros.h for arch avr
+2021-11-02 23:24:28 daemon INFO   found better lib [lib: ros_lib, prio: 517]
+2021-11-02 23:27:17 daemon INFO inventory.Store.ConfigFileUsed() /home/salem/.arduino15/inventory.yaml
+2021-11-02 23:27:17 daemon INFO inventory.Store.ConfigFileUsed() /home/salem/.arduino15/inventory.yaml
+2021-11-02 23:27:17 daemon INFO Searching tools required for board arduino:avr:uno
+2021-11-02 23:27:17 daemon INFO Required tool [tool: {ToolName:"arduinoOTA",ToolVersion:"1.3.0",ToolPackager:"arduino"}]
+2021-11-02 23:27:17 daemon INFO Required tool [tool: {ToolName:"avr-gcc",ToolVersion:"7.3.0-atmel3.6.1-arduino7",ToolPackager:"arduino"}]
+2021-11-02 23:27:17 daemon INFO Required tool [tool: {ToolName:"avrdude",ToolVersion:"6.3.0-arduino17",ToolPackager:"arduino"}]
+2021-11-02 23:27:17 daemon INFO Adding libraries dir [dir: /home/salem/Downloads/arduino-1.8.15-linux64/arduino-1.8.15/libraries, location: ide]
+2021-11-02 23:27:17 daemon INFO Adding libraries dir [dir: /home/salem/.arduino15/packages/arduino/hardware/avr/1.8.3/libraries, location: platform]
+2021-11-02 23:27:17 daemon INFO Adding libraries dir [dir: /home/salem/Arduino/libraries, location: user]
+2021-11-02 23:27:17 daemon INFO Resolving include ros.h for arch avr
+2021-11-02 23:27:17 daemon INFO   found better lib [lib: ros_lib, prio: 517]
+2021-11-02 23:27:29 daemon INFO inventory.Store.ConfigFileUsed() /home/salem/.arduino15/inventory.yaml
+2021-11-02 23:27:29 daemon INFO inventory.Store.ConfigFileUsed() /home/salem/.arduino15/inventory.yaml
+2021-11-02 23:27:29 daemon INFO Searching tools required for board arduino:avr:uno
+2021-11-02 23:27:29 daemon INFO Required tool [tool: {ToolName:"arduinoOTA",ToolVersion:"1.3.0",ToolPackager:"arduino"}]
+2021-11-02 23:27:29 daemon INFO Required tool [tool: {ToolName:"avr-gcc",ToolVersion:"7.3.0-atmel3.6.1-arduino7",ToolPackager:"arduino"}]
+2021-11-02 23:27:29 daemon INFO Required tool [tool: {ToolName:"avrdude",ToolVersion:"6.3.0-arduino17",ToolPackager:"arduino"}]
+2021-11-02 23:27:29 daemon INFO Adding libraries dir [dir: /home/salem/Downloads/arduino-1.8.15-linux64/arduino-1.8.15/libraries, location: ide]
+2021-11-02 23:27:29 daemon INFO Adding libraries dir [dir: /home/salem/.arduino15/packages/arduino/hardware/avr/1.8.3/libraries, location: platform]
+2021-11-02 23:27:29 daemon INFO Adding libraries dir [dir: /home/salem/Arduino/libraries, location: user]
+2021-11-02 23:27:29 daemon INFO Resolving include ros.h for arch avr
+2021-11-02 23:27:29 daemon INFO   found better lib [lib: ros_lib, prio: 517]
+2021-11-02 23:28:55 monitor-service INFO >>> Disposing monitor service...
+2021-11-02 23:28:55 monitor-service INFO <<< Disposed monitor service.

@@ -1,0 +1,9 @@
+<launch>
+  <!-- 
+    Summary
+    - robot description parameter initiator, instead of printing these statements in each file 
+      we only pass the robot modlule and ask it to run xacro script on it
+  -->
+  <arg name="urdf_file" default="$(find xacro)/xacro '$(find sim2)/urdf/apolo.urdf.xacro'" />
+  <param name="robot_description" command="$(arg urdf_file)" />
+</launch>

@@ -1,0 +1,17 @@
+<launch>
+    <param name="/serial/serial_path" value="/dev/serial/by-id/" />
+    <param name="/serial/serial_starter_rate" value="0.5" />
+    
+    <!-- <param name="/serial/specific_port_name" value="/dev/ttyTHS0" /> -->
+
+    <node name="serial_starter_interactive" pkg="serial_starter" type="serial_starter.py" output="screen" >    
+        <param name="keyword_serial" value="rduino" />
+        <param name="specific_port" value="no" />
+    </node>
+
+    <node name="serial_starter_movement" pkg="serial_starter" type="serial_starter.py" output="screen" >    
+        <param name="keyword_serial" value="eensy" />
+        <param name="specific_port" value="no" />
+    </node>
+    
+</launch>

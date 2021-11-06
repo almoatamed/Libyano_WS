@@ -1,0 +1,7 @@
+<launch>
+    <param name="/status/status_topic" value="/status"/>
+    <param name="/status/status_rate" value="5"/>
+    <param name="/serial/mcu_out_topic" value="/mcu_out"/>
+    <param name="/power/power_topic" value="/power"/>
+    <node name="status_handler" pkg="mode_and_status_publishers" type="status.py" output="screen" />
+</launch>

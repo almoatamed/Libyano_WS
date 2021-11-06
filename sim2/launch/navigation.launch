@@ -1,0 +1,58 @@
+<launch>
+  <!-- 
+    Summary
+    - launches the robot state publisher
+    - serves map
+    - launches the adaptive monte carlo localization algorithm (amcl)
+    - launches the move base algorithm
+    - rviz 
+   -->
+
+  <!-- Arguments -->
+
+  <!-- initial pose -->
+  <arg name="initial_pose_x" default="-4.815"/>
+  <arg name="initial_pose_y" default="1.486"/>
+  <arg name="initial_pose_a" default="0.0"/>
+
+  <!-- the path of the map file -->
+  <arg name="map_file" default="$(find sim2)/maps/house.yaml"/>
+
+  <!-- rviz gui flag -->
+  <arg name="open_rviz" default="false"/>
+
+  <!-- ? -->
+  <arg name="move_forward_only" default="false"/>
+
+  <!-- lanch the robot state publisher -->
+  <!-- Turtlebot3 -->
+  <include file="$(find sim2)/launch/remote.launch">
+  </include>
+
+  <!-- make a map server to deliver the map -->
+  <!-- Map server -->
+  <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)"/>
+
+  <!-- launches the adaptive monte carlo localization algorithm -->
+  <!-- AMCL -->
+  <include file="$(find sim2)/launch/amcl.launch">
+    <arg name="initial_pose_x" value="$(arg initial_pose_x)"/>
+    <arg name="initial_pose_y" value="$(arg initial_pose_y)"/>
+    <arg name="initial_pose_a" value="$(arg initial_pose_a)"/>
+  </include>
+
+  <!-- <rostopic name="initialize_map_location" command="" -->
+
+  <!-- launche move base -->
+  <!-- move_base -->
+  <include file="$(find sim2)/launch/move_base.launch">
+    <arg name="move_forward_only" value="$(arg move_forward_only)"/>
+  </include>
+
+
+  <!-- rviz -->
+  <group if="$(arg open_rviz)"> 
+    <node pkg="rviz" type="rviz" name="rviz" required="true"
+          args="-d $(find sim2)/rviz/amcl.rviz"/>
+  </group>
+</launch>

@@ -1,0 +1,12 @@
+{
+  "additionalFiles": "../..,../..,..,../..",
+  "builtInLibrariesFolders": "/home/salem/Downloads/arduino-1.8.15-linux64/arduino-1.8.15/libraries",
+  "builtInToolsFolders": "",
+  "compiler.optimization_flags": "",
+  "customBuildProperties": "build.warn_data_percentage=75",
+  "fqbn": "arduino:avr:leonardo",
+  "hardwareFolders": "/home/salem/.arduino15/packages",
+  "otherLibrariesFolders": "/home/salem/Arduino/libraries",
+  "runtime.ide.version": "10607",
+  "sketchLocation": "/home/salem/catkin_ws/src/interactive_mcu_2/src/interactive_mcu_2/interactive_mcu_2.ino"
+}

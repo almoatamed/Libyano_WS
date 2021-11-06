@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot>
+
+  <!-- lef wheel parameters -->
+  <gazebo reference="wheel_left_link">
+    <!-- friction parameters mue -->
+    <mu1>0.1</mu1>
+    <mu2>0.1</mu2>
+
+    <!-- contact stiffness and damping parameters, kp and kd respectively -->
+    <kp>500000.0</kp>
+    <kd>10.0</kd>
+
+    <!-- minimum allowed depth before contact correction impulse is applied  -->
+    <minDepth>0.001</minDepth>
+    
+    <!-- maximum contact correction velocity -->
+    <maxVel>0.7</maxVel>
+
+    <!-- specify the frection direction of on the contact, here it is a unit vector in the direction of the x axis, which is the forward direction -->
+    <fdir1>1 0 0</fdir1>
+
+    <!-- the color of the wheel -->
+    <material>Gazebo/FlatBlack</material>
+  </gazebo>
+
+  <!-- same as left wheel -->
+  <gazebo reference="wheel_right_link">
+    <mu1>0.1</mu1>
+    <mu2>0.1</mu2>
+    <kp>500000.0</kp>
+    <kd>10.0</kd>
+    <minDepth>0.001</minDepth>
+    <maxVel>0.7</maxVel>
+    <fdir1>1 0 0</fdir1>
+    <material>Gazebo/FlatBlack</material>
+  </gazebo>
+</robot>

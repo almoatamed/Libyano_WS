@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>mode_and_status_publishers</name>
+  <version>0.0.1</version>
+  <description>Libyano Robot Mode and Status Publishers and Handlers</description>
+  <maintainer email="s.elmotamed96@gmail.com">Salem Elmotamed</maintainer>
+  <license>TODO</license>
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>rospy</build_depend>
+  <build_export_depend>rospy</build_export_depend>
+  <exec_depend>rospy</exec_depend>
+  <export>
+  </export>
+</package>

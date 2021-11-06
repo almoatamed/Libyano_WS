@@ -1,0 +1,20 @@
+action:
+  action_topic: /action
+mode:
+  change_mode_topic: /mode/change_mode
+  csv_path: /home/salem/catkin_ws/src/mode_and_status_publishers/csv/modes.csv
+  mode_rate: 5
+  mode_topic: /mode
+  premode_topic: /mode/premode
+rosdistro: 'melodic
+
+  '
+roslaunch:
+  uris:
+    host_salem_hp_probook_440_g1__34515: http://salem-HP-ProBook-440-G1:34515/
+rosversion: '1.14.11
+
+  '
+run_id: 63077bdc-e240-11eb-a9eb-d8fc93cbb948
+status:
+  status_topic: /status

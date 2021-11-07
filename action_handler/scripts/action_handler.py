@@ -51,33 +51,49 @@ if system_type != 'G':
     if system_type == category_dictionary['navigation']:
         import scripts.navigation
         actions['navigation'] = scripts.navigation.Actions
+        printLine('import navigation controller')
     if system_type == category_dictionary['act']:
         import scripts.act_manager
         actions['act'] = scripts.act_manager.Actions
+        printLine('import act manager')
     if system_type == category_dictionary['control']:
         import scripts.control
         actions['control'] = scripts.control.Actions
+        printLine('import control')
     if system_type == category_dictionary['system']:
         import scripts.system
         actions['system'] = scripts.system.Actions
+        printLine('import system')
     if system_type == category_dictionary['cash_reader']:
         import scripts.cash_reader
         actions['cash_reader'] = scripts.cash_reader.Actions
+        printLine('import cash_reader')
+        
     if system_type == category_dictionary['bluetooth']:
         import scripts.bluetooth
         actions['bluetooth'] = scripts.bluetooth.Actions
+        printLine('import bluetooth')
+        
     if system_type == category_dictionary['startup']:
         import scripts.startup
         actions['startup'] = scripts.startup.Actions
+        printLine('import startup')
+        
     if system_type == category_dictionary['interactive']:
         import scripts.interactive
         actions['interactive'] = scripts.interactive.Actions
+        printLine('import interactive')
+        
     if system_type == category_dictionary['global_actions']:
         import scripts.global_actions
         actions['global_actions'] = scripts.global_actions.Actions
+        printLine('import global actions')
+        
     if system_type == category_dictionary['interface']:
         import scripts.interface
         actions['interface'] = scripts.interface.Actions
+        printLine('import interface controller')
+        
 else:
     printLine('Loading G Actions')
     import scripts.navigation

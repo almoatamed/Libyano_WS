@@ -156,7 +156,7 @@ def init():
             break
         except Exception as e:
             time.sleep(2)
-            # printLine('Error while trying to start Cash reader', e)
+            printLine('Error while trying to start Cash reader', e)
             continue
 ######################## try to start the biller on the start of the action server ########################################################################
 def reinit():

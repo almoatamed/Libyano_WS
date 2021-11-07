@@ -4,7 +4,7 @@ import rospy
 import os
 import time
 # import pygame
-import playsound
+from playsound import playsound
 
 
 file_name = __file__.split('/')[-1][:-3]

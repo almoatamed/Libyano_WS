@@ -313,9 +313,9 @@
                 <v-btn text @click="speak_file == '' ? playtemp() : playfile()">
                   <v-icon>mdi-play</v-icon>
                 </v-btn>
-                <v-btn text @click="speak_stop()">
+                <!-- <v-btn text @click="speak_stop()">
                   <v-icon>mdi-stop</v-icon>
-                </v-btn>
+                </v-btn> -->
               </v-col>
             </v-row>
           </v-col>

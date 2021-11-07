@@ -3,7 +3,8 @@ import threading
 import rospy
 import os
 import time
-import pygame
+# import pygame
+import playsound
 
 
 file_name = __file__.split('/')[-1][:-3]
@@ -27,11 +28,12 @@ def start():
         if len(queue) > 0:
             isSpeaking = True    
             file = queue.pop(0)
-            pygame.mixer.music.load(file)
-            pygame.mixer.music.play()
-            while pygame.mixer.music.get_busy() and isSpeaking:
-                time.sleep(0.1)
-            pygame.mixer.music.stop()
+            # pygame.mixer.music.load(file)
+            # pygame.mixer.music.play()
+            playsound(file)
+            # while pygame.mixer.music.get_busy() and isSpeaking:
+            #     time.sleep(0.1)
+            # pygame.mixer.music.stop()
             print('Done')
         else:
             time.sleep(0.2)

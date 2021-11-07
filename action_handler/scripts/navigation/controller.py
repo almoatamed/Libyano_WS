@@ -11,7 +11,7 @@ import glob
 import os
 import rospy
 import time
-import threading
+# import threading
 
 from slamware_ros_sdk.srv import SyncSetStcmRequest, SyncSetStcm
 
@@ -24,7 +24,7 @@ from geometry_msgs.msg import Pose, Twist, PoseStamped
 ################ Detach and Stop ###################
 
 
-cmd_vel_pub = rospy.Publisher('/cmd_vel', Twist, queue_size=10)
+cmd_vel_pub = rospy.Publisher('/slamware_ros_sdk_server_node/cmd_vel_no_limit', Twist, queue_size=10)
 cancel_action_pub = rospy.Publisher('/slamware_ros_sdk_server_node/cancel_action', CancelActionRequest, queue_size=10)
 cancel_msg = CancelActionRequest()
 twist_msg = Twist()

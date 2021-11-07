@@ -39,6 +39,7 @@ def stop():
         try:
             os.system('rosnode kill /location_estimater_loop')
         except Exception as e:
+            pass
             #printLine('Error while terminating proc', e)
         try:
             proc.terminate()

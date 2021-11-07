@@ -1795,21 +1795,21 @@ export default {
     c = canvas.getContext('2d')
     temp_c = temp_canvas.getContext('2d')
 
-    setInterval(()=>{
-      this.$store.dispatch('Ros/take_action','navigation/get_current_pose', {root:true}).then(res=>{
-        current_pose = {}
-        res = res.split('&')
-        current_pose.position = {}
-        current_pose.position.x = parseFloat(res[0])
-        current_pose.position.y = parseFloat(res[1])
-        current_pose.position.z = parseFloat(res[2])
-        current_pose.orientation = {}
-        current_pose.orientation.x = parseFloat(res[3])
-        current_pose.orientation.y = parseFloat(res[4])
-        current_pose.orientation.z = parseFloat(res[5])
-        current_pose.orientation.w = parseFloat(res[6])
-      })
-    },80)
+    // setInterval(()=>{
+    //   this.$store.dispatch('Ros/take_action','navigation/get_current_pose', {root:true}).then(res=>{
+    //     current_pose = {}
+    //     res = res.split('&')
+    //     current_pose.position = {}
+    //     current_pose.position.x = parseFloat(res[0])
+    //     current_pose.position.y = parseFloat(res[1])
+    //     current_pose.position.z = parseFloat(res[2])
+    //     current_pose.orientation = {}
+    //     current_pose.orientation.x = parseFloat(res[3])
+    //     current_pose.orientation.y = parseFloat(res[4])
+    //     current_pose.orientation.z = parseFloat(res[5])
+    //     current_pose.orientation.w = parseFloat(res[6])
+    //   })
+    // },300)
 
     this.$store.dispatch('Ros/take_action', 'navigation/fetch_points',{root:true}).then(res=>{
           if(res == ''){
@@ -1856,8 +1856,18 @@ export default {
     setTimeout(()=>{
         connect_to_ros().then(ros=>{
 
+            var current_pose = new ROSLIB.Topic({
+                throttle_rate: 100,
+                // queue_size:1,
+                ros: ros,
+                name: '/current_pose',
+                messageType: 'geometry_msgs/Pose',
+            })
+            current_pose.subscribe(function(data){
+                current_pose = data
+            }); 
             var global_path_sub = new ROSLIB.Topic({
-                throttle_rate: 10,
+                throttle_rate: 100,
                 // queue_size:1,
                 ros: ros,
                 name: '/slamware_ros_sdk_server_node/global_plan_path',
@@ -1868,19 +1878,19 @@ export default {
             }); 
             
             var map_sub = new ROSLIB.Topic({
-                throttle_rate: 500,
-                // queue_size:1,
+                throttle_rate: 1000,
+                queue_size:1,
                 ros: ros,
                 name: '/slamware_ros_sdk_server_node/map',
                 messageType: 'nav_msgs/OccupancyGrid',
-                // compression : 'png'
+                compression : 'png'
             })
             map_sub.subscribe(function(data){
                 map  = data;
                 makemap(data);
             });
             var goal_monitor_sub = new ROSLIB.Topic({
-                throttle_rate: 10,
+                throttle_rate: 100,
                 // queue_size:1,
                 ros: ros,
                 name: '/navigation/goal_monitor',

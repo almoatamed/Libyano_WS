@@ -587,7 +587,12 @@
           <v-row>
             <v-col md="12">
               <v-subheader> Time </v-subheader>
-              <v-slider thumb-label step="100" v-model="acts.act_edit.action_edit.wait_dialog.time" min='100' max="60000" />
+              <v-text-field
+                label="Repeat"
+                v-model="acts.act_edit.action_edit.wait_dialog.time" 
+                type="number"
+                class="pt-0 mt-0"
+              />
             </v-col>
           </v-row>
         </v-card-text>

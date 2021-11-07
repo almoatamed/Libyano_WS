@@ -44,6 +44,7 @@ def stop():
         try:
             proc.terminate()
         except Exception as e:
+            pass
             #printLine('Error while terminating proc', e)
         proc = False
     return "Done"

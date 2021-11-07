@@ -118,6 +118,7 @@ else:
     actions['act'] = scripts.act_manager.Actions
     
 def action_handler(req):
+    printLine('taking action', req)
     req = req.action.split('/')
     category = req[0]
     action = req[1]

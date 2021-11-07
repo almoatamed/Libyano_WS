@@ -138,9 +138,10 @@ def init():
     global biller, port, channels, msg
 
     while not rospy.is_shutdown():
+        time.sleep(1)
         try:
             printLine('creating cash readre')
-            biller = Biller(port)
+            biller = Biller(port) 
             printLine('biller has been created')
             channels = []
             for ch in biller.channels:

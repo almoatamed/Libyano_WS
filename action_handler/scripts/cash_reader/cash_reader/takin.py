@@ -107,7 +107,8 @@ def check():
 ######################## initiation variables and parameters ########################################################################
 #printLine('starting cash reader handler')
 # port = rospy.get_param('/cash_reader/port_path', '/dev/serial/by-id/usb-FTDI_FT232R_USB_UART_AB0M7YO6-if00-port0')
-port ='/dev/serial/by-id/usb-FTDI_FT232R_USB_UART_AB0M7YO6-if00-port0'
+port ='/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0'
+# port ='/dev/serial/by-id/usb-FTDI_FT232R_USB_UART_AB0M7YO6-if00-port0'
 
 queue_size = int(rospy.get_param('/global/queue_size', '10'))
 pub = rospy.Publisher('/cash_reader/status',cash_reader_msg, queue_size=queue_size)

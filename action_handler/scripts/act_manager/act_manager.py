@@ -128,6 +128,8 @@ def perform(action):
         asq('interactive/set_strip_color/'+ action_args[1])
     elif action_args[0] == 'speak':
         asq('interactive/speak_push_to_queue/'+ action_args[1]+ '.mp3')
+    elif action_args[0] == 'head motion':
+        asq('interactive/head_play_motions_by_name/'+ action_args[1])
     else:
         asq('/'.join(action_args[1:]))
             

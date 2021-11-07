@@ -41,6 +41,7 @@
       class="ml-2"
       style='background:rgb(255,255,255);color:rgb(255,199,74)'
       color="white"
+      @click='set_defaults'
       >
         <v-icon large>mdi-robot</v-icon>
       </v-btn>
@@ -681,6 +682,68 @@
       </v-card>
     </v-menu>
 
+    <!-- head motions -->
+    <v-card
+      id="head_motions_dialog"
+      class="py-2 px-4"
+      color="rgba(0, 0, 0, .3)"
+      dark
+      flat
+      link
+      min-width="100"
+      style="
+        position: fixed;
+        top: 115px;
+        right: -35px;
+        border-radius: 8px;
+        z-index: 1;
+      "
+    >
+      <v-icon large> mdi-robot </v-icon>
+    </v-card>
+    <v-menu
+      v-model="head_motions_dialog"
+      :close-on-content-click="false"
+      activator="#head_motions_dialog"
+      bottom
+      content-class="v-settings"
+      left
+      nudge-top="325"
+      nudge-left="8"
+      offset-x
+      origin="top right"
+      transition="scale-transition"
+    >
+      <v-card class="text-center mb-0" width="300">
+        <v-card-text>
+          <strong class="mb-3 d-inline-block font-weight-black">Head Motions</strong>
+
+          <v-divider class="my-4 secondary" />
+          <v-card
+            class="mx-auto"
+            max-width="300"
+            max-height="150"
+            tile
+            style="overflow-y: auto"
+          >
+            <v-list-item
+              v-for="(motion, index) in head_motions_names"
+              :key="index"
+              :style="head_motion == motion ? 'background:orange' : ''"
+              @click="head_motion = motion"
+            >
+              <v-list-item-content class="pa-0">
+                <v-btn text>
+                  {{ motion }}
+                </v-btn>
+              </v-list-item-content>
+            </v-list-item>
+          </v-card>
+          <v-btn dark @click="set_head_motion" color="primary"> Go </v-btn>
+        </v-card-text>
+      </v-card>
+    </v-menu>
+
     <!-- Acts -->
     <v-card
       id="acts_dialog"
@@ -1160,6 +1223,11 @@ export default {
       interface_view_sets: [],
       interface_view: "main",
 
+      // ######################### head motions ######################
+      head_motions_names: [],
+      head_motion: "",
+      head_motions_dialog:false,
+
       // ######################### navigation ######################
       navigation_manual: false,
       angled_goal: false,
@@ -1341,6 +1409,26 @@ export default {
       }
     },
 
+    set_defaults(){
+      this.interface_view = 'main'
+      this.interface_set()
+      this.$store.dispatch('Ros/take_action','interactive/head_move_home',{root:true})
+      this.$store.dispatch('Ros/take_action', 'interactive/set_eyes/blink/0/1',{root:true})
+      this.$store.dispatch('Ros/take_action', 'interactive/set_ring_flow/fadeoutfadein/0/1',{root:true})
+      var color = this.emoji_default_color.slice(1, -2);
+      var r = parseInt(color.slice(0, 2), 16);
+      var g = parseInt(color.slice(2, 4), 16);
+      var b = parseInt(color.slice(4), 16);
+      this.$store
+        .dispatch(
+          "Ros/take_action",
+          `interactive/set_strip_color/${r}/${g}/${b}`,
+          { root: true }
+        )
+        .then((res) => {
+          console.log(res);
+        });
+    },
 
     // ######################### Navigation ######################
     // enable angled and unangled goal
@@ -1642,6 +1730,18 @@ export default {
 
         }
       }
+    },
+
+    // ######################### head_motions ######################
+    fetch_head_motions_names(){
+      this.$store.dispatch('Ros/take_action', 'interactive/head_get_motions_names',{root:true}).then(res=>{
+        this.head_motions_names = res.split('|')
+      })
+    }, 
+    set_head_motion(){
+      if(this.head_motion != ''){
+        this.$store.dispatch('Ros/take_action', `interactive/head_play_motions_by_name/${this.head_motion}`)
+      }
     }
 
   },
@@ -1675,6 +1775,8 @@ export default {
         this.$store.dispatch('Ros/take_action', 'navigation/move/0/0',{root:true})
       }
     }, false);
+    // ######################### head motion ######################
+    this.fetch_head_motions_names();
     // ######################### speak ######################
     this.speak_fetch_sounds();
 

@@ -25,13 +25,13 @@
       <v-app-bar-nav-icon @click='navDrawer=!navDrawer'></v-app-bar-nav-icon>
 
       <span class="font-weight-black pl-4"
-        ><v-icon>mdi-battery</v-icon>: 90%</span
+        ><v-icon>mdi-battery</v-icon>:{{status['power']['battery']}}</span
       >
       <span class="font-weight-black pl-2"
-        >| <v-icon>mdi-battery-charging-100</v-icon>: NO</span
+        >| <v-icon>mdi-battery-charging-100</v-icon>: {{status['power']['charging_status'] || status['power']['cord']? 'YES' : 'NO' }}</span
       >
       <span class="font-weight-black pl-2"
-        >| <v-icon>mdi-thermometer</v-icon>: 60</span
+        >| <v-icon>mdi-thermometer</v-icon>: {{('' +status['sensors']['temp'][0]).slice(0,2)}}</span
       >
       <v-spacer></v-spacer>
       <v-btn class="ml-2" 
@@ -211,7 +211,7 @@
           </v-list-item>
         </v-list-group>
 
-        <v-list-group color="white" prepend-icon="mdi-map-marker"  v-if="!restrictions['map']">
+        <!-- <v-list-group color="white" prepend-icon="mdi-map-marker"  v-if="!restrictions['map']">
           <template v-slot:activator>
             <v-list-item-title>Navigation</v-list-item-title>
           </template>
@@ -223,7 +223,7 @@
               <v-list-item-title >Map</v-list-item-title>        
             </v-list-item-content>
           </v-list-item>
-        </v-list-group>
+        </v-list-group> -->
       </v-list>
     </v-navigation-drawer>
 
@@ -262,7 +262,13 @@
 <script>
   export default {
     computed: {
-      
+      status(){
+        if( this.$store.getters['Ros/status']['power']){
+          return this.$store.getters['Ros/status']
+        }else{
+          return this.temp_status
+        }
+      },
       navDrawerExpansionArrow(){
         if(this.navDrawerMini){
           return 'mdi-arrow-right';
@@ -300,6 +306,16 @@
         navDrawer:true,
         navDrawerMini:false,
         navigation_detached:false,
+        temp_status:{
+          power:{
+            battery:'Unknown',
+            charging_status:'Unknown', 
+            cord: 'Unknown'
+          },
+          sensors:{
+            temp:['Unknown']
+          }
+        }
       }
     },
     watch: {

@@ -161,18 +161,16 @@
         <v-card-text>
             <strong class="mb-3 d-inline-block font-weight-black">POINT ACTION</strong>
 
-            <v-divider class="my-4 secondary" />
+            <!-- <v-divider class="my-4 secondary" />
             <v-btn small @click='acts.act_edit.action_edit.head_motion_dialog.angled=true' :color="acts.act_edit.action_edit.head_motion_dialog.angled? 'orange':'primary' " class="mr-2">Angle</v-btn>
             <v-btn small @click='acts.act_edit.action_edit.head_motion_dialog.angled=false' :color="!acts.act_edit.action_edit.head_motion_dialog.angled? 'orange':'primary' ">Motion</v-btn>
-            <v-divider class="my-4 secondary" />
+            <v-divider class="my-4 secondary" /> -->
             <v-card
                 class="mx-auto"
                 max-width="300"
                 max-height="150"
                 tile
                 style="overflow-y: auto"
-                v-if="acts.act_edit.action_edit.head_motion_dialog.angled"
-
             >
                 <v-list-item
                 v-for="(motion_name,index) in acts.act_edit.action_edit.head_motion_dialog.head_motion_names"
@@ -186,21 +184,11 @@
                 </v-list-item-content>
                 </v-list-item>
             </v-card>
-            <v-card
-                class="mx-auto"
-                max-width="300"
-                max-height="150"
-                tile
-                style="overflow-y: auto"
-                v-else
-
-            >
-            </v-card>
             <v-divider class="my-4 secondary" />
         </v-card-text>
             <v-card-actions>
             <v-btn dark color="primary"
-            @click="go_to_point"
+            @click="play_head_motion"
             icon
             > <v-icon>mdi-play-outline</v-icon> </v-btn>
             <v-btn dark color="primary"
@@ -209,7 +197,7 @@
             > <v-icon>mdi-stop</v-icon> </v-btn>
             <v-spacer></v-spacer>
             <v-btn dark color="primary"
-            @click="save_navigation_action" 
+            @click="save_head_motion_action" 
             icon
             > <v-icon>mdi-content-save</v-icon> </v-btn>
             </v-card-actions>
@@ -1476,6 +1464,39 @@ export default {
             this.acts.act_edit.action_edit.interface_dialog.show =false
         }else{  
             this.acts.act_edit.action_edit.interface_dialog.show = false
+            this.del_action(this.acts.act_edit.action_edit.index)
+        }
+    },
+
+    edit_head_motion_action(index){
+        this.acts.act_edit.action_edit.index = index
+        if(this.acts.act_edit.act.actions[index].action_args.length >0){
+            this.acts.act_edit.action_edit.head_motion_dialog.head_motion_name = this.acts.act_edit.act.actions[index].action_args[1]
+        }
+        this.acts.act_edit.action_edit.head_motion_dialog.show = true
+    },
+    play_head_motion() {
+      if (this.acts.act_edit.action_edit.head_motion_dialog.head_motion_name != "") {
+        this.$store
+          .dispatch(
+            "Ros/take_action",
+            `interactive/head_play_motions_by_name/${this.acts.act_edit.action_edit.head_motion_dialog.head_motion_name}`,
+            { root: true }
+          )
+          .then(() => {
+          });
+      }
+    },
+    save_head_motion_action(){
+        console.log(this.acts.act_edit.act.actions[this.acts.act_edit.action_edit.index])
+        if(this.acts.act_edit.action_edit.head_motion_dialog.head_motion_name != ''){
+            this.acts.act_edit.act.actions[this.acts.act_edit.action_edit.index].category = 'head motion'
+            this.acts.act_edit.act.actions[this.acts.act_edit.action_edit.index].action_args = []
+            this.acts.act_edit.act.actions[this.acts.act_edit.action_edit.index].action_args[0] = 'head motion'
+            this.acts.act_edit.act.actions[this.acts.act_edit.action_edit.index].action_args[1] = this.acts.act_edit.action_edit.head_motion_dialog.head_motion_name
+            this.acts.act_edit.action_edit.head_motion_dialog.show =false
+        }else{  
+            this.acts.act_edit.action_edit.head_motion_dialog.show = false
             this.del_action(this.acts.act_edit.action_edit.index)
         }
     },

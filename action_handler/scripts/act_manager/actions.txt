@@ -1,1 +1,1 @@
-test1:led ring/fadeoutfadein/951B81/1/50/0|eyes emoji/blink/951B81/1/110/0|interface/main|wait/3500|navigation/wait/unangled/fab_2/-0.9500002339482307/1.325000187382102|speak/hi$test2:eyes emoji/blink/951B81/1/110/0
+test1:led ring/fadeoutfadein/951B81/1/50/0|eyes emoji/blink/951B81/1/110/0|head motion/yes$test2:eyes emoji/blink/951B81/1/110/0

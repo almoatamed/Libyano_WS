@@ -141,7 +141,6 @@ def threaded_act_player():
             t_start= time.time()
             perform(action)
             printLine('action took ', time.time() - t_start)
-            
         else:
             time.sleep(0.3)
 

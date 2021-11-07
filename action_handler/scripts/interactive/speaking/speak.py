@@ -18,7 +18,7 @@ def printLine(*args):
     print(file_name+': '+'\n      - '+'\n      - '.join([str(arg) for arg in list(args)]))
 
 
-pygame.mixer.init()
+# pygame.mixer.init()
 queue = []
 isSpeaking = False
 def start():

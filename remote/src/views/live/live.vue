@@ -1856,14 +1856,14 @@ export default {
     setTimeout(()=>{
         connect_to_ros().then(ros=>{
 
-            var current_pose = new ROSLIB.Topic({
+            var current_pose_sub = new ROSLIB.Topic({
                 throttle_rate: 100,
                 // queue_size:1,
                 ros: ros,
                 name: '/current_pose',
                 messageType: 'geometry_msgs/Pose',
             })
-            current_pose.subscribe(function(data){
+            current_pose_sub.subscribe(function(data){
                 data['position']
                 current_pose = {}
                 current_pose.position = {}

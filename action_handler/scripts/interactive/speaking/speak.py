@@ -21,6 +21,7 @@ def printLine(*args):
 # pygame.mixer.init()
 queue = []
 isSpeaking = False
+rate = rospy.Rate(2)
 def start():
     while not rospy.is_shutdown():
         if len(queue) > 0:
@@ -33,7 +34,7 @@ def start():
             # pygame.mixer.music.stop()
             print('Done')
         else:
-            time.sleep(0.2)
+            rate.sleep()
         
 
 t = threading.Thread(target=start)

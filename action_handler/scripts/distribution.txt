@@ -1,8 +1,8 @@
 control:R
 navigation:J
 interactive:S
-system:S
-act:S
+system:J
+act:J
 cash_reader:J
 global_actions:J
 bluetooth:J

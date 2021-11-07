@@ -24,7 +24,6 @@ isSpeaking = False
 def start():
     global isSpeaking
     while not rospy.is_shutdown():
-        time.sleep(0.5)
         if len(queue) > 0:
             isSpeaking = True    
             file = queue.pop(0)

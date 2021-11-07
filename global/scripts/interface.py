@@ -15,13 +15,13 @@ def printLine(*args):
     
 rospy.init_node('interface_process_monitor')
 
-printLine('starting interface')
+#printLine('starting interface')
 
 home = os.environ['HOME']
 os.chdir(home+'/catkin_ws/src/third_party/web_server/interface_app')
 command = r'/usr/bin/npm start'
 p = subprocess.Popen(command.split(' '))
-printLine('started interface')
+#printLine('started interface')
 rate = rospy.Rate(0.5)
 while not rospy.is_shutdown() and not p.poll():
     rate.sleep()
@@ -29,5 +29,5 @@ try:
     p.terminate()
 except:
     pass
-printLine('interface process died')
+#printLine('interface process died')
 

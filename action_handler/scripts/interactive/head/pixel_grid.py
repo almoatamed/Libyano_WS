@@ -43,7 +43,7 @@ def set_eyes(face,color='0', roll='0',period='200',go_default='1'):
         period = float(period)
         go_default = float(go_default)
     except Exception as e:
-        printLine("error while trying to change eyes expression",e)
+        #printLine("error while trying to change eyes expression",e)
         return 'failed'
     face = face.upper()
     if face in faces:
@@ -59,7 +59,7 @@ def set_brightness(brightness):
     try:
         brightness = float(brightness)
     except Exception as e:
-        printLine("error while trying to change brightness",e)
+        #printLine("error while trying to change brightness",e)
         return 'failed'
     if brightness >250 or brightness <0:
         return 'out_of_boundries'

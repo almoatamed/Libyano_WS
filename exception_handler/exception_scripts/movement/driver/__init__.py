@@ -31,13 +31,13 @@ def error(current_status):
     :
         return True
     else:
-        printLine('no errors')
+        #printLine('no errors')
         return False
     
 
 def run(current_status):
     global timeflag, timeout, pub
     if error(current_status) and time.time() - timeflag > timeout:
-        printLine('Error on Driver')
+        #printLine('Error on Driver')
         timeflag = time.time()
         pub.publish(msg)

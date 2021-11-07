@@ -18,7 +18,7 @@ def printLine(*args):
     global name
     print(file_name+': '+'\n      - '+'\n      - '.join([str(arg) for arg in list(args)]))
 
-printLine('starting Mode Controller')
+#printLine('starting Mode Controller')
 
 def asq(action):
     action_service_name = rospy.get_param('/action/action_service_name','/action')
@@ -28,7 +28,7 @@ def asq(action):
         resp = take_action(action)
         return resp.result
     except rospy.ServiceException as e:
-        printLine('An error occured while trying to take an action ', e)
+        #printLine('An error occured while trying to take an action ', e)
         return "failed"
 
 home = os.environ['HOME']
@@ -53,7 +53,7 @@ default_retry_counter = 1
 def trigger_actions():
     if modes[mode]['change_action'] != 'null':
         
-        printLine('taking aciton based on mode change', modes[mode]['change_action'])
+        #printLine('taking aciton based on mode change', modes[mode]['change_action'])
         
         if(modes[mode]['action_retry_count'] == '0'):
             counter = default_retry_counter 
@@ -61,7 +61,7 @@ def trigger_actions():
             try:
                 counter = int(modes[mode]['action_retry_count'])
             except ValueError as e:
-                printLine('failed to convert the primary action retry counter for mode', mode,'with error', e)
+                #printLine('failed to convert the primary action retry counter for mode', mode,'with error', e)
                 counter = default_retry_counter 
                 
         for action in modes[mode]['change_action'].split('|'):
@@ -124,7 +124,7 @@ rate = rospy.Rate(float(publish_rate))
 msg = String()
 def run():
     global is_running, rate, premode_pub, premode, mode, mode_pub, msg
-    printLine('Mode Controller is Running')
+    #printLine('Mode Controller is Running')
     while not rospy.is_shutdown() and is_running:            
         rate.sleep()
         msg.data = premode

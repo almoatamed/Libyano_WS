@@ -21,5 +21,5 @@ def run(current_status):
         
     if '/serial_starter_movement' not in nodes_list and time.time() - t_start > time_out:
         t_start  = time.time()
-        printLine('Movement Mcu is not Running')
+        #printLine('Movement Mcu is not Running')
         subprocess.Popen(['roslaunch', 'serial_starter', 'serial_starter_movement.launch'])

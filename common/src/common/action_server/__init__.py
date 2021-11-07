@@ -19,5 +19,5 @@ def action_service_query(action):
         resp = take_action(action)
         return resp.result
     except rospy.ServiceException as e:
-        printLine('An error occured while trying to take an action ', e)
+        #printLine('An error occured while trying to take an action ', e)
         return "failed"

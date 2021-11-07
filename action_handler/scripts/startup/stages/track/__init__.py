@@ -24,7 +24,7 @@ def asq(action):
         resp = take_action(action)
         return resp.result
     except rospy.ServiceException as e:
-        printLine('An error occured while trying to take an action ', e)
+        #printLine('An error occured while trying to take an action ', e)
         return "failed"
 
 confirmation = 'nothing'
@@ -125,12 +125,12 @@ def location_matched():
 def check_goal():
     global current_goal_monitor, goal_queue
     if current_goal_monitor.state == 'succeed' and location_matched():  
-        printLine('adding new goal to sequance', current_goal)
+        #printLine('adding new goal to sequance', current_goal)
         goal_queue.append(current_goal)
     
 def point_goal_cb(msg):
     global current_goal
-    printLine('received new goal', msg)
+    #printLine('received new goal', msg)
     check_goal()
     current_goal = msg
     
@@ -151,12 +151,12 @@ def run_recording_goals():
 
 def get_recorded_goals():
     global goal_queue
-    printLine('getting goal queue',*goal_queue)
+    #printLine('getting goal queue',*goal_queue)
     return '|'.join(['&'.join([str(pose.location.x),str(pose.location.y)]) for pose in goal_queue])
 
 def start_recording_goals():
     global recorder_state, goal_queue
-    printLine('starting goal recorded')
+    #printLine('starting goal recorded')
     goal_queue = []
     recorder_state = True
     thread = threading.Thread(target=run_recording_goals)

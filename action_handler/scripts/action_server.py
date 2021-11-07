@@ -52,7 +52,7 @@ def action_service_query(action,dev):
         resp = take_action(action)
         return resp.result
     except rospy.ServiceException as e:
-        printLine('An error occured while trying to take an action ', e)
+        #printLine('An error occured while trying to take an action ', e)
         return "failed"
     
 def action_server(raw_req):
@@ -70,12 +70,12 @@ def action_server(raw_req):
                 dev = category_dictionary[category]
                 return action_srvResponse(action_service_query(dev_split[0],dev))
     except Exception as e:
-        printLine('Error while processing action',e)
+        #printLine('Error while processing action',e)
         return 'failed'
         
 if __name__ == "__main__":
         
-    printLine('starting Action Handler')
+    #printLine('starting Action Handler')
 
     ###############################################
     #parameters#

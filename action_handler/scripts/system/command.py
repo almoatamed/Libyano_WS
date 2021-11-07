@@ -12,11 +12,11 @@ def printLine(*args):
     print(file_name+': '+'\n      - '+'\n      - '.join([str(arg) for arg in list(args)]))
 
 def command(command):
-    printLine('excecuting command',command)
+    #printLine('excecuting command',command)
     try:
         os.system(command)
         return 'done'
     except Exception as e:
-        printLine('Error while excecuting command', e)
+        #printLine('Error while excecuting command', e)
         return 'failed'
     

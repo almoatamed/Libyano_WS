@@ -24,7 +24,7 @@ def set_color(red,green,blue):
         green = int(green)
         blue = int(blue)
     except Exception as e:
-        printLine("error while trying to change eyes expression",e)
+        #printLine("error while trying to change eyes expression",e)
         return 'failed'
     if 0<=red<=255 and 0<=green<=255 and 0<=blue<=255:
         mcu_msg.x = red

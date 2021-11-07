@@ -24,11 +24,11 @@ def start():
     if not running_state:
         running_state = True
         try:
-            printLine('About to start the loop')
+            #printLine('About to start the loop')
             proc = subprocess.Popen(str('/usr/bin/python '+home+'/catkin_ws/src/action_handler/scripts/navigation/location_estimater/location_estimater_loop.py').split(b' '))
-            printLine('started the loop')
+            #printLine('started the loop')
         except Exception as e:
-            printLine('failed to start',e)
+            #printLine('failed to start',e)
             return 'failed'
     return 'Done'
     
@@ -39,11 +39,11 @@ def stop():
         try:
             os.system('rosnode kill /location_estimater_loop')
         except Exception as e:
-            printLine('Error while terminating proc', e)
+            #printLine('Error while terminating proc', e)
         try:
             proc.terminate()
         except Exception as e:
-            printLine('Error while terminating proc', e)
+            #printLine('Error while terminating proc', e)
         proc = False
     return "Done"
 

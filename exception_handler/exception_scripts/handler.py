@@ -42,7 +42,7 @@ def printLine(*args):
     global name
     print(file_name+': '+'\n      - '+'\n      - '.join([str(arg) for arg in list(args)]))
 
-printLine('Starting Exception Handler',system_type)
+#printLine('Starting Exception Handler',system_type)
 
 R_exception_hanlders = {
     # 'interactive': interactive_run,

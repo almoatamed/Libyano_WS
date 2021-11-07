@@ -35,14 +35,14 @@ def decode_motion():
     if motions:
         motions =  [motion.split(':') for motion in motions.split('$')]
         motions = {motion[0]:[[float(val) for val in vals.split('&')] for vals in motion[1].split('|')] for motion in motions}
-        printLine('motions', motions)
+        #printLine('motions', motions)
         return motions
     else:
         return {}
 
 def encode_motions(motions):
     encoding =  '$'.join([':'.join([motion, '|'.join(['&'.join([str(val) for val in vals]) for vals in motions[motion]]) ]) for motion in motions])
-    printLine('encoding', encoding)
+    #printLine('encoding', encoding)
     return encoding
 
 
@@ -120,7 +120,7 @@ def threaded_motion_player():
         if len(motions_queue) > 0:
             motion = motions_queue.pop(0)
             mcu_msg.values = [float(val) for val in motion[:-1]]
-            printLine('publishign motion', motion)
+            #printLine('publishign motion', motion)
             mcu_msg.Part_and_function = 11
             pub.publish(mcu_msg)
             time.sleep(float(motion[-1])/1000+0.05)
@@ -139,7 +139,7 @@ def relative_move(x,y,speed):
         y = float(y)
         speed = float(speed)
     except Exception as e:
-        printLine("error while trying to move head",e)
+        #printLine("error while trying to move head",e)
         return 'failed'
     last_speed = speed
     if time.time() - last_time < float(last_speed/1000):

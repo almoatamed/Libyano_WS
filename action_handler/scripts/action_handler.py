@@ -51,51 +51,51 @@ if system_type != 'G':
     if system_type == category_dictionary['navigation']:
         import scripts.navigation
         actions['navigation'] = scripts.navigation.Actions
-        printLine('import navigation controller')
+        #printLine('import navigation controller')
     if system_type == category_dictionary['act']:
         import scripts.act_manager
         actions['act'] = scripts.act_manager.Actions
-        printLine('import act manager')
+        #printLine('import act manager')
     if system_type == category_dictionary['control']:
         import scripts.control
         actions['control'] = scripts.control.Actions
-        printLine('import control')
+        #printLine('import control')
     if system_type == category_dictionary['system']:
         import scripts.system
         actions['system'] = scripts.system.Actions
-        printLine('import system')
+        #printLine('import system')
     if system_type == category_dictionary['cash_reader']:
         import scripts.cash_reader
         actions['cash_reader'] = scripts.cash_reader.Actions
-        printLine('import cash_reader')
+        #printLine('import cash_reader')
         
     if system_type == category_dictionary['bluetooth']:
         import scripts.bluetooth
         actions['bluetooth'] = scripts.bluetooth.Actions
-        printLine('import bluetooth')
+        #printLine('import bluetooth')
         
     if system_type == category_dictionary['startup']:
         import scripts.startup
         actions['startup'] = scripts.startup.Actions
-        printLine('import startup')
+        #printLine('import startup')
         
     if system_type == category_dictionary['interactive']:
         import scripts.interactive
         actions['interactive'] = scripts.interactive.Actions
-        printLine('import interactive')
+        #printLine('import interactive')
         
     if system_type == category_dictionary['global_actions']:
         import scripts.global_actions
         actions['global_actions'] = scripts.global_actions.Actions
-        printLine('import global actions')
+        #printLine('import global actions')
         
     if system_type == category_dictionary['interface']:
         import scripts.interface
         actions['interface'] = scripts.interface.Actions
-        printLine('import interface controller')
+        #printLine('import interface controller')
         
 else:
-    printLine('Loading G Actions')
+    #printLine('Loading G Actions')
     import scripts.navigation
     actions['navigation'] = scripts.navigation.Actions
     import scripts.control
@@ -118,23 +118,23 @@ else:
     actions['act'] = scripts.act_manager.Actions
     
 def action_handler(req):
-    # printLine('taking action', req)
+    # #printLine('taking action', req)
     req = req.action.split('/')
     category = req[0]
     action = req[1]
     if category in actions:
         if action in actions[category]:
-            # printLine('Initiating action of '+str(req))
+            # #printLine('Initiating action of '+str(req))
             if len(req)>2:
                 args = tuple(arg for arg in req[2:])
                 return action_srvResponse(actions[category][action](*args))
             else: 
                 return action_srvResponse(actions[category][action]())
         else:
-            printLine('action has not been found')
+            #printLine('action has not been found')
             return 'failed'
     else:
-        printLine('category has not been found')
+        #printLine('category has not been found')
         return 'failed'
     
         
@@ -142,7 +142,7 @@ def action_handler(req):
 
 if __name__ == "__main__":
     
-    printLine('starting Action Handler')
+    #printLine('starting Action Handler')
 
     ###############################################
     #parameters#

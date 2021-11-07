@@ -1864,6 +1864,7 @@ export default {
                 messageType: 'geometry_msgs/Pose',
             })
             current_pose.subscribe(function(data){
+              console.log(data)
                 current_pose = data
             }); 
             var global_path_sub = new ROSLIB.Topic({

@@ -34,6 +34,7 @@ def start():
             pygame.mixer.music.stop()
             print('Done')
         else:
+            time.sleep(0.2)
             isSpeaking = False
         
 

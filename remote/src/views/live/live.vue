@@ -1864,8 +1864,17 @@ export default {
                 messageType: 'geometry_msgs/Pose',
             })
             current_pose.subscribe(function(data){
-              console.log(data)
-                current_pose = data
+                data['position']
+                current_pose = {}
+                current_pose.position = {}
+                current_pose.position.x = data['position']['x']
+                current_pose.position.y = data['position']['y']
+                current_pose.position.z = data['position']['z']
+                current_pose.orientation = {}
+                current_pose.orientation.x = data['orientation']['x']
+                current_pose.orientation.y = data['orientation']['y']
+                current_pose.orientation.z = data['orientation']['z']
+                current_pose.orientation.w = data['orientation']['w']
             }); 
             var global_path_sub = new ROSLIB.Topic({
                 throttle_rate: 100,

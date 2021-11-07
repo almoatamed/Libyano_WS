@@ -139,7 +139,7 @@ def init():
 
     while not rospy.is_shutdown():
         try:
-            # printLine('creating cash readre')
+            printLine('creating cash readre')
             biller = Biller(port)
             printLine('biller has been created')
             channels = []

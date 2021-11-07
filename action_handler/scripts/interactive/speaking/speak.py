@@ -22,10 +22,8 @@ def printLine(*args):
 queue = []
 isSpeaking = False
 def start():
-    global isSpeaking
     while not rospy.is_shutdown():
         if len(queue) > 0:
-            isSpeaking = True    
             file = queue.pop(0)
             # pygame.mixer.music.load(file)
             # pygame.mixer.music.play()
@@ -36,7 +34,6 @@ def start():
             print('Done')
         else:
             time.sleep(0.2)
-            isSpeaking = False
         
 
 t = threading.Thread(target=start)
@@ -58,6 +55,7 @@ def push_to_queue(file):
     file = os.getenv('HOME')+'/catkin_ws/src/action_handler/scripts/interactive/speaking/sounds/'+file
     printLine(file)
     queue.append(file)
+    printLine('running file ', file)
     return "running"
 
 def set_stop():

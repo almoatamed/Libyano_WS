@@ -1611,7 +1611,7 @@ export default {
         .then((res) => {
         console.log(res)
           console.log('valid',res);
-          this.acts_names = res.split('|')
+          this.acts_names = res.split('|').sort()
         });
     },
 

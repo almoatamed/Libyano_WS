@@ -1,0 +1,12 @@
+{
+    "control": "R",
+    "navigation": "J", 
+    "interactive": "J", 
+    "system": "S", 
+    "act": "J", 
+    "cash_reader": "J", 
+    "operation": "J", 
+    "bluetooth": "J", 
+    "startup": "J", 
+    "interface": "J"
+}

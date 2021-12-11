@@ -593,44 +593,6 @@ export default {
       if(this.story_status.pause_list){
        if(this.story_status.pause_list.some(reason => reason =='user')){
          this.$store.dispatch('Ros/take_action', `operation/continue/user`, {root:true}).then(res=>{
-           if(res == 'paused'){
-              this.$store.dispatch(
-                "Notify/notify",
-                {
-                  group: "main",
-                  text: "Story Paused Successfully.",
-                  title: "Story Paused",
-                  type: "success",
-                },
-                { root: true }
-              );
-           }else if(res == 'reason_exists'){
-              this.$store.dispatch(
-                "Notify/notify",
-                {
-                  group: "main",
-                  text: "Story is already Paused.",
-                  title: "Story is paused",
-                  type: "warning",
-                },
-                { root: true }
-              );
-           }
-         }).catch(err=>{
-          console.log('error occured while trying to pause the story', err)
-          this.$store.dispatch(
-            "Notify/notify",
-            {
-              group: "main",
-              text: `Error occured while trying to pause story ${err}.`,
-              title: "Error",
-              type: "error",
-            },
-            { root: true }
-          );
-         })
-       }else{
-         this.$store.dispatch('Ros/take_action', `operation/pause/user`, {root:true}).then(res=>{
            if(res == 'done'){
               this.$store.dispatch(
                 "Notify/notify",
@@ -661,6 +623,45 @@ export default {
             {
               group: "main",
               text: `Error occured while trying to continue story ${err}.`,
+              title: "Error",
+              type: "error",
+            },
+            { root: true }
+          );
+         })
+       }else{
+         this.$store.dispatch('Ros/take_action', `operation/pause/user`, {root:true}).then(res=>{
+           console.log(res)
+           if(res == 'paused'){
+              this.$store.dispatch(
+                "Notify/notify",
+                {
+                  group: "main",
+                  text: "Story Paused Successfully.",
+                  title: "Story Paused",
+                  type: "success",
+                },
+                { root: true }
+              );
+           }else if(res == 'reason_exists'){
+              this.$store.dispatch(
+                "Notify/notify",
+                {
+                  group: "main",
+                  text: "Story is already Paused.",
+                  title: "Story is paused",
+                  type: "warning",
+                },
+                { root: true }
+              );
+           }
+         }).catch(err=>{
+          console.log('error occured while trying to pause the story', err)
+          this.$store.dispatch(
+            "Notify/notify",
+            {
+              group: "main",
+              text: `Error occured while trying to pause story ${err}.`,
               title: "Error",
               type: "error",
             },

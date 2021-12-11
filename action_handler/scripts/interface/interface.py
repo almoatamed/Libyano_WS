@@ -1,9 +1,12 @@
-
+import threading
+import time 
+import rospy
+from std_msgs.msg import String
 view_sets = [
     'main', 'bootup'
 ]
 
-route = ''
+route = 'slide-show'
 def set_current_route_name(route_name):
     global route 
     route = route_name
@@ -46,3 +49,14 @@ def get_sets():
 def get_current_route_name():
     global route
     return route
+
+string_msg = String()
+set_slash_route_pub = rospy.Publisher("/interface/set_slash_route", String, queue_size=10)
+def set_slash_route_pub_thread_function():
+    while not rospy.is_shutdown():
+        time.sleep(0.25)
+        string_msg.data = current_set + '/' + route
+        set_slash_route_pub.publish(string_msg)    
+        
+set_slash_route_pub_thread = threading.Thread(target=set_slash_route_pub_thread_function)
+set_slash_route_pub_thread.start()

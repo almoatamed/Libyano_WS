@@ -4,7 +4,7 @@ import rospy
 import os 
 import sys
 from action_handler_msgs.srv import action_srvResponse,action_srv
-
+import json
 
 try:
     system_type = os.environ['SYSTEM_TYPE']
@@ -40,10 +40,9 @@ anonymous = False
 rospy.init_node(node_name, anonymous=anonymous)
 
 home = os.environ['HOME']
-distribution_path = home+'/catkin_ws/src/action_handler/scripts/distribution.txt'
+distribution_path = home+'/catkin_ws/src/action_handler/scripts/distribution.json'
 file = open(distribution_path,'r')
-distribution = file.read()
-category_dictionary = {i[0]:i[1] for i in [j.split(':') for j in distribution.split('\n')]}
+category_dictionary = json.load(file)
 file.close()
 
 actions = {}
@@ -84,9 +83,13 @@ if system_type != 'G':
         actions['interactive'] = scripts.interactive.Actions
         #printLine('import interactive')
         
-    if system_type == category_dictionary['global_actions']:
-        import scripts.global_actions
-        actions['global_actions'] = scripts.global_actions.Actions
+    if system_type == category_dictionary['operation']:
+        import scripts.operation
+        actions['operation'] = scripts.operation.Actions
+        
+    # if system_type == category_dictionary['global_actions']:
+        # import scripts.global_actions
+        # actions['global_actions'] = scripts.global_actions.Actions
         #printLine('import global actions')
         
     if system_type == category_dictionary['interface']:
@@ -110,12 +113,14 @@ else:
     actions['startup'] = scripts.startup.Actions
     import scripts.interactive
     actions['interactive'] = scripts.interactive.Actions
-    import scripts.global_actions
-    actions['global_actions'] = scripts.global_actions.Actions
+    # import scripts.global_actions
+    # actions['global_actions'] = scripts.global_actions.Actions
     import scripts.interface
     actions['interface'] = scripts.interface.Actions
     import scripts.act_manager
     actions['act'] = scripts.act_manager.Actions
+    import scripts.operation
+    actions['operation'] = scripts.operation.Actions
     
 def action_handler(req):
     # #printLine('taking action', req)

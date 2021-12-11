@@ -123,23 +123,23 @@ module.exports = {
                         context.commit('Ros/set_timeout', new Date().getTime());
                     });
                    //*******************************************************//     
-                    var status_sub = new roslib.Topic({
-                        ros: ros,
-                        name: '/status',
-                        messageType: 'status_msgs/status'
-                    })
-                    status_sub.subscribe(function(data){
-                        context.commit('Ros/set_status',data)
-                    });
+                    // var status_sub = new roslib.Topic({
+                    //     ros: ros,
+                    //     name: '/status',
+                    //     messageType: 'status_msgs/status'
+                    // })
+                    // status_sub.subscribe(function(data){
+                    //     context.commit('Ros/set_status',data)
+                    // });
                    //*******************************************************//     
-                    var current_location_sub = new roslib.Topic({
-                        ros: ros,
-                        name: '/current_pose',
-                        messageType: 'geometry_msgs/Pose'
-                    })
-                    current_location_sub.subscribe(function(data){
-                        context.commit('Ros/set_current_location',data)
-                    });
+                    // var current_location_sub = new roslib.Topic({
+                    //     ros: ros,
+                    //     name: '/current_pose',
+                    //     messageType: 'geometry_msgs/Pose'
+                    // })
+                    // current_location_sub.subscribe(function(data){
+                    //     context.commit('Ros/set_current_location',data)
+                    // });
                    //*************************** Map ****************************//     
                     // var map_sub = new roslib.Topic({
                     //     ros: ros,

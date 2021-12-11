@@ -25,6 +25,12 @@ export default {
                 })
             })
         },
+        setMode(context, mode){
+            return new Promise(resolve=>{
+                context.commit('setMode', mode)
+                resolve()
+            })
+        },
         fetchMode(context){
             return new Promise((resolve, reject)=>{
                 context.dispatch('Ros/take_action','global_actions/get_current_mode',{root:true}).then(res=>{
@@ -36,17 +42,17 @@ export default {
                 })
             })
         },
-        fetchStatus({dispatch, commit}){
-            return new Promise((resolve, reject)=>{
-                RosApi.status().then((res)=>{
-                    commit('setStatus', res.data.status);
-                    resolve(res);
-                }).catch(err=>{
-                    dispatch('ApiError/check', err, {root: true});
-                    reject(err);
-                })
-            })
-        },
+        // fetchStatus({dispatch, commit}){
+        //     return new Promise((resolve, reject)=>{
+        //         RosApi.status().then((res)=>{
+        //             commit('setStatus', res.data.status);
+        //             resolve(res);
+        //         }).catch(err=>{
+        //             dispatch('ApiError/check', err, {root: true});
+        //             reject(err);
+        //         })
+        //     })
+        // },
         
         getcurrentlocation(context){
             context.commit('pass')

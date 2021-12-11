@@ -52,9 +52,7 @@ premode = ''
 default_retry_counter = 1
 def trigger_actions():
     if modes[mode]['change_action'] != 'null':
-        
         #printLine('taking aciton based on mode change', modes[mode]['change_action'])
-        
         if(modes[mode]['action_retry_count'] == '0'):
             counter = default_retry_counter 
         else:
@@ -72,21 +70,25 @@ def trigger_actions():
 
 def change_mode(inmode):
     global modes, mode, premode, default_retry_counter 
-    if inmode != mode:
-        if inmode == mode+'cancel':
-            premode == mode 
-            mode = modes[mode]['retract_mode']
-            trigger_actions()
-            return 'mode_changed'
-        elif inmode in modes[mode]['mode_flag']:
-            if (modes[mode]['mode_flag'][inmode] == '1'):
-                premode = mode
-                mode = inmode
+    if inmode in modes:
+        if inmode != mode:
+            if inmode == mode+'cancel':
+                premode == mode 
+                mode = modes[mode]['retract_mode']
                 trigger_actions()
+                return 'mode_changed'
+            elif inmode in modes[mode]['mode_flag']:
+                if (modes[mode]['mode_flag'][inmode] == '1'):
+                    premode = mode
+                    mode = inmode
+                    trigger_actions()
+                    return 'mode_changed'   
+                else:
+                    return 'cannot_change_mode'
             else:
                 return 'cannot_change_mode'
         else:
-            return 'cannot_change_mode'
+            return 'mode_already_running'
     else:
         return 'mode_not_found'
 

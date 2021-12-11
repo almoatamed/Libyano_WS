@@ -696,7 +696,7 @@
       <!-- Act table -->
       <div class="text-h4">Act Manager</div>
       <v-divider class="py-4"></v-divider>
-      <v-card rounded="xl" elevation="6" :dark="isDark">
+      <v-card  elevation="6" :dark="isDark">
         <!-- Actions -->
         <v-container fluid>
           <v-row>

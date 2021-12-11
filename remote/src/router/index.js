@@ -52,6 +52,15 @@ const router = new Router({
         '../views/act_manager/act_manager.vue'),
       meta: { requiresAuth: true, requiresConnectoin: true }
     },
+    //########################### Act Controller Page ##############################
+
+    {
+      path: '/story_manager',
+      name: 'story_manager',
+      component: () => import(/* webpackChunkNam: "story_manager" */
+        '../views/story_manager/story_manager.vue'),
+      meta: { requiresAuth: true, requiresConnectoin: true }
+    },
 
     //########################### Startup ##############################
 

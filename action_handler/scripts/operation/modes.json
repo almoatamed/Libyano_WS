@@ -1,0 +1,21 @@
+{
+    "default_mode": "mnl",
+    "modes": {
+        "mnl": {
+            "on_proceed": "start",
+            "on_halt": "stop",
+            "retract_mode": "ato",
+            "flags": {
+                "ato": false
+            }
+        },
+        "ato": {
+            "on_proceed": "start",
+            "on_halt": "stop",
+            "retract_mode": "mnl",
+            "flags": {
+                "mnl": true
+            }
+        }
+    }
+}

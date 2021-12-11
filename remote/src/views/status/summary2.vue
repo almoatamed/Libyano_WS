@@ -4,7 +4,7 @@
       <div class="text-h4">Remote Control</div>
       <v-divider class="py-2"></v-divider>
 
-      <v-card rounded="xl" elevation="6" :dark="isDark">
+      <v-card  elevation="6" :dark="isDark">
         <v-card-text>
           <v-data-table
             class="pa-4"

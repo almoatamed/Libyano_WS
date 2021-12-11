@@ -1,0 +1,106 @@
+major tasks
+ - finishing engineering mode
+   - sync map 
+     - list maps 
+     - upload map with saved home pose 
+     - show map with current robot pose, user can update the current pose of the robot using arrow marker
+     - confirm location, which ends stage and returns to the choices 
+     - engineering mode cannot be left unless a map is synced, the current map name should be provided by the navigation controller 
+   - end engineering mode will switch to the manual mode and will end the engineering mode 
+   - an ability to enter engineering mode is provided in the settings
+   - approach
+ - main page
+   - stop
+   - pause 
+   - run 
+   - main status 
+   - map 
+   - tabs
+   - light control (flow, color) 
+   - live speak 
+   - auto manual 
+   - emoji (chosing existing emoji)
+   - head movement 
+ - data entry
+   - emojis 
+   - scripts 
+   - voucher 
+   - light
+   - head movement 
+   - AI 
+ - settings 
+   - networking (modify current wireless netowrk)
+   - bluetooth
+ - notification system
+   - can publish message to a notification to a notification topic, either through publisher or through action 
+   - if topic does not exits then its added to the notification stack
+   - can fitch all running notification channels
+   - can fitch last n number of notifications for certain channel as action 
+   - can push notification to certain topic 
+ - interactive system
+   - manual controller
+   - interactive track schadualer and controller
+   - interactive controller
+     - manages the manual controller and the track controller 
+ - pause 
+ - stop 
+   - halts movements
+   - halts voice controller 
+ - story manager 
+   - create story
+     - tracking story 
+       - buil track 
+         - name track
+	 - save track
+       - point managment
+         - list track 
+         - select track 
+         - select point
+           - name point
+           - actions
+             - start actions, actions performed before starting path
+             - path actions, action performed during path
+             - end action, action performed when reaching point, with specific timeout 
+          - update track story 
+      - service story
+        - load app (by default maybe later, already one app includes service control), greating mode works through interrupts 
+   - load story 
+ - status monitor
+   - can list status detailed as a report 
+   - log 
+     - can get log of certain topic from the notification system
+
+
+
+############################################################# Actinos ########################################################
+actions list 
+ - head movement through mcu and action server
+ - emoji eyes through mcu and action server 
+ - light control 
+   - logo 
+   - hand 
+ - speach through action server 
+   - live threaded speach 
+   - script speach 
+     - temp speach 
+     - save speach 
+     - del speach
+     - list speach 
+   - file threaded speach 
+ - AI actions 
+   - mask 
+   - voice 
+ - IMU
+   - get IMU data 
+   - warning message 
+ - touch sensor
+   - touch controller (similar location estimitar)
+   - will be touch to differentiate between diferent touch patterns, by time or sampling period 
+   - head touch 
+   - hand touch 
+     - right
+     - left
+   - back 
+ - temp control 
+   - run fan relay 
+ 

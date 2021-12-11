@@ -1,0 +1,14 @@
+{
+    "facial_detection":{
+        "enabled": false
+    },
+    "power":{
+        "enabled": true
+    },
+    "screen":{
+        "enabled": true
+    },
+    "touch_sensors":{
+        "enabled": false
+    }
+}

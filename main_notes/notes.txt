@@ -1,0 +1,241 @@
+in order to perform startup staging you need to perform each stage as a seperate script where you perform methods of each stage as perform 
+method
+
+you also can retrieve values from the current stage using get method where you name the stage and the variable name
+
+you can know the name of the current running stage using the get_current_stage method where you rerieve the global variable current stage
+
+you perform continues checking in a threaded functino on the running state of the current stage if the state goes ened, 
+then start the next stage
+
+each stage is custom, has its own variables, methods, and has running state, wher you can check the running state state() method in each stage
+
+when all stage end by performing one last mode cancellation for the start up which will retrace to nav mode 
+
+
+building procedure:
+ start by testing the perform function by creating a mock function 
+ build the main script of the startup action 
+ define stages
+
+
+stages of startup
+- first stage is the power stage
+ - it will first set the remote interface on the checking (loading) page
+ - second it will check the cord is the cord connected or not
+ - if the cord is connected then it will set the interface to Remove the Cord interface
+ - it will wait for the cord to be removed by monitoring the current status and sleeping rate 
+ - when the cord is removed the stage will move to check the chargin status 
+ - if the robot is not charging the user will be asked to place the robot in front of the charger 
+ - once the user does that and confirms the robot will dock into the charger
+ - once the robot is charging the robot will end the power stage
+- second stage choice stage 
+ - the stage will set the page to the choices page
+ - the stage will wait for the choice of the user
+ - once the user picks a choice the next stage is set to that choice and the interface is set to loading
+- loading existing map
+ - stage will show inteface loaded with the existing maps list 
+ - if no map where found, or no choice has been chosen (cancel clicked), then the interface will return to the choice stage
+ - other wise the map is loaded using loading action in the navigation action server
+ - then the stage will direct to the end stage and startup procedure will end
+- load from existing map file.
+ - the stage will set the remote interface to pick map files where there is two choices.
+ - the first choice is the choice of picking the map image file.
+ - the second is the track footpring file, checked and confirmed.
+ - third a name of the map is inserted
+ - confirmed and data is sent to the backend to be handled
+ - once handled and saved properly 
+ - a confirmation is sent to the stage
+ - the stage will end there and direct back to the choice stage 
+- slamming stage
+ - the user is asked to navigate in the place to scan the area
+ - once confirmed the robot will ask to go to the chargin spot 
+ - once docked, the stage will set the inteface for a request to set a periodic track 
+ - the user switches back to the map page, where the map page will not allow the user to use manual movement and only goal movement is used
+ - once the track is ended it will ask the user to confirm that this track is valid and true
+ - the stage will ask to go to home spot
+ - the stage will set the interface to set map name, once given and confirmed map data will be sent to the backend to be saved
+ - after saving the map backend will send confimation to the stage
+ - the stage will end the slamming and will direct back to the choice stage
+
+
+building process:
+in order to achieve and finish the archaticture of the startup process 
+- build the staging archaticture of the startup process (main stagere) -> done
+- build the scritps of each startup stage -> done 
+- build and fix the navigation controller -> done
+- build the routing restricter on the remote dashboard -> done
+- build the main page of the startup interface 
+  - the main page should automatically route to between its children based on periodic check on the current 
+    equired interface by the startup stager 
+- build the startup map navigater
+  - make it checks for the navigation mode
+  - if the navigation mode is 'manual' then give permission for manual controls
+  - review the already built map and use it as reference in order to build the startup map navigator.
+  - using the referance map navigator, fix the continues touch problem
+  - include the goal placement using the map navigater
+  - restrict the default map route on the stratup mode
+- build the loading page
+- build the power stages
+- build the choice stages
+- build the slam stage views
+- build the chose existing map stage views
+
+
+whats left to do
+- in order to finish the essential startup sequence all left to do is to finish three essential interfaces 
+- the startup map navigater 
+- the finish track interface 
+- the save slammed map interface
+
+
+- the finish track interface
+  - i want it to collect the goal being sent from the map navigater and only adds the successfully reached goals 
+  - i want these goals to be collected in the slam stage at the build track period 
+  - when entering the finish track page the goals that been recorded successfully is brought from the slam stage 
+    recorder and organized and listed, after listing the goals and organizing them in the finish tracklng page we show these goals, next to 
+    the map, and when the user click on a goal the the goal is shown on the map a pin, user can unselect goals if he wants, and after selecting
+    the set of goals he wnats, he can finish the build track process by confirming the goals to the slam stage.
+  
+
+
+- the save slammed map interface is the final page in the slam process
+  - in teh save slammed page the goal are already collected in the slam stage
+  - the map is scanned in the platform
+  - we only need a proper name for the map
+  - once this name is confirmed from the interface we can save the map probably in the public maps directory under the given name
+  - after saving the map you can access them in the select exising map choice from the choices 
+
+
+- the startup map navigater
+  - it is being built based on the previously built map navigater
+  - it checks periodicall for the navigatio mode 
+  - if the navigation mode is manual it enable all manual navigation
+  - if manual vel, then only manual vels controls is enabled
+  - if manual goal is enabled then only manual goals is accessable
+  - the manual goals are placed on the map as a tool, where you click on place goal button, and then you drag on the screen using the  mouse 
+  - your clicking spot is the goal position, and your dragging direction is the oriantation 
+  - when the robot reaches the goal the arrow is removed from teh screen
+  - if the new goal is placed the old arrow is removed and, the new goal will be under processing 
+  - in order develop this map navigater, we are going to use the simulater 
+  - the simulater will give us the odometrry the robot description and the cmd vel controls,
+  - the simple goals cam be simulated using the amcel applier in the simulater it self 
+
+
+- postiion estimater
+  - build a position estimaer that can be started and stopped on demand in the action server 
+  - it can provide the running state, from_frame, to_frame, ability to stop, abitlity to run
+
+##########################################################################################################################
+##########################################################################################################################
+
+
+what do i need to do
+ - eventually i need to integrate the map navigater into the startup sequance 
+
+what do i have know
+ - i can move to angled locations with high precisions 
+ - i can move the robot manually with high accuracy 
+
+what do i miss in the map navigater
+ - i miss the ability to switch mode as action -- 
+ - i miss the ability to go home --
+ - i miss the ability to know whether the goal is reached or not --
+ - i miss the ability to show the tracks --
+ - i miss the ability to clear map from tracks and goals --
+ - i miss the ability to place a goal without angle  --
+ - i miss the ability to stop --
+
+mode switch action
+ - make an action that handles mode switching with either failur or success 
+
+to go home
+ - place a switch on the dashboard map controller, that switches to sth mode
+ 
+to stop 
+ - publish a cmd vel 0 message by placing a stop button in the middle of the arrows
+
+to monitor the status of the las goal
+ - subscribe to the gloabl path topic
+ - subscribe to the angled goal topic
+ - subscribe to the unangled goal topic
+ - subscribe to the current pose 
+ - in a global last goal variable 
+ - store location and angle of the goal
+ - store whether it is angled or not in a flag
+ - to know whether the goal is reached or not 
+   - we monitor the global path
+   - if the last three messages were empty then the goal is finished
+   - if the last three messages last pose were not similar to the goal pose, then, the goal has finished
+ - if the goal status is finished, then to know whether it succeed or failed we can compare the current
+   pose to the goal pose, if they are with in 20cm distance its ok we succeed, 
+   if we are not then we have failed
+
+in order to show the goal status on the dashboard map navigater
+ - we set the goal arrow, or point as in the current status but priore to drawing it we check if the 
+   last goal status monitor has the same last goal, and if it is we dispaly the goal with a color 
+   that represents its status
+   - red for failed
+   - green for succeed
+   - yellow for running 
+
+in order to show tracks
+ - i need to check if i have a goal in the dashboard map, if so, is the goal running
+ - if the goal is running, then i will show the track using the pose translation method, along with drawing
+   each point in the path as blue circle 
+
+clearing map 
+ - by clearing map all i have to do is to set the current goal to null, 
+
+for publishing unangled goal
+  - i need to send a a slamware move_to request with default flags, only setting the position 
+
+placing home pose
+ - manipulating the source code of slamware ros and place a custom code 
+
+###############################################################################################################################
+###############################################################################################################################
+
+
+in order to propoerly record view and modify the track of the slamming process we are required to
+ - visually block parts of the manual controller
+   - to visually block we need to control the visual content of the controls, ---
+   - we divide the controls into sections ---
+     - arrows (manual_vel)
+     - goal controls are enabled if one of the goal buttons is allowed
+     - goal arrow
+     - goal point 
+   - we fitch these goal flags by calling action on the startup stage that check for manual controls ---
+   - it retrun an | joined string of the controls ---
+   - this method calls get_manual_controls on the current stage obj ---
+   - if this stage doesnt provide this method then a defaul all controlls permitted string it returned ---
+   - else the method permitted controlls are returned  ---
+ - start recording the point goals in a current goal point, in the slamming stage script 
+ - when a new goal is reached and the new goal is assigned, the current goal status is check if it is successfull it is recorded in a queue
+   of successfull gaols
+ - the data required to know if the goal is successfull or not are the following
+   - we need to monitor the point goal request topic for new goals
+   - at the moment of receving new goal we check if the current goal is matching the location of the current goal monitor msg,
+     and if the current goal monitor message is successfull, if so we add the current goal location to the queue of goals
+   - final goal is ignored 
+ - to show these recorded goals as a track on the map we need to show a list of these goal on the right of the screen, these will fitched from
+   the slam stage 
+ - once fitched, they are listed in a list group where the can be unselected from final track, and simultanuesly shown on the map, by default 
+   all the points will be selected, selected points will be in green, unseleted points will be in blue 
+ - at submitting the final point goals the we are going to store then temporarly in a temp files at the stage file
+ - at final page we get the name of the new map, store the temporal files in the public map folder under the new map name
+ - we return to the power stage after that
+
+
+in order to use the saved maps we need to sync them with the platform properly, and load goals to the goal scrapper
+ - build the sync map functionalities 
+ - fix the goal scrapper, 
+   - include the goal monitor feature to check for goal reachability, if it is false or success for 1 sec publish the next goal 
+   - tell the goal scrapper which set of goal track to use from the path after syncing them 
+
+
+we test the scrapper
+
+#########################################################################################################################################
+#########################################################################################################################################
+

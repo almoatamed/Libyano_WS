@@ -1,0 +1,1 @@
+{"default_story": "story 1", "end_actions": ["go_home", "stay_put"], "stories": {"story 1": {"count": 0, "acts": ["test"], "name": "story 1", "end_action": "stay_put"}}}

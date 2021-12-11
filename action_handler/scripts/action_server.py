@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import rospy
 import os
-
+import json
 
 try:
     system_type = os.environ['SYSTEM_TYPE']
@@ -15,13 +15,12 @@ server_computers = ['G', 'R']
 if system_type not in server_computers:
     exit()
     
-home = os.environ['HOME']
-distribution_path = home+'/catkin_ws/src/action_handler/scripts/distribution.txt'
-file = open(distribution_path,'r')
-distribution = file.read()
-category_dictionary = {i[0]:i[1] for i in [j.split(':') for j in distribution.split('\n')]}
-file.close()
 
+home = os.environ['HOME']
+distribution_path = home+'/catkin_ws/src/action_handler/scripts/distribution.json'
+file = open(distribution_path,'r')
+category_dictionary = json.load(file)
+file.close()
 
 file_name = __file__.split('/')[-1][:-3]
 if file_name == '__init__' or file_name == '__init__.':
@@ -59,7 +58,6 @@ def action_server(raw_req):
     try:
         dev_split = raw_req.action.split('&^')
         if len(dev_split) > 1:
-            # R&Interactive/Speaking/hi.mp3
             return action_srvResponse(action_service_query(dev_split[1],dev_split[0]))
         else:
             req = dev_split[0].split('/')

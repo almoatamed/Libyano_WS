@@ -299,7 +299,7 @@ def update_pose(pose):
     global current_map 
     if(current_map):
         set_current_pose(pose)
-        set_current_home_pose(pose)
+        # set_current_home_pose(pose)
         update_pose_file(pose)
         return 'Done'
     else:

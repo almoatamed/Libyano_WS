@@ -1,4 +1,4 @@
 mode,change_action,action_retry_count,mode_flag,retract_mode
-nav,null,0,mnl:1,mnl
-mnl,navigation/switch/manual,0,nav:0,nav
-str,startup/begin,0,nav:0|mnl:0,mnl
+ato,null,0,mnl:1|str:1,mnl
+mnl,null,0,ato:0|str:1,ato
+str,null,0,ato:0|mnl:0,mnl

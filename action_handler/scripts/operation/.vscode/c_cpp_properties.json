@@ -1,0 +1,20 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "",
+        "limitSymbolsToIncludedHeaders": true
+      },
+      "includePath": [
+        "/opt/ros/melodic/include/**",
+        "/home/salem/catkin_ws/devel/include/**",
+        "/home/salem/catkin_ws/src/exception_handler/include/**",
+        "/home/salem/catkin_ws/src/slamware_ros_sdk/include/**",
+        "/home/salem/catkin_ws/src/slamware_sdk/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS"
+    }
+  ],
+  "version": 4
+}

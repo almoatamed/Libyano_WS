@@ -1,1 +1,1 @@
-test1:led ring/fadeoutfadein/951B81/1/50/0|eyes emoji/blink/951B81/1/110/0|head motion/yes$test2:eyes emoji/blink/951B81/1/110/0
+test:eyes emoji/dollars/26951B/1/110/0|wait/10000

@@ -3,7 +3,7 @@
     <v-container>
       <div class="text-h4">Voice Manager</div>
       <v-divider class="py-2"></v-divider>
-      <v-card rounded="xl" elevation="6"  :dark="isDark">
+      <v-card  elevation="6"  :dark="isDark">
         <v-form ref="SoundForm" v-model="valid">
           <v-container fluid>
             <v-row>

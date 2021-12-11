@@ -2,12 +2,12 @@
   {
     "Sourcefile": null,
     "Include": "",
-    "Includepath": "/home/salem/.arduino15/packages/arduino/hardware/avr/1.8.3/cores/arduino"
+    "Includepath": "/home/salem/.arduino15/packages/arduino/hardware/sam/1.6.12/cores/arduino"
   },
   {
     "Sourcefile": null,
     "Include": "",
-    "Includepath": "/home/salem/.arduino15/packages/arduino/hardware/avr/1.8.3/variants/leonardo"
+    "Includepath": "/home/salem/.arduino15/packages/arduino/hardware/sam/1.6.12/variants/arduino_due_x"
   },
   {
     "Sourcefile": "/home/salem/catkin_ws/src/interactive_mcu/build/sketch/interactive_mcu.ino.cpp",
@@ -17,7 +17,7 @@
   {
     "Sourcefile": "/home/salem/catkin_ws/src/interactive_mcu/build/sketch/interactive_mcu.ino.cpp",
     "Include": "Adafruit_NeoPixel.h",
-    "Includepath": "/home/salem/Arduino/libraries/Adafruit_NeoPixel-master2"
+    "Includepath": "/home/salem/Arduino/libraries/Adafruit_NeoPixel-master"
   },
   {
     "Sourcefile": "/home/salem/catkin_ws/src/interactive_mcu/build/sketch/interactive_mcu.ino.cpp",
@@ -27,7 +27,7 @@
   {
     "Sourcefile": "/home/salem/catkin_ws/src/interactive_mcu/build/sketch/interactive_mcu.ino.cpp",
     "Include": "Wire.h",
-    "Includepath": "/home/salem/.arduino15/packages/arduino/hardware/avr/1.8.3/libraries/Wire/src"
+    "Includepath": "/home/salem/.arduino15/packages/arduino/hardware/sam/1.6.12/libraries/Wire/src"
   },
   {
     "Sourcefile": "/home/salem/catkin_ws/src/interactive_mcu/build/sketch/interactive_mcu.ino.cpp",
@@ -55,27 +55,27 @@
     "Includepath": null
   },
   {
-    "Sourcefile": "/home/salem/Arduino/libraries/Adafruit_NeoPixel-master2/Adafruit_NeoPixel.cpp",
+    "Sourcefile": "/home/salem/Arduino/libraries/Adafruit_NeoPixel-master/Adafruit_NeoPixel.cpp",
     "Include": "",
     "Includepath": null
   },
   {
-    "Sourcefile": "/home/salem/Arduino/libraries/Adafruit_NeoPixel-master2/esp.c",
+    "Sourcefile": "/home/salem/Arduino/libraries/Adafruit_NeoPixel-master/esp.c",
     "Include": "",
     "Includepath": null
   },
   {
-    "Sourcefile": "/home/salem/Arduino/libraries/Adafruit_NeoPixel-master2/esp8266.c",
+    "Sourcefile": "/home/salem/Arduino/libraries/Adafruit_NeoPixel-master/esp8266.c",
     "Include": "",
     "Includepath": null
   },
   {
-    "Sourcefile": "/home/salem/Arduino/libraries/Adafruit_NeoPixel-master2/kendyte_k210.c",
+    "Sourcefile": "/home/salem/Arduino/libraries/Adafruit_NeoPixel-master/kendyte_k210.c",
     "Include": "",
     "Includepath": null
   },
   {
-    "Sourcefile": "/home/salem/Arduino/libraries/Adafruit_NeoPixel-master2/rp2040.c",
+    "Sourcefile": "/home/salem/Arduino/libraries/Adafruit_NeoPixel-master/rp2040.c",
     "Include": "",
     "Includepath": null
   },
@@ -85,12 +85,7 @@
     "Includepath": null
   },
   {
-    "Sourcefile": "/home/salem/.arduino15/packages/arduino/hardware/avr/1.8.3/libraries/Wire/src/Wire.cpp",
-    "Include": "",
-    "Includepath": null
-  },
-  {
-    "Sourcefile": "/home/salem/.arduino15/packages/arduino/hardware/avr/1.8.3/libraries/Wire/src/utility/twi.c",
+    "Sourcefile": "/home/salem/.arduino15/packages/arduino/hardware/sam/1.6.12/libraries/Wire/src/Wire.cpp",
     "Include": "",
     "Includepath": null
   },

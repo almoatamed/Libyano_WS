@@ -37,7 +37,7 @@ def angled_goal_cb(msg):
     process_flag = True
     
 global_path_queue = []
-queue_length = 3
+queue_length = 13
 def global_path_cb(msg):
     global global_path_queue
     global_path_queue.append(msg)

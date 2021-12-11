@@ -7,7 +7,7 @@
       <div class="text-h4">Bluetooth Controller</div>
       <v-divider class="py-4"></v-divider>
 
-      <v-card rounded="xl" elevation="6" :dark="isDark">
+      <v-card  elevation="6" :dark="isDark">
 
         <!-- Actions -->
         <v-container fluid>

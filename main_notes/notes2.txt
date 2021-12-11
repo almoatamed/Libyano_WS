@@ -1,0 +1,20 @@
+scanning the map and the track building process, a map could have multiple tracks.
+
+- i will end the stage of building new map at the point of finishing scanning, arter that i will make a stage that saves the map.
+- i will make a stage that is called build track, where you can edit existing map file by building track
+- when picking existing maps to be loaded or trying to edit existing map the map is first synced with the robot with zero position, and 
+  the user is asked to confirm the robot position by clicking on the dislayed map, an initial position is displayed whcih is 
+  saved with the map file, if the map file does not contain the home position the user is required to chose position. the position is selected
+  as arrow selection. the user then can press
+  update postion which will sync the robot postion, then the user is allowed either to continue, or to update it again.
+- finally after selecting the pose this pose is udated as the current pose and the charging pose behind it by 15cm.
+  
+- a map directory should contain 2 essential files, pgm or stm file, a home_pose.txt file, and could contain non or serveral .track files
+- track files storing the x,y poses of the track seperated by & and poses are seperated by |.
+
+tasks
+ - end creating enw map stage at the scanning point
+ - create the saving map mechanism save map with the home pose and angle
+ - create new stage for building tracks on existing maps
+ - create map current pose and home pose confirmation page, where you select pose and confirm that robot is placed here.
+ - 

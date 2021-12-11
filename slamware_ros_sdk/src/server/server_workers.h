@@ -8,7 +8,7 @@
 #include <std_msgs/Float64.h>
 #include <nav_msgs/GetMap.h>
 #include <nav_msgs/Path.h>
-metry_msgs/Twist.h>
+#include <geometry_msgs/Twist.h>
 #include <nav_msgs/Odometry.h>
 
 namespace slamware_ros_sdk {

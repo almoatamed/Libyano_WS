@@ -3,6 +3,7 @@ from action_handler_msgs.srv import action_srv
 import os
 import time
 import threading
+from std_msgs.msg import String
 
 
 file_name = __file__.split('/')[-1][:-3]
@@ -115,7 +116,14 @@ def perform(action):
         #printLine('navigation has been performed')
     elif action_args[0] == 'wait':
         #printLine('waiting ',action_args[1])
-        time.sleep(float(action_args[1])/1000)
+        sleep_time = float(action_args[1])/1000
+        int_sleep_time = int(sleep_time)
+        fraction_sleep_time = sleep_time - int_sleep_time
+        for _ in range(int_sleep_time):
+            if len(act_queue) == 0:
+                break
+            time.sleep(1)
+        time.sleep(fraction_sleep_time)
     elif action_args[0] == 'interface':
         asq('interface/force_change_view_set/'+action_args[1])
     elif action_args[0] == 'eyes emoji':
@@ -132,18 +140,25 @@ def perform(action):
         asq('interactive/head_play_motions_by_name/'+ action_args[1])
     else:
         asq('/'.join(action_args[1:]))
-            
+
+running_action = ''
 def threaded_act_player():
-    global act_queue, pause
+    global act_queue, pause, running_action
     #printLine('starting Act Manager')
     while not rospy.is_shutdown(): 
         if act_queue and not pause:
-            action = act_queue.pop(0)
+            running_action = action = act_queue[0]
             #printLine('performing action ', action)
-            t_start= time.time()
+            # t_start= time.time()
             perform(action)
+            printLine('performed act ', action)
+            try:
+                act_queue.pop(0)
+            except IndexError:
+                pass
             #printLine('action took ', time.time() - t_start)
         else:
+            running_action = ''
             time.sleep(0.3)
 
 thread = threading.Thread(target=threaded_act_player)
@@ -201,8 +216,9 @@ def push_to_queue_by_name(act_name):
     global act_queue
     acts = decode_acts()
     if act_name not in acts:
+        printLine('act has not been found', act_name)
         return 'not_found'
-    #printLine('pushing by name',act_name, acts[act_name])
+    printLine('pushing by name',act_name, acts[act_name])
     act_queue= act_queue + acts[act_name]
     return 'Done'
 
@@ -217,6 +233,28 @@ def play_new_act_by_name(act_name):
     act_queue = acts[act_name]
     return 'Done'
     
+def get_queue_length():
+    global act_queue
+    return str(len(act_queue))
     
     
-    
+queue_len_pub = rospy.Publisher('/act/act_queue_length', String, queue_size=2)
+string_msg= String()
+def queue_len_pub_thread():
+    global string_msg, queue_len_pub
+    while not rospy.is_shutdown():
+        time.sleep(0.1)
+        queue_len_pub.publish(str(len(act_queue)))
+queue_len_thread = threading.Thread(target=queue_len_pub_thread)
+queue_len_thread.start()
+
+
+running_action_pub = rospy.Publisher('/act/running_action', String, queue_size=2)
+string_msg2= String()
+def running_action_pub_function():
+    global string_msg2, running_action_pub
+    while not rospy.is_shutdown():
+        time.sleep(0.1)
+        running_action_pub.publish(str(running_action))
+running_action_thread = threading.Thread(target=running_action_pub_function)
+running_action_thread.start()

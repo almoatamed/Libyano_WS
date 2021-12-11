@@ -57,6 +57,7 @@ def threaded_read():
             while not reinit() and not rospy.is_shutdown():
                     time.sleep(2.5)
             continue
+        
 ######################## reading the state of the cash reader ########################################################################
 def read():
     """
@@ -160,6 +161,7 @@ def init():
             time.sleep(2)
             #printLine('Error while trying to start Cash reader', e)
             continue
+        
 ######################## try to start the biller on the start of the action server ########################################################################
 def reinit():
     '''
@@ -184,6 +186,7 @@ def reinit():
     except Exception as error:
         #printLine('reinit exception', error)
         return False
+    
 ######################## try to start the biller on the start of the action server ########################################################################
 
 t = threading.Thread(target=init)

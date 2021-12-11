@@ -2,7 +2,7 @@
     <v-container fluid class='container d-flex align-center justify-center'>
         <div class='login grey lighten-3'>
         </div>
-        <v-card elevation='17' style="opacity:0.8;" rounded="xl" width='400' class='pa-4'>
+        <v-card elevation='17' style="opacity:0.8;"  width='400' class='pa-4'>
             <v-card-title class='text-h4'>Login</v-card-title>
             <v-card-text>
                 <v-form ref="LoginForm" v-model="valid">

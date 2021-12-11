@@ -1,0 +1,132 @@
+- operation mode controller manages the entire system operation mode
+- operation controller has main operation mode which shows what mode is running
+- it has running status, where whether the operation mode system is running or not
+- it has a operation mode switch, where it will handle the mode switch requests 
+  - simply will switch from one mode to another if permitted 
+    - stop the current running mode
+    - start the new mode
+    - if requested mode failed, it will return to default mode (mnl)
+- it will take over the simple csv based mode controller
+- functional intercommunication between parent and child systems is handled throgh passing of obj contains 
+  the parent main function, while the parent can directly call the child functions and vars
+- each operational mode has a controller with common properties such
+  - status, idel, paused, stopped, ...etc.
+  - start, starts the main thread of the operational mode controller 
+  - is_running, return the is_running flag of the operational mode
+  - run, called as thread by start,  contains the main script of the operational mode (some modes does not require continuesly 
+    running operatio)
+- it will have three main operation mode controllers subsystems
+  - str, which stands for the startup mode or the engineering mode, where the map is loaded, and 
+    critical configurations is managed
+  - mnl, or manual, the manual operation mode, has no realtime running operations, rather it allows 
+    for manual control over the robot 
+    - what interface is being viewed
+    - navigating manually
+      - point
+        - angled 
+        - unangled
+      - velocity controller
+        - allows you to move robot with velocity command
+      - point creation 
+    - sound control 
+    - emogi control 
+    - led control 
+    - head movements 
+      - manual
+      - motions
+    - act manager
+      - perofming 
+      - creation 
+  - ato, or auto, this operation mode is autonoumosly perform a selected story with interruptions 
+    capabilities
+    - story controller
+      - a story is a collection of acts where these acts are performed one after the other
+      - a story is created through data entry in the dashboard
+      - a story is validated before started, to insure integrity 
+      - if an act is no longer exists it is automatically removed from the story
+      - if while validating a story it was found that it is empty it is deleted, and if it was selected as 
+        default, it is removed from default story, leaving default story empty 
+      - story controller, can start, pause, stop a story 
+    - auto mode cannot start without a default story that is valid and operational	
+    - auto mode status is showing the current status which one of the following
+      - idle, where the story is running
+      - paused 
+        - pause is a counter, if the counter of pause request is larger then one the system is paused 
+        - continue request will decrease the pause counter till it reaches zero, 
+      - stopped 
+        - restart the story 
+        - pause
+    - interrupt queue, where it shows a list of currently running interrupts
+      - there is interrupters 
+      - there is interrupt handlers 
+    - interrup request is performed through passing the interrupt request (to perform certain interrupt 
+      handler), throught an interrupter 
+      - if the interrupt already exists on the queue, the request is ignored 
+      - if the request does not exist on the interrupt queue, is checked if it satisfies the conditions
+        to be handled, if not it is ignored
+      - if the request, satisfies the conditions to be handles it is pushed to the queue 
+        - these conditions is checked with a function within the interrupt script it self
+      - once pushed, the interrupt handled within a seperate thread, once the handler finishes it 
+        will ask for the removal of the interrupt from the interrupt queue, and will ask for the 
+        continuation of the automation (idle), which will decrease the pause counter.
+    - interrupters are
+      - ai
+      - touch
+      - screen
+      - power
+    - interrupt handlers
+      - service 
+      - power 
+    - interrupters can be stopped and runned on demand 
+    - interrupt request has global condition prior to special conditions, these global condition is just monitoring the state 
+      of the system whether it is running or not 
+    - on the case of not using the auto mode, auto mode is in the halt special status, where all interrupters are halted, 
+      and handlers are stopped, while the rest of the system is paused        
+
+
+
+####################################################### Story ########################################################
+
+- a story is a collection of acts therefore in order to create a story you have to giv
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

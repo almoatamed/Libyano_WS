@@ -4,6 +4,6 @@ export default {
     // api_port:'80',
 
     server_addr: 'localhost',
-    bridge_address:'localhost',
+    bridge_address:'192.168.55.1',
     api_port:'8085',
 }

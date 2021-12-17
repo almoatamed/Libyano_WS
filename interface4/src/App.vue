@@ -103,10 +103,17 @@ export default {
 
     //  Interface Category Check Periodically
     setInterval(()=>{
-      self.$store.dispatch('Ros/take_action','interface/get_set',{root:true}).then((set)=>{
+      self.$store.dispatch('Ros/take_action','interface/_get_set',{root:true}).then((set)=>{
         // try {
-          if(!this.$route.matched.some(e=>e.name == set)){
-            this.$router.push({name:this.sets_defualt_routes[set]})
+          var result =  set.split('/')
+          if(result.length == 1){
+            if(!this.$route.matched.some(route=>route.name == set)){
+              this.$router.push({name:this.sets_defualt_routes[set]})
+            }
+          }else{
+            if(!this.$route.matched.some(route=>route.name == result[1])){
+              this.$router.push({name:result[1]})
+            }
           }
         // } catch (error) {
         //   console.log(error)          
@@ -149,6 +156,7 @@ export default {
       sets_defualt_routes:{
         main: 'slide-show', 
         bootup: 'bootup',
+        black: 'black'
       }
     };
   },

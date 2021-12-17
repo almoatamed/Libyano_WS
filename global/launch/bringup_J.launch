@@ -1,8 +1,8 @@
 <launch>
-        <node name="interface" pkg="global" type="interface.py" output="screen" />
-        <node name="backend" pkg="global" type="backend.py" output="screen" />
+        <!-- <node name="interface" pkg="global" type="interface.py" output="screen" /> -->
+        <!-- <node name="backend" pkg="global" type="backend.py" output="screen" /> -->
         <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" />
         <include file="$(find mode_and_status_publishers)/launch/status.launch" />
         <include file="$(find slamware_ros_sdk)/launch/slamware_ros_sdk_server_node.launch" />
-        <include file="$(find action_handler)/launch/action_server_J.launch" />
+        <!-- <include file="$(find action_handler)/launch/action_server_J.launch" /> -->
 </launch>

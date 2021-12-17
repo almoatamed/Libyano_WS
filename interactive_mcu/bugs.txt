@@ -1,9 +1,0 @@
-
-- mcu on board is not sending data to Led Grid and The ring and the servos
-- cash reader actions need to be included currectly 
-- speakers need to be wire to the Nvidia jetson nano 
-- check why network is not connecting currectly 
-- make mechanism to control pexil grid from dash board
-- make sure that the map is working smothly on touch and on click
-- overcurrent thruttle 
-- the dock is not docking 

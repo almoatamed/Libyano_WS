@@ -8,7 +8,7 @@ if not os.path.exists('/opt/ros/melodic/bin/roscore') or os.path.exists('/opt/ro
         code_name = subprocess.check_output(['lsb_release','-dc']).split('\n')[-2].split('\t')[-1]
     except TypeError:
         code_name = subprocess.check_output(['lsb_release','-dc']).decode().split('\n')[-2].split('\t')[-1]
-    print('your Ubuntu Distor is ', code_name)
+    print('your Ubuntu Distro is ', code_name)
     if  'focal' in code_name:
         os.system("sh -c \'echo \"deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main\" > /etc/apt/sources.list.d/ros-latest.list\'")
         os.system('sudo apt install curl')

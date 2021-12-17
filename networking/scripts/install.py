@@ -18,7 +18,7 @@ home = os.environ['HOME']
 os.chdir(home+'/catkin_ws/src/networking/scripts/')
 if system_type in ['G','R']:
     print('installing Raspian Networking')
-    os.system('python3 '+home+'/catkin_ws/src/networking/scripts/R/access_point_installation.py')
+    os.system('python3 '+home+'/catkin_ws/src/networking/scripts/R/installation.py')
 elif system_type == 'J':
     print('installing Jetson Networking')
     os.system('python3 '+home+'/catkin_ws/src/networking/scripts/J/installation.py')

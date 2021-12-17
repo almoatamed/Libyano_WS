@@ -2,9 +2,12 @@ import threading
 import time 
 import rospy
 from std_msgs.msg import String
+
 view_sets = [
     'main', 'bootup'
 ]
+
+
 
 route = 'slide-show'
 def set_current_route_name(route_name):
@@ -33,8 +36,22 @@ def change_view_set(set_name):
 def force_change_view_set(set_name):
     return change_set(set_name)
 
+change_route_holder = ''
+def change_route(route_name):
+    global change_route_holder
+    change_route_holder =  route_name
+
+
 def get_set():
     global current_set
+    return current_set
+
+def _get_set():
+    global current_set, change_route_holder
+    if change_route_holder:
+        ret =  '/'.join([current_set, change_route_holder])
+        change_route_holder = ''
+        return ret
     return current_set
 
 def get_route():

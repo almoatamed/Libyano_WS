@@ -155,7 +155,7 @@ namespace rpos { namespace system { namespace util {
             curl_multi_add_handle(curl_m_, curl);
         }
 
-    private:
+    protected:
         class Request
         {
         public:
@@ -335,7 +335,7 @@ namespace rpos { namespace system { namespace util {
 
             return rs;
         }
-
+    protected:
         CURL* curl_easy_handler_get(
             void *pUser,
             unsigned int uiTimeout, bool isFollowLocation = true)

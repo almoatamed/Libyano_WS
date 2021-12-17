@@ -11,11 +11,9 @@
 #include <rpos/features/artifact_provider.h>
 #include <rpos/features/location_provider.h>
 #include <rpos/features/motion_planner.h>
-#include <rpos/features/sweep_motion_planner.h>
 #include <rpos/features/system_resource.h>
 #include <rpos/features/impact_sensor_feature.h>
 #include <rpos/features/statistics_provider.h>
-#include <rpos/features/sweep_motion_planner/sweep_region.h>
 #include <rpos/robot_platforms/objects/composite_map.h>
 #include <rpos/robot_platforms/objects/slamware_scheduler_service.h>
 #include <rpos/robot_platforms/objects/slamware_firmware_service.h>
@@ -55,17 +53,21 @@ namespace rpos { namespace robot_platforms {
         features::ArtifactProvider getArtifactProvider();
         features::LocationProvider getLocationProvider();
         features::MotionPlanner getMotionPlanner();
-        features::SweepMotionPlanner getSweepMotionPlanner();
         features::SystemResource getSystemResource();
         features::ImpactSensor getImpactSensor();
         features::StatisticsProvider getStatisticsProvider();
 
     public:
         // Artifacts Provider APIs
+        /// Slamwarecore related APIs
         std::vector <features::artifact_provider::RectangleArea> getRectangleAreas(features::artifact_provider::ArtifactUsage usage);
+        
         bool addRectangleArea(features::artifact_provider::ArtifactUsage usage, const features::artifact_provider::RectangleArea& area);
+        
         bool addRectangleAreas(features::artifact_provider::ArtifactUsage usage, const std::vector<features::artifact_provider::RectangleArea>& areas);
+        
         bool removeRectangleAreaByIds(features::artifact_provider::ArtifactUsage usage, const std::vector<core::SegmentID>& ids);
+        
         bool clearRectangleAreas(features::artifact_provider::ArtifactUsage usage); 
 
         std::vector<core::Line> getLines(features::artifact_provider::ArtifactUsage usage);
@@ -79,6 +81,7 @@ namespace rpos { namespace robot_platforms {
         bool clearLines(features::artifact_provider::ArtifactUsage usage);
 
         bool moveLine(features::artifact_provider::ArtifactUsage usage, const core::Line& line);
+        
         bool moveLines(features::artifact_provider::ArtifactUsage usage, const std::vector<core::Line>& lines);
 
         std::vector<core::Line> getWalls();
@@ -100,14 +103,30 @@ namespace rpos { namespace robot_platforms {
         bool removeMapDiscrepancyMonitorAreas(const std::vector<core::RectangleF>& areas);
         
         bool clearMapDiscrepancyMonitorAreas();
-    
+
+        robot_platforms::objects::PoseEntryMap getPOIs();
+
+        bool setPOIs(const robot_platforms::objects::PoseEntryMap& pois);
+
+        bool addPOI(const core::PoseEntry& poi);
+        
+        core::PoseEntry addPOIOnCurrentPose(const std::string& name, const core::Metadata& metadata);
+
+        std::pair<std::string, core::PoseEntry> queryPOI(const std::string& name);
+
+        bool erasePOI(const std::string& name);
+
+        bool clearPOIs();
+
     public:
         // Location Provider APIs
+        /// Slamwarecore related APIs
         std::vector<features::location_provider::MapType> getAvailableMaps();
 
         features::location_provider::Map getMap(features::location_provider::MapType type, core::RectangleF area, features::location_provider::MapKind kind);
 
         bool setMapAndPose(const core::Pose& pose, const features::location_provider::Map& map, const features::location_provider::MapType& type, const features::location_provider::MapKind& kind, bool partially = false);
+        
         bool setMap(const features::location_provider::Map& map, features::location_provider::MapType type, features::location_provider::MapKind kind, bool partially = false);
 
         core::RectangleF getKnownArea(features::location_provider::MapType type, features::location_provider::MapKind kind);
@@ -135,13 +154,14 @@ namespace rpos { namespace robot_platforms {
         features::location_provider::PointPDF getAuxLocation();
 
         bool getHomePose(core::Pose&);
+
         bool setHomePose(core::Pose);
-        robot_platforms::objects::PoseEntryMap getPOIs();
-        bool setPOIs(const robot_platforms::objects::PoseEntryMap&);
+        
         bool getImuInRobotCoordinate(rpos::core::Imu &); 
  
     public:
         // Motion Planner APIs
+        /// Slamwarecore related APIs
         actions::MoveAction moveTo(const std::vector<core::Location>& locations, bool appending, bool isMilestone);
 
         actions::MoveAction moveTo(const core::Location& location, bool appending, bool isMilestone);
@@ -168,54 +188,17 @@ namespace rpos { namespace robot_platforms {
         
         actions::MoveAction recoverLocalizationByDock();
 
-        rpos::actions::VelocityControlMoveAction velocityControl();
+        rpos::actions::VelocityControlMoveAction velocityControl(rpos::features::motion_planner::VelocityControlFlag flag = rpos::features::motion_planner::MonitoredByLocalizationQuality);
 
         actions::MoveAction getCurrentAction();
 
-        std::vector<core::Location> getKeyPoints();
-
-        void setKeyPoints(const std::vector<core::Location>& keyPoints);
-
         features::motion_planner::Path searchPath(const core::Location& location);
-
-        features::motion_planner::Path getRobotTrack(int count);
-
-        actions::SweepMoveAction startSweep();
-
-        actions::SweepMoveAction sweepSpot(const core::Location& location);
 
         actions::MoveAction goHome(rpos::features::motion_planner::GoHomeFlag flag = rpos::features::motion_planner::Dock);
 
-        float getSweepArea();
-
-        rpos::actions::SweepMoveAction startRegionSweep(const std::vector<size_t>& ids, const std::vector<size_t>& numbers);
-
-        void insertRegion(const rpos::features::Region& region);
-
-        void insertRegions(const std::vector<rpos::features::Region>& regions);
-
-        void removeRegion(size_t id);
-
-        void removeRegions(const std::vector<size_t>& ids);
-
-        void updateRegion(const rpos::features::Region& region);
-
-        void updateRegions(const std::vector<rpos::features::Region>& regions);
-
-        std::vector<rpos::features::Region> getRegions();
-
-        std::vector<rpos::features::Region> getSweepingRegions();
-
-        rpos::actions::SweepMoveAction startFollowPathSweep(const rpos::features::motion_planner::Path& path);
-
-        rpos::actions::SweepMoveAction startFollowPathSweep(const std::vector<std::vector<rpos::core::Location>>& paths);
-
-        rpos::features::motion_planner::Path getPaintedSweepPath();
-
-        std::vector<rpos::features::motion_planner::Path> getPaintedSweepPaths();
-
     public:
         // System Resource APIs
+        /// Base related APIs
         int getBatteryPercentage();
 
         bool getBatteryIsCharging();
@@ -224,11 +207,18 @@ namespace rpos { namespace robot_platforms {
 
         features::system_resource::PowerStatus getPowerStatus();
 
+        int getBoardTemperature();
+
+        bool updateBinaryConfig(const Json::Value& jsnCfg);
+
+        features::system_resource::DeviceInfo getDeviceInfo();
+
+        int sendAndRecvUserDefinedCBUSMessage(const void* payload, const size_t payloadsize, std::vector<std::uint8_t>& recvDat);
+
+        /// Slamwarecore related APIs
         void wakeUp();
 
         void hibernate();
-
-        int getBoardTemperature();
 
         std::string getSDPVersion();
 
@@ -242,14 +232,10 @@ namespace rpos { namespace robot_platforms {
 
         std::string getSystemParameter(const std::string& param);
 
-        bool updateBinaryConfig(const Json::Value& jsnCfg);
-
         bool shutdownSlamcore(const rpos::core::SlamcoreShutdownParam& shutdownArg);
 
-        features::system_resource::DeviceInfo getDeviceInfo();
-
-
         features::system_resource::BaseHealthInfo getRobotHealth();
+
         void clearRobotHealth(int errorCode);
 
         bool configurateNetwork(features::system_resource::NetworkMode mode, const std::map<std::string, std::string>& options);
@@ -262,14 +248,11 @@ namespace rpos { namespace robot_platforms {
 
         void stopHeartBeat(features::system_resource::HeartBeatToken token);
 
-        void voiceRespond();
-
         std::vector<features::system_resource::OperationAuditLog> getOperationAuditLogs();
-
-        int sendAndRecvUserDefinedCBUSMessage(const void * payload, const size_t payloadsize, std::vector<std::uint8_t> & recvDat);
 
     public:
         // Impact Sensor APIs
+        /// Base related APIs
         bool getSensors(std::vector<features::impact_sensor::ImpactSensorInfo>& sensors);
 
         bool getSensorValues(std::map<features::impact_sensor::impact_sensor_id_t, features::impact_sensor::ImpactSensorValue>& values);
@@ -278,13 +261,15 @@ namespace rpos { namespace robot_platforms {
 
         bool getSensorValue(features::impact_sensor::impact_sensor_id_t sensorId, features::impact_sensor::ImpactSensorValue& value);
 
+    public:
+        /// Slamwarecore related APIs
         robot_platforms::objects::CompositeMap getCompositeMap();
 
         void setCompositeMap(const robot_platforms::objects::CompositeMap& map, const core::Pose& pose);
 
-
     public:
         // Scheduler Service APIs
+        /// Slamwarecore related APIs
         std::vector<detail::objects::ScheduledTask> getScheduledTasks();
 
         bool addScheduledTask(const detail::objects::ScheduledTask& task);
@@ -297,6 +282,7 @@ namespace rpos { namespace robot_platforms {
 
     public:
         // Firmware Service APIs
+        /// Base related APIs
         detail::objects::UpdateInfo getUpdateInfo();
 
         bool startFirmwareUpdate();

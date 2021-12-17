@@ -15,6 +15,7 @@
 #include <rpos/core/geometry.h>
 #include "move_action.h"
 #include "velocity_control_move_action.h"
+#include "../system_resource/laser_scan.h"
 
 namespace rpos {
     namespace features {
@@ -63,11 +64,17 @@ namespace rpos {
                 RecoverLocalizationOptions(boost::optional<int> ms=boost::none);
                 boost::optional<int> maxRecoverTimeInMilliSeconds;
                 boost::optional<RecoverLocalizationMovement> recoverMovementType;
+                boost::optional<rpos::features::system_resource::LaserScan> observation;
             };
 
             enum GoHomeFlag {
                 Dock,
                 NoDock
+            };
+
+            enum VelocityControlFlag {
+                MonitoredByLocalizationQuality = 0,
+                NotMonitored                   
             };
         }
 
@@ -80,6 +87,7 @@ namespace rpos {
             ~MotionPlanner();
 
         public:
+            rpos::actions::MoveAction goHome(rpos::features::motion_planner::GoHomeFlag flag = rpos::features::motion_planner::Dock);
             rpos::actions::MoveAction moveTo(const std::vector<rpos::core::Location>& locations, bool appending, bool isMilestone);
             rpos::actions::MoveAction moveTo(const rpos::core::Location& location, bool appending, bool isMilestone);
             rpos::actions::MoveAction moveTo(const std::vector<rpos::core::Location>& locations, const motion_planner::MoveOptions& options, float yaw);
@@ -93,11 +101,10 @@ namespace rpos {
             rpos::actions::MoveAction rotate(const rpos::core::Rotation& rotation, const motion_planner::MoveOptions& options);
             rpos::actions::MoveAction recoverLocalization(const core::RectangleF& area, const motion_planner::RecoverLocalizationOptions& options);
             rpos::actions::MoveAction recoverLocalizationByDock();
-            virtual rpos::actions::VelocityControlMoveAction velocityControl();
+            virtual rpos::actions::VelocityControlMoveAction velocityControl(rpos::features::motion_planner::VelocityControlFlag flag = rpos::features::motion_planner::MonitoredByLocalizationQuality);
             rpos::actions::MoveAction getCurrentAction();
 
             rpos::features::motion_planner::Path searchPath(const rpos::core::Location& location);
-            rpos::features::motion_planner::Path getRobotTrack(int count);
         };
 
     }

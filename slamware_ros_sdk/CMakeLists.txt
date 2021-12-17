@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8.3)
 project(slamware_ros_sdk)
 
 find_path(slamware_sdk_INCLUDE_DIR rpos/rpos.h ${PROJECT_SOURCE_DIR}/../slamware_sdk/include)
-find_path(slamware_sdk_LIBRARY librpos_framework.a ${PROJECT_SOURCE_DIR}/../slamware_sdk/lib/linux-x86_64-gcc5.4)
+find_path(slamware_sdk_LIBRARY librpos_framework.a ${PROJECT_SOURCE_DIR}/../slamware_sdk/lib/linux-x86_64)
 if(slamware_sdk_INCLUDE_DIR AND slamware_sdk_LIBRARY)
   set(SLTC_SDK_INC_DIR "${slamware_sdk_INCLUDE_DIR}")
   set(SLTC_SDK_LIB_DIR "${slamware_sdk_LIBRARY}")
@@ -134,7 +134,6 @@ target_compile_options(slamware_ros_sdk_server_node
   PRIVATE -Wno-deprecated-declarations
 )
 target_link_libraries(slamware_ros_sdk_server_node
-  ${catkin_LIBRARIES}
   ${SLTC_SDK_LIB_DIR}/librpos_robotplatforms_rpslamware.a
   ${SLTC_SDK_LIB_DIR}/librpos_framework.a
   ${SLTC_SDK_LIB_DIR}/libbase64.a
@@ -146,11 +145,11 @@ target_link_libraries(slamware_ros_sdk_server_node
   ${SLTC_SDK_LIB_DIR}/libboost_atomic.a
   ${SLTC_SDK_LIB_DIR}/libboost_chrono.a
   ${SLTC_SDK_LIB_DIR}/libboost_date_time.a
-  ${SLTC_SDK_LIB_DIR}/libboost_regex.a
-  ${SLTC_SDK_LIB_DIR}/libboost_filesystem.a
-  ${SLTC_SDK_LIB_DIR}/libboost_system.a
+  ${SLTC_SDK_LIB_DIR}/libboost_regex.a 
   ${SLTC_SDK_LIB_DIR}/libboost_thread.a
   ${SLTC_SDK_LIB_DIR}/libboost_random.a
+  ${catkin_LIBRARIES}
+  z
   pthread
   dl
   rt

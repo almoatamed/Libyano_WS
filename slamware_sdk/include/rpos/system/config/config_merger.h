@@ -35,14 +35,15 @@ namespace rpos { namespace system { namespace config {
     public:
         const std::string& getKey() const { return key_; }
         void setKey(const std::string& key) { key_ = key; }
-
+        void setElementMerge(bool bMerge){ elementMerge_ = bMerge;}
     private:
         void uniqueOverwriteToArray_(const Json::Value& jsnElem, Json::Value& jsnDestArr) const;
-
+        void mergeArrayElement(const Json::Value & customized, Json::Value & ref) const;
     private:
         std::string key_;
-    };
-
+        bool elementMerge_; 
+    }; 
+     
     //////////////////////////////////////////////////////////////////////////
 
     class RPOS_CORE_API ConfigMerger
@@ -69,14 +70,14 @@ namespace rpos { namespace system { namespace config {
             , const Json::Value& whiteList, const std::string& path, const std::vector<std::string>& ignoreList
             , IConfigItemCombiner* cfgItemCombiner = nullptr
             );
-        static bool overwriteConfigInplace(const Json::Value& customized, Json::Value& ref);
+        static bool overwriteConfigInplace(const Json::Value& customized, Json::Value& ref, IConfigItemCombiner* cfgItemCombiner); 
 
         static Json::Value mergeConfig(const Json::Value& customized, const Json::Value& ref
             , const Json::Value& whiteList, const std::vector<std::string>& ignoreList
             , IConfigItemCombiner* cfgItemCombiner = nullptr
             );
         //overwrite all contents in ref with customized
-        static Json::Value overwriteConfig(const Json::Value& customized, const Json::Value& ref);
+        static Json::Value overwriteConfig(const Json::Value& customized, const Json::Value& ref, IConfigItemCombiner* cfgItemCombiner = nullptr);
     };
 
 } } }

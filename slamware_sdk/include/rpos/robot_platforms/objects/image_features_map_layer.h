@@ -3,6 +3,8 @@
 #include <rpos/core/pose.h>
 #include <rpos/system/types.h>
 #include <rpos/features/location_provider/image_features_map.h>
+
+#include <rpos/core/metadata.h>
 #include <rpos/robot_platforms/objects/map_layer.h>
 
 #include <vector>

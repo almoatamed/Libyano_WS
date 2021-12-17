@@ -1,7 +1,4 @@
 /**
-* sweep_move_action.h
-* Sweep Move Action
-*
 * Created By Tony Huang @ 2015-1-8
 * Copyright (c) 2015 Shanghai SlamTec Co., Ltd.
 */

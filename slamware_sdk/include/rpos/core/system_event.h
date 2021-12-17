@@ -26,7 +26,8 @@ namespace rpos {
             InternalSystemEventMapUpdateEnable,
             InternalSystemEventMapUpdateDisable,
             InternalSystemEventPathOccupied,
-            InternalSystemEventTrappedInForbiddenArea
+            InternalSystemEventTrappedInForbiddenArea,
+            InternalSystemEventMapLoopClosure
         };
 
     }

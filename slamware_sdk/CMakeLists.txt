@@ -4,7 +4,7 @@ project(slamware_sdk)
 find_package(catkin REQUIRED)
 
 find_path(slamware_sdk_INCLUDE_DIR rpos/rpos.h ${PROJECT_SOURCE_DIR}/include)
-find_path(slamware_sdk_LIBRARY librpos_framework.a ${PROJECT_SOURCE_DIR}/lib/linux-x86_64-gcc5.4)
+find_path(slamware_sdk_LIBRARY librpos_framework.a ${PROJECT_SOURCE_DIR}/lib/linux-x86_64)
 if(slamware_sdk_INCLUDE_DIR AND slamware_sdk_LIBRARY)
     set(slamware_sdk_FOUND true)
 else(slamware_sdk_INCLUDE_DIR AND slamware_sdk_LIBRARY)

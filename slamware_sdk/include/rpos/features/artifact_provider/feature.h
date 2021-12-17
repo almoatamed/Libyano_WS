@@ -12,7 +12,9 @@
 
 #include <rpos/core/feature.h>
 #include <rpos/core/geometry.h>
+#include <rpos/core/pose.h>
 #include <rpos/core/metadata.h>
+#include <rpos/core/pose_entry.h>
 
 #include <vector>
 #include "rectangle_area.h"
@@ -98,6 +100,14 @@ namespace rpos { namespace features {
         bool addMapDiscrepancyMonitorAreas(const std::vector<core::RectangleF>& areas);
         bool removeMapDiscrepancyMonitorAreas(const std::vector<core::RectangleF>& areas);
         bool clearMapDiscrepancyMonitorAreas();
+
+        bool setPOIs(const core::PoseEntryMap& pois);
+        core::PoseEntryMap getPOIs();
+        bool addPOI(const core::PoseEntry& poi);
+        core::PoseEntry addPOIOnCurrentPose(const std::string& name, const core::Metadata& metadata);
+        std::pair<std::string, core::PoseEntry> queryPOI(const std::string& name);
+        bool erasePOI(const std::string& name);
+        bool clearPOIs();
     };
         
 } }

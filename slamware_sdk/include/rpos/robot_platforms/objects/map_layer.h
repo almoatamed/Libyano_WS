@@ -3,6 +3,11 @@
 #include <rpos/robot_platforms/slamware_sdp_platform_config.h>
 #include <rpos/robot_platforms/objects/composite_map_defs.h>
 #include <boost/noncopyable.hpp>
+
+#include <rpos/robot_platforms/slamware_sdp_platform_config.h>
+#include <rpos/robot_platforms/objects/composite_map_defs.h>
+#include <rpos/core/metadata.h>
+
 #include <string>
 
 namespace rpos { namespace robot_platforms { namespace objects {

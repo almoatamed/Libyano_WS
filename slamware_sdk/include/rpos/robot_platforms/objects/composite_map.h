@@ -5,7 +5,6 @@
 
 #include <rpos/core/metadata.h>
 #include <rpos/robot_platforms/objects/map_layer.h>
-
 #include <vector>
 
 namespace rpos { namespace robot_platforms { namespace objects {

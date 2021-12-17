@@ -5,7 +5,7 @@
 
 #include <rpos/core/metadata.h>
 #include <rpos/robot_platforms/objects/map_layer.h>
-
+#include <rpos/core/pose_entry.h>
 #include <map>
 #include <string>
 #include <vector>
@@ -14,15 +14,7 @@
 
 namespace rpos { namespace robot_platforms { namespace objects {
 
-    struct PoseEntry
-    {
-        std::string name;
-        std::vector<std::string> tags;
-        core::Pose pose;
-        rpos::system::types::_u8 flags;
-        rpos::core::Metadata metadata;
-    };
-    typedef std::map<std::string, PoseEntry> PoseEntryMap;
+    typedef rpos::core::PoseEntryMap PoseEntryMap;
 
     class RPOS_SLAMWARE_API PoseMapLayer : public MapLayer
     {

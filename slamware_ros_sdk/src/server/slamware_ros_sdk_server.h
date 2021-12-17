@@ -119,6 +119,7 @@ namespace slamware_ros_sdk {
             );
 
         void msgCbRobotControl_(slamware_platform_t& pltfm, const geometry_msgs::Twist::ConstPtr& msg);
+        void msgCbRobotControlNoLimit_(slamware_platform_t& pltfm, const geometry_msgs::Twist::ConstPtr& msg);
         void msgCbMoveToGoal_(slamware_platform_t& pltfm, const geometry_msgs::PoseStamped::ConstPtr& msg);
         
         void msgCbSyncMap_(slamware_platform_t& pltfm, const SyncMapRequest::ConstPtr& msg);
@@ -183,11 +184,11 @@ namespace slamware_ros_sdk {
 
         // subscriptions
         ros::Subscriber subRobotControl_;
+        ros::Subscriber subRobotControlNoLimit_;
         ros::Subscriber subMoveToGoal_;
         
         ros::Subscriber subSyncMap_;
         ros::Subscriber subSetPose_;
-        ros::Subscriber subSetHomePose_;
 
         ros::Subscriber subRecoverLocalization_;
         ros::Subscriber subClearMap_;
@@ -201,6 +202,8 @@ namespace slamware_ros_sdk {
         ros::Subscriber subRotateTo_;
         ros::Subscriber subRotate_;
 
+        ros::Subscriber subSetHomePose_;
+        
         ros::Subscriber subGoHome_;
         ros::Subscriber subCancelAction_;
 

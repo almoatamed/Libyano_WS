@@ -3,7 +3,8 @@
 #include <string> 
 #include <boost/shared_ptr.hpp>
 #include <boost/make_shared.hpp>
-  
+#include <boost/noncopyable.hpp>
+
 #include <rpos/core/diagnosis_info.h>
 #include <rpos/robot_platforms/slamware_sdp_platform_config.h>
 

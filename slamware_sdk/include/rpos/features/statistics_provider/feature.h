@@ -16,7 +16,6 @@ namespace rpos { namespace features {
 
         enum StatisticsOption
         {
-            StatisticsOptionSweepTime, // feature/sweep_opt only
             StatisticsOptionOdometry,
             StatisticsOptionSystemRunningTime,
             StatisticsOptionSytemTimeSinceEpoch
@@ -33,7 +32,6 @@ namespace rpos { namespace features {
         ~StatisticsProvider();
 
     public:
-        int getSweepTimeMs();
         double getOdometry();
         double getSystemRunningTime();
         int getLocalTimeSinceEpoch();

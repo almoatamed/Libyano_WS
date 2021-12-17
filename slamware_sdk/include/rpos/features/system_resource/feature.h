@@ -20,6 +20,7 @@
 #include "device_info.h"
 #include "device_health.h"
 #include "power_management.h"
+#include "private_config.h"
 #include "../../message/depth_camera_messages.h"
 #include "../../message/base_messages.h"
 
@@ -122,20 +123,26 @@ namespace rpos { namespace features {
         ~SystemResource();
 
     public:
+        /// Base related APIs
         int getBatteryPercentage();
         bool getBatteryIsCharging();
         bool getDCIsConnected();
         system_resource::PowerStatus getPowerStatus();
+        int getBoardTemperature();
+        bool updateBinaryConfig(const Json::Value& jsnCfg);
+        void startFirmwareUpgrade(const std::string& filename);
+        void startFirmwareUpgrade(const std::vector<uint8_t>& firmwareContent);
+        int sendAndRecvUserDefinedCBUSMessage(const void* payload, const size_t payloadsize, std::vector<std::uint8_t>& recvDat);
+        bool setCubeConfig(const std::string& cfgFilePath);
+
+        /// Slamwarecore related APIs
         void wakeUp();
         void hibernate();
-
-        int getBoardTemperature();
         std::string getSDPVersion();
         system_resource::LaserScan getLaserScan();
         bool restartModule(system_resource::RestartMode mode = system_resource::RestartModeSoft);
         bool setSystemParameter(const std::string& param, const std::string& value);
         std::string getSystemParameter(const std::string& param);
-        bool updateBinaryConfig(const Json::Value& jsnCfg);
         bool shutdownSlamcore(const rpos::core::SlamcoreShutdownParam& shutdownArg);
         system_resource::DeviceInfo getDeviceInfo();
         rpos::features::system_resource::BaseHealthInfo getRobotHealth();
@@ -145,13 +152,9 @@ namespace rpos { namespace features {
         system_resource::HeartBeatToken startHeartBeat(int heartBeatTimeoutInSeconds);
         void refreshHeartBeat(system_resource::HeartBeatToken token);
         void stopHeartBeat(system_resource::HeartBeatToken token);
-        void voiceRespond();
-        void startFirmwareUpgrade(const std::string& filename);
-        void startFirmwareUpgrade(const std::vector<uint8_t>& firmwareContent);
         void publishDepthCamFrame(int sensorId, const rpos::message::depth_camera::DepthCameraFrame& frame, boost::optional<std::map<int, rpos::message::depth_camera::DepthCameraTransformParameters>> inputDepthCameraParams = boost::none);
         std::vector<system_resource::OperationAuditLog> getOperationAuditLogs();
-        int sendAndRecvUserDefinedCBUSMessage(const void * payload, const size_t payloadsize, std::vector<std::uint8_t> & recvDat);
-        
+
         ///////////////////////////////////////
         // LIDAR auto tweak relative methods //
         ///////////////////////////////////////

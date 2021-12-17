@@ -264,6 +264,7 @@ namespace slamware_ros_sdk {
         // init all subscriptions
         {
             subRobotControl_ = subscribe_T_<geometry_msgs::Twist>(params_.vel_control_topic, 10U, &SlamwareRosSdkServer::msgCbRobotControl_);
+            subRobotControlNoLimit_ = subscribe_T_<geometry_msgs::Twist>("cmd_vel_no_limit", 10U, &SlamwareRosSdkServer::msgCbRobotControlNoLimit_);
             subMoveToGoal_ = subscribe_T_<geometry_msgs::PoseStamped>(params_.goal_topic, 1U, &SlamwareRosSdkServer::msgCbMoveToGoal_);
             
             subSyncMap_ = subscribe_T_<SyncMapRequest>("sync_map", 1U, &SlamwareRosSdkServer::msgCbSyncMap_);
@@ -319,12 +320,13 @@ namespace slamware_ros_sdk {
         // de-init all subscriptions
         {
             subRobotControl_ = ros::Subscriber();
+            subRobotControlNoLimit_ = ros::Subscriber();
             subMoveToGoal_ = ros::Subscriber();
             
             subSyncMap_ = ros::Subscriber();
             subSetPose_ = ros::Subscriber();
-            subSetHomePose_ = ros::Subscriber();
 
+            subSetHomePose_ = ros::Subscriber();
             subRecoverLocalization_ = ros::Subscriber();
             subClearMap_ = ros::Subscriber();
             subSetMapUpdate_ = ros::Subscriber();
@@ -652,27 +654,46 @@ namespace slamware_ros_sdk {
     void SlamwareRosSdkServer::msgCbRobotControl_(slamware_platform_t& pltfm, const geometry_msgs::Twist::ConstPtr& msg)
     {
         if(velocityControllAction_.isEmpty())
-        try
         {
-            velocityControllAction_ = slamwarePltfm_.velocityControl();
+            try
+            {
+                velocityControllAction_ = slamwarePltfm_.velocityControl();
+            }
+            catch(const std::exception& e)
+            {
+                ROS_ERROR("Can't construct velocity controll action:%s.",e.what());
+                return;
+            }            
         }
-        catch(...)
-        {
-            ROS_ERROR("Can not construct velocity controll action");
-            return;
-        }
+            }            
 
-        try
+    void SlamwareRosSdkServer::msgCbRobotControlNoLimit_(slamware_platform_t& pltfm, const geometry_msgs::Twist::ConstPtr& msg)
+    {
+        if(velocityControllAction_.isEmpty())
         {
-            velocityControllAction_.setVelocity(msg->linear.x, msg->linear.y, msg->angular.z);
+            try
+            {
+                velocityControllAction_ = slamwarePltfm_.velocityControl(rpos::features::motion_planner::NotMonitored);
+            }
+            catch(const std::exception& e)
+            {
+                ROS_ERROR("Can't construct not monitored velocity controll action:%s.",e.what());
+                return;
+            }            
         }
-        catch(...)
+        else
         {
-            ROS_ERROR("Reconstruct velocity controll action");
-            velocityControllAction_ = slamwarePltfm_.velocityControl();
-            velocityControllAction_.setVelocity(msg->linear.x, msg->linear.y, msg->angular.z);
-            throw;
-        }
+            try
+            {
+                velocityControllAction_.setVelocity(msg->linear.x, msg->linear.y, msg->angular.z);
+            }
+            catch(const std::exception& e)
+            {
+                ROS_ERROR("Can't set not monitored velocity:%s.",e.what());
+                velocityControllAction_ = rpos::actions::VelocityControlMoveAction();
+                return;
+            }
+        } 
     }
 
     void SlamwareRosSdkServer::msgCbMoveToGoal_(slamware_platform_t& pltfm, const geometry_msgs::PoseStamped::ConstPtr& msg)

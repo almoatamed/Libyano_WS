@@ -1,1 +1,0 @@
-@-webkit-keyframes blink{0%{opacity:1}50%{opacity:0}to{opacity:1}}@keyframes blink{0%{opacity:1}50%{opacity:0}to{opacity:1}}#battery{-webkit-animation:blink 1.5s;-webkit-animation-iteration-count:100;animation:blink 1.5s;animation-iteration-count:100}

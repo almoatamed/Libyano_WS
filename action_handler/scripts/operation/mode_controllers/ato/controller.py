@@ -32,9 +32,11 @@ def asq(action):
 
 from scripts.operation.mode_controllers.ato.interrupters.power import power as power_interrupter
 from scripts.operation.mode_controllers.ato.interrupters.screen import screen as screen_interrupter 
+from scripts.operation.mode_controllers.ato.interrupters.facial_detection import face_detection as face_detection_interrupter 
 interrupters = {
     'power': power_interrupter,
-    'screen': screen_interrupter
+    'screen': screen_interrupter,
+    'facial_detection': face_detection_interrupter,
 }
 
 from scripts.operation.mode_controllers.ato.handlers import charger as charger_handler
@@ -88,7 +90,7 @@ def handle_interrupt(request):
 def remove_interrupt(request):
     global interrupt_queue
     for req in interrupt_queue:
-        if request['interrupter'] == req['interrupter'] and request['handler'] == req['handler']:
+        if request['handler'] == req['handler']:
             interrupt_queue.remove(req)
     
     
@@ -135,6 +137,7 @@ obj = {
     'interrupt_request': interrupt_request,
     'remove_interrupt': remove_interrupt,
     'interrupt_queue': interrupt_queue,
+    'interrupt_config': interrupt_config,
     'stop': stop,
     'start': start,
 }
@@ -143,9 +146,12 @@ story_ctl.init(obj)
 charger_handler.init(obj)
 power_interrupter.init(obj)
 screen_interrupter.init(obj)
+face_detection_interrupter.init(obj)
 serve_handler.init(obj)
 
 #api
 def get_interrupt_queue():
     return json.loads(interrupt_queue)
 
+
+face_detection_interrupter.start()

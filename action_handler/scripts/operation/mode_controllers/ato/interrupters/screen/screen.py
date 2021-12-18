@@ -65,15 +65,20 @@ def interface_cb(msg):
 rospy.Subscriber('/interface/set_slash_route', String, interface_cb)
 
 def run():
-    global parent, running 
+    global parent, running, interface
     while not rospy.is_shutdown() and running:
-        if parent['status'] == 'halt':
-            time.sleep(5)
-        elif interface[0] == 'main' and interface[1] != 'slide-show':
-            parent['interrupt_request'](request)
-        else:
-            time.sleep(0.25)   
-
+        try:
+            if  parent['status'] == 'halt' or not parent['interrupt_config']['screen']['enabled']:
+                time.sleep(5)
+            elif interface[0] == 'main' and interface[1] != 'slide-show':
+                parent['interrupt_request'](request)
+                time.sleep(0.25)
+            else:
+                time.sleep(0.25)   
+        except KeyError: 
+            time.sleep(1)
+            printLine('key error on interrupter')
+            
 def stop():
     global running
     running = False

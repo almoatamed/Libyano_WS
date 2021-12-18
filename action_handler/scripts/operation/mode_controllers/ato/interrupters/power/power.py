@@ -66,11 +66,12 @@ def run():
     while not rospy.is_shutdown() and running:
         time.sleep(2)
         try:
-            if  parent['status'] != 'halt' or not current_status:
+            if  parent['status'] == 'halt' or not current_status or not parent['interrupt_config']['power']['enabled']:
                 time.sleep(5)
             elif float(current_status.battery_percentage) <= 15.0 and ( current_status.is_charging == 0 and current_status.is_dc_in == 0):
                 parent['interrupt_request'](request)
         except KeyError as e:
+            time.sleep(1)
             printLine('Error whiel trying to request power interrupt', e)
     
     

@@ -1,6 +1,5 @@
 <template>
-  <v-app >
-
+  <v-app>
     <!-- Dispaly Voucher -->
     <v-dialog v-model="voucher.dialog.show" max-width="400px" persistent>
       <v-card class="mx-auto" max-width="400" outlined dark color="#92278f">
@@ -38,7 +37,6 @@
     <v-main>
       <router-view></router-view>
     </v-main>
-
   </v-app>
 </template>
 
@@ -92,42 +90,61 @@ export default {
     },
   },
   created() {
-    var self = this
+    var self = this;
 
     // Voucher Card Dialog Display Periodic check
-    setInterval(()=>{
-      if(self.voucher.continue){
-        self.$store.dispatch('Voucher/check',null,{root:true}).then(()=>{}).catch(()=>{})
+    setInterval(() => {
+      if (self.voucher.continue) {
+        self.$store
+          .dispatch("Voucher/check", null, { root: true })
+          .then(() => {})
+          .catch(() => {});
       }
-    },500)
+    }, 500);
 
     //  Interface Category Check Periodically
-    setInterval(()=>{
-      self.$store.dispatch('Ros/take_action','interface/_get_set',{root:true}).then((set)=>{
-        // try {
-          var result =  set.split('/')
-          if(result.length == 1){
-            if(!this.$route.matched.some(route=>route.name == set)){
-              this.$router.push({name:this.sets_defualt_routes[set]})
+    setInterval(() => {
+      self.$store
+        .dispatch("Ros/take_action", "interface/_get_set", { root: true })
+        .then((set) => {
+          // try {
+          var result = set.split("/");
+          if (result.length == 1) {
+            if (!this.$route.matched.some((route) => route.name == set)) {
+              this.$router.push({ name: this.sets_defualt_routes[set] });
             }
-          }else{
-            if(!this.$route.matched.some(route=>route.name == result[1])){
-              this.$router.push({name:result[1]})
+          } else {
+            if (!this.$route.matched.some((route) => route.name == result[1])) {
+              this.$router.push({ name: result[1] });
             }
           }
-        // } catch (error) {
-        //   console.log(error)          
-        // }
-      }).catch(()=>{})
-    },250)
+          self.$store
+            .dispatch(
+              "Ros/take_action",
+              `interface/set_current_route_name/${this.$route.name}`,
+              { root: true }
+            )
+            .then(() => {})
+            .catch((err) => {
+              console.log(
+                "Failed to update current route on interface controller",
+                err
+              );
+            });
+          // } catch (error) {
+          //   console.log(error)
+          // }
+        })
+        .catch(() => {});
+    }, 250);
 
     //  Interface current rout update
-    setInterval(()=>{
-      self.$store.dispatch('Ros/take_action',`interface/set_current_route_name/${this.$route.name}`,{root:true}).then(()=>{
-      }).catch((err)=>{
-        console.log('Failed to update current route on interface controller', err)
-      })
-    },250)
+    // setInterval(()=>{
+    //   self.$store.dispatch('Ros/take_action',`interface/set_current_route_name/${this.$route.name}`,{root:true}).then(()=>{
+    //   }).catch((err)=>{
+    //     console.log('Failed to update current route on interface controller', err)
+    //   })
+    // },250)
   },
   data() {
     return {
@@ -153,11 +170,11 @@ export default {
         card: {},
         continue: true,
       },
-      sets_defualt_routes:{
-        main: 'slide-show', 
-        bootup: 'bootup',
-        black: 'black'
-      }
+      sets_defualt_routes: {
+        main: "slide-show",
+        bootup: "bootup",
+        black: "black",
+      },
     };
   },
 };

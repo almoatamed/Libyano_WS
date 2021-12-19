@@ -28,6 +28,7 @@ Address=10.0.0.3
 Gateway=10.0.0.13
 DNS=8.8.8.8 8.8.4.4 10.0.0.13 192.168.1.1 172.16.1.254
 ''')
+file.close()
 os.system('systemctl daemon-reload')
 time.sleep(3)
 os.system('systemctl enable systemd-networkd.service')

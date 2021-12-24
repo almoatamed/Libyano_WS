@@ -121,37 +121,7 @@ module.exports = {
                     mode_sub.subscribe(function(data){
                         context.commit('Ros/set_mode',data.data)
                         context.commit('Ros/set_timeout', new Date().getTime());
-                    });
-                   //*******************************************************//     
-                    // var status_sub = new roslib.Topic({
-                    //     ros: ros,
-                    //     name: '/status',
-                    //     messageType: 'status_msgs/status'
-                    // })
-                    // status_sub.subscribe(function(data){
-                    //     context.commit('Ros/set_status',data)
-                    // });
-                   //*******************************************************//     
-                    // var current_location_sub = new roslib.Topic({
-                    //     ros: ros,
-                    //     name: '/current_pose',
-                    //     messageType: 'geometry_msgs/Pose'
-                    // })
-                    // current_location_sub.subscribe(function(data){
-                    //     context.commit('Ros/set_current_location',data)
-                    // });
-                   //*************************** Map ****************************//     
-                    // var map_sub = new roslib.Topic({
-                    //     ros: ros,
-                    //     name: '/map',
-                    //     messageType: 'nav_msgs/OccupancyGrid',
-                    //     compression : 'png'
-                    // })
-                    // map_sub.subscribe(function(data){
-                    //     console.log('new map');
-                    //     context.commit('Ros/set_map',data)
-                    // });
-                    //*******************************************************//    
+                    });    
                      var cash_reader_controller = new roslib.Topic({
                          ros: ros,
                          name: '/cash_reader/control',

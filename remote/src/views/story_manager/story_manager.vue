@@ -42,6 +42,69 @@
       </v-card>
     </v-dialog>
 
+    <!-- Interrupt config dialog -->
+    <v-dialog
+      v-model="interrupt_config.edit_dialog.show"
+      persistent
+      :overlay="false"
+      max-width="500px"
+      transition="dialog-transition"
+    >
+      <v-card class="pa-2" elevation="6" :dark="isDark">
+        <v-container fluid>
+          <v-row>
+            <v-col cols="12">
+              <v-container fluid>
+                <v-row>
+                  <span class="text-h6">Interrupters</span>
+                  <v-spacer></v-spacer>
+                  <v-btn
+                    text
+                    icon
+                    @click="interrupt_config.edit_dialog.show = false"
+                  >
+                    <v-icon>mdi-close</v-icon>
+                  </v-btn>
+                </v-row>
+                <v-row>
+                  <v-divider></v-divider>
+                </v-row>
+                <v-row>
+                  <v-col cols="12">
+                    <v-container fluid>
+                      <v-row
+                        v-for="(interrupter, index) in interrupt_config_names"
+                        :key="index"
+                        class="outline"
+                      >
+                        <v-spacer></v-spacer>
+                        <span>{{ interrupter }}</span>
+                        <v-spacer></v-spacer>
+                        <v-btn
+                          v-if="
+                            interrupt_config.config[interrupter]['enabled']
+                          "
+                          @click="disable_interrupter(interrupter)"
+                          text
+                          >Disable</v-btn
+                        >
+                        <v-btn
+                          v-else
+                          @click="enable_interrupter(interrupter)"
+                          text
+                          >Enable</v-btn
+                        >
+                      </v-row>
+                    </v-container>
+                  </v-col>
+                </v-row>
+              </v-container>
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-card>
+    </v-dialog>
+
     <!-- edit story dialog -->
     <v-dialog
       v-model="story_obj.edit_story_dialog.show"
@@ -420,6 +483,9 @@
                     {{ story_obj.stories["default_story"] }}
                   </div>
                   <v-spacer></v-spacer>
+                  <v-btn text icon @click="edit_interrupts">
+                    <v-icon>mdi-import</v-icon>
+                  </v-btn>
                   <v-btn @click="set_default_story" text icon>
                     <v-icon>mdi-book-check</v-icon>
                   </v-btn>
@@ -464,6 +530,12 @@
 import { mapGetters } from "vuex";
 export default {
   data: () => ({
+    interrupt_config: {
+      config: {},
+      edit_dialog: {
+        show: false,
+      },
+    },
     story_obj: {
       default_story: {
         name: "",
@@ -522,8 +594,19 @@ export default {
         return [];
       }
     },
+    interrupt_config_names() {
+      var interrupt_config_names_list = Object.keys(
+        this.interrupt_config.config
+      );
+      if (interrupt_config_names_list.length == 0) {
+        return [];
+      } else {
+        return interrupt_config_names_list;
+      }
+    },
   },
   created() {
+    this.fetch_interrupt_config();
     this.$store
       .dispatch("Ros/take_action", "operation/get_stories", { root: true })
       .then((res) => {
@@ -542,7 +625,9 @@ export default {
     create_story() {
       console.log("creating story", this.story_obj.new_story_dialog.name);
       if (this.story_obj.new_story_dialog.name != "") {
-        this.story_obj.edit_story_dialog.story = JSON.parse(JSON.stringify(this.story_obj.default_story)) 
+        this.story_obj.edit_story_dialog.story = JSON.parse(
+          JSON.stringify(this.story_obj.default_story)
+        );
         this.story_obj.edit_story_dialog.story.name =
           this.story_obj.new_story_dialog.name;
         this.story_obj.new_story_dialog.show = false;
@@ -789,6 +874,7 @@ export default {
           );
         });
     },
+
     set_default_story() {
       this.story_obj.set_default_story_dialog.story_name = "";
       this.story_obj.set_default_story_dialog.show = true;
@@ -881,6 +967,101 @@ export default {
           });
       }
     },
+
+    fetch_interrupt_config() {
+      this.$store
+        .dispatch("Ros/take_action", "operation/ato_get_interrupt_config", {
+          root: true,
+        })
+        .then((res) => {
+          console.log("interrupt config", res);
+          this.interrupt_config.config = JSON.parse(res);
+        })
+        .catch((err) => {
+          console.log(
+            "error occured while trying to fetch interrupt config ",
+            err
+          );
+        });
+    },
+    edit_interrupts() {
+      this.fetch_interrupt_config();
+      this.interrupt_config.edit_dialog.show = true;
+    },
+    disable_interrupter(interrupter_name) {
+      var temp = JSON.parse(JSON.stringify(this.interrupt_config.config));
+      temp[interrupter_name]["enabled"] = false;
+      this.$store
+        .dispatch(
+          "Ros/take_action",
+          `operation/ato_change_interrupt_config/${JSON.stringify(temp)}`
+        )
+        .then((res) => {
+          console.log("changed interrupt configuration", res);
+          this.fetch_interrupt_config();
+          this.$store.dispatch(
+            "Notify/notify",
+            {
+              group: "main",
+              text: `interrupter ${interrupter_name} disabled successfully`,
+              title: "Interrupt config updated",
+              type: "success",
+            },
+            { root: true }
+          );
+        })
+        .catch((err) => {
+          console.log("error while trying to update the interrupt config", err);
+          this.$store.dispatch(
+            "Notify/notify",
+            {
+              group: "main",
+              text: `failed to update interrupt configuration`,
+              title: "failed to update interrupts",
+              type: "error",
+            },
+            { root: true }
+          );
+        });
+    },
+    enable_interrupter(interrupter_name) {
+      console.log(`############################ ${interrupter_name} ###########################`)
+      var temp = JSON.parse(JSON.stringify(this.interrupt_config.config));
+      console.log(temp)
+      temp[interrupter_name]["enabled"] = true;
+      this.$store
+        .dispatch(
+          "Ros/take_action",
+          `operation/ato_change_interrupt_config/${JSON.stringify(temp)}`
+        )
+        .then((res) => {
+          console.log("changed interrupt configuration", res);
+          this.fetch_interrupt_config();
+          this.$store.dispatch(
+            "Notify/notify",
+            {
+              group: "main",
+              text: `interrupter ${interrupter_name} enabled successfully`,
+              title: "Interrupt config updated",
+              type: "success",
+            },
+            { root: true }
+          );
+        })
+        .catch((err) => {
+          console.log("error while trying to update the interrupt config", err);
+          this.$store.dispatch(
+            "Notify/notify",
+            {
+              group: "main",
+              text: `failed to update interrupt configuration`,
+              title: "failed to update interrupts",
+              type: "error",
+            },
+            { root: true }
+          );
+        });
+    },
   },
 };
 </script>
@@ -891,11 +1072,11 @@ export default {
 }
 .outline {
   padding-left: 10px;
-  outline: solid rgba(0, 0, 0, 0.2) 1px;
+  border: solid lightgrey 1px;
 }
 .outline_dark {
   padding-left: 10px;
-  outline: solid rgba(255, 255, 255, 0.2) 1px;
+  border: solid lightgrey 1px;
 }
 .orange {
   background-color: orange;

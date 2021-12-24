@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# path /usr/sbin/roslaunch
+
+source ~/catkin_ws/devel/setup.bash
+source /etc/ros/env.sh
+export ROS_HOME=$(echo ~libyano)/.ros
+export DISPLAY=:0
+roslaunch --wait global bringup_J.launch;

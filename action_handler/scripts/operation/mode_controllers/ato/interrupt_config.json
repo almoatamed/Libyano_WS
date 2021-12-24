@@ -1,14 +1,1 @@
-{
-    "facial_detection":{
-        "enabled": true
-    },
-    "power":{
-        "enabled": true
-    },
-    "screen":{
-        "enabled": true
-    },
-    "touch_sensors":{
-        "enabled": false
-    }
-}
+{"touch_sensors": {"enabled": false}, "screen": {"enabled": true}, "facial_detection": {"enabled": true}, "power": {"enabled": true}}

@@ -1,0 +1,10 @@
+# path /etc/systemd/system/roslaunch.service
+[Unit]
+After=NetworkManager.service time-sync.target
+[Service]
+Type=simple
+User=libyano
+ExecStart=/usr/sbin/roslaunch
+[Install]
+WantedBy=multi-user.target
+

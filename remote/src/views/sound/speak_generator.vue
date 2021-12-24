@@ -29,17 +29,7 @@
                   color="purple darken-2"
                   required
                 ></v-select>
-              </v-col>
-              <!-- <v-col cols="12" sm="6">
-                <v-text-field
-                  v-model="form.last"
-                  :rules="rules.name"
-                  color="blue darken-2"
-                  label="Last name"
-                  required
-                ></v-text-field>
-              </v-col> -->
-              <v-col cols="12">
+              </v-col><v-col cols="12">
                 <v-textarea v-model="form.content" color="teal" 
                   :disabled='disabled' :loading="loading" :rules="text_rules">
                   <template v-slot:label>
@@ -48,18 +38,11 @@
                 </v-textarea>
               </v-col>
               <v-col cols="12">
-                <!-- <v-select
-                  v-model="sound"
-                  :disabled='loading'
-                  :loading='loading'
-                  :items="sounds"
-                  color="pink"
-                  label="File"
-                  required
-                ></v-select> -->
               
                 <v-menu
                 offset-y
+                scrollable
+                max-height="300px"
                 >
                   <template
                   v-slot:activator="{attrs,on}"
@@ -87,30 +70,6 @@
                   </v-list>
                 </v-menu>
               </v-col>
-              <!-- <v-col cols="12" sm="6">
-                <v-slider
-                  v-model="form.age"
-                  :rules="rules.age"
-                  color="orange"
-                  label="Age"
-                  hint="Be honest"
-                  min="1"
-                  max="100"
-                  thumb-label
-                ></v-slider>
-              </v-col> -->
-              <!-- <v-col cols="12">
-                <v-checkbox v-model="form.terms" color="green">
-                  <template v-slot:label>
-                    <div @click.stop="">
-                      Do you accept the
-                      <a href="#" @click.prevent="terms = true">terms</a>
-                      and
-                      <a href="#" @click.prevent="conditions = true">conditions?</a>
-                    </div>
-                  </template>
-                </v-checkbox>
-              </v-col> -->
             </v-row>
           </v-container>
           <v-card-actions>
@@ -125,30 +84,6 @@
             <v-btn :disabled="!(sound != 'temp' && sound != '')" :loading='loading' text @click="del"> del </v-btn>
           </v-card-actions>
         </v-form>
-        <!-- <v-dialog v-model="terms" width="70%">
-          <v-card>
-            <v-card-title class="text-h6"> Terms </v-card-title>
-            <v-card-text v-for="n in 5" :key="n">
-              {{ content }}
-            </v-card-text>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn text color="purple" @click="terms = false"> Ok </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
-        <v-dialog v-model="conditions" width="70%">
-          <v-card>
-            <v-card-title class="text-h6"> Conditions </v-card-title>
-            <v-card-text v-for="n in 5" :key="n">
-              {{ content }}
-            </v-card-text>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn text color="purple" @click="conditions = false"> Ok </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-dialog> -->
       </v-card>
     </v-container>
   </div>

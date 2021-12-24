@@ -83,10 +83,6 @@ export default {
   },
 
   methods: {
-    rateWindow() {
-      this.done = false
-      this.rate = true
-    },
 
     translateMedia(src) {
       return this.$store.getters["Interface/get_media"][src];

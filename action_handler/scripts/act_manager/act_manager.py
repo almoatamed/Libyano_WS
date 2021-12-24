@@ -76,7 +76,7 @@ def add_act(act):
 def del_act(act_name):
     global acts_file_path, update_acts
     acts = decode_acts()
-    #printLine('deleting act', act_name)
+    printLine('deleting act', act_name)
     if act_name in acts:
         acts.pop(act_name)
         acts = encode_acts(acts)
@@ -91,31 +91,31 @@ act_queue= []
 pause = False
 
 def wait_for_goal_end():
-    #printLine('waiting for goal')
+    printLine('waiting for goal')
     time.sleep(3)
     if asq('navigation/goal_monitor_get_last_state') == 'running':
         time.sleep(0.25)
     return 
 
 def perform_navigation(action_args):
-    #printLine('performing navigation action ', action_args)
+    printLine('performing navigation action ', action_args)
     if action_args[2] == 'angled':
-        #printLine('angled action ', 'navigation/angled_goal/'+'&'.join(action_args[4:]))
+        printLine('angled action ', 'navigation/angled_goal/'+'&'.join(action_args[4:]))
         asq('navigation/angled_goal/'+'&'.join(action_args[4:]))
     else:
-        #printLine('unngled action ', 'navigation/unangled_goal/'+'&'.join(action_args[4:]))
+        printLine('unngled action ', 'navigation/unangled_goal/'+'&'.join(action_args[4:]))
         asq('navigation/unangled_goal/'+'&'.join(action_args[4:]))
     if action_args[1] == 'wait':
         wait_for_goal_end()
     
-
+mcu_break = 0.05
 def perform(action):
     action_args = action.split('/')
     if action_args[0] == 'navigation':
         perform_navigation(action_args)
-        #printLine('navigation has been performed')
+        printLine('navigation has been performed')
     elif action_args[0] == 'wait':
-        #printLine('waiting ',action_args[1])
+        printLine('waiting ',action_args[1])
         sleep_time = float(action_args[1])/1000
         int_sleep_time = int(sleep_time)
         fraction_sleep_time = sleep_time - int_sleep_time
@@ -126,14 +126,20 @@ def perform(action):
         time.sleep(fraction_sleep_time)
     elif action_args[0] == 'interface':
         asq('interface/force_change_view_set/'+action_args[1])
+        time.sleep(mcu_break )
     elif action_args[0] == 'eyes emoji':
-        asq('interactive/set_eyes/'+ '/'.join(action_args[1:]))
-        time.sleep(0.05)
+        asq('interactive/set_eyes/'+action_args[1]+'/'+action_args[2]+'/'+action_args[3]+'/'+action_args[4]+'/'+action_args[5])
+        time.sleep(mcu_break)
     elif action_args[0] == 'led ring':
-        asq('interactive/set_ring_flow/'+ '/'.join(action_args[1:]))
-        time.sleep(0.05)
+        asq('interactive/set_ring_flow/'+action_args[1]+'/'+action_args[2]+'/'+action_args[3]+'/'+action_args[4]+'/'+action_args[5])
+        time.sleep(mcu_break)
     elif action_args[0] == 'led strip':
-        asq('interactive/set_strip_color/'+ action_args[1])
+        print('interactive/set_strip_color/'+ action_args[1])
+        red = str(int(action_args[1][:2],16))
+        green = str(int(action_args[1][2:4],16))
+        blue = str(int(action_args[1][4:],16))
+        asq('interactive/set_strip_color/'+ red+'/'+green+'/'+blue)
+        time.sleep(mcu_break)
     elif action_args[0] == 'speak':
         asq('interactive/speak_push_to_queue/'+ action_args[1]+ '.mp3')
     elif action_args[0] == 'head motion':

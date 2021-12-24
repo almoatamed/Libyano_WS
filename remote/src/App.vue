@@ -173,19 +173,14 @@
           </v-list-item>
         </v-list-group>
 
-        <v-list-group color="white" prepend-icon="mdi-robot">
-          <template v-slot:activator>
-            <v-list-item-title>Basic</v-list-item-title>
-          </template>
-          <v-list-item :to="{ name: 'summary' }">
-            <v-list-item-icon>
-              <v-icon small class="mx-auto">mdi-information</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>Summary</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list-group>
+        <v-list-item :to="{ name: 'summary' }" exact>
+          <v-list-item-icon>
+            <v-icon small class="mx-auto">mdi-robot</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>Summary</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
 
         <v-list-item :to="{ name: 'live' }">
           <v-list-item-icon>
@@ -219,6 +214,18 @@
             <v-list-item-title>Act Manager</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        
+        <v-list-item
+          :to="{ name: 'interface_events' }"
+          v-if="!restrictions['interface_events']"
+        >
+          <v-list-item-icon>
+            <v-icon small class="mx-auto">mdi-view-carousel </v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>Interface Events Manager</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
 
         <v-list-item
           :to="{ name: 'story_manager' }"
@@ -232,47 +239,24 @@
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-group color="white" prepend-icon="mdi-access-point-network">
-          <template v-slot:activator>
-            <v-list-item-title>Networking</v-list-item-title>
-          </template>
-          <v-list-item :to="{ name: 'bluetooth' }">
-            <v-list-item-icon>
-              <v-icon small class="mx-auto">mdi-bluetooth</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>Bluetooth</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list-group>
+        <v-list-item :to="{ name: 'bluetooth' }">
+          <v-list-item-icon>
+            <v-icon small class="mx-auto">mdi-bluetooth</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>Bluetooth</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
 
-        <v-list-group color="white" prepend-icon="mdi-cash-multiple">
-          <template v-slot:activator>
-            <v-list-item-title>Voucher</v-list-item-title>
-          </template>
-          <v-list-item :to="{ name: 'voucher_loader' }">
-            <v-list-item-icon>
-              <v-icon small class="mx-auto">mdi-ticket-confirmation</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>Voucher Loader</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list-group>
-
-        <v-list-group color="white" prepend-icon="mdi-volume-high">
-          <template v-slot:activator>
-            <v-list-item-title>Speach Controller</v-list-item-title>
-          </template>
-          <v-list-item :to="{ name: 'voice' }">
-            <v-list-item-icon>
-              <v-icon small class="mx-auto">mdi-pencil</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>Speach Generater</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list-group>
+        <v-list-item :to="{ name: 'voice' }">
+          <v-list-item-icon>
+            <v-icon small class="mx-auto">mdi-pencil</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>Speach Generater</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        
 
         <!-- <v-list-group color="white" prepend-icon="mdi-map-marker"  v-if="!restrictions['map']">
           <template v-slot:activator>

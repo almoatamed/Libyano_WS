@@ -42,20 +42,7 @@ export default {
                 })
             })
         },
-        // fetchStatus({dispatch, commit}){
-        //     return new Promise((resolve, reject)=>{
-        //         RosApi.status().then((res)=>{
-        //             commit('setStatus', res.data.status);
-        //             resolve(res);
-        //         }).catch(err=>{
-        //             dispatch('ApiError/check', err, {root: true});
-        //             reject(err);
-        //         })
-        //     })
-        // },
-        
-        getcurrentlocation(context){
-            context.commit('pass')
+        getcurrentlocation(){
             return new Promise((resolve, reject)=>{
                 RosApi.getcurrentlocation().then(res =>{
                     resolve(res)
@@ -65,8 +52,7 @@ export default {
             })
         },
 
-        postVouchers(context,vouchers){
-            context.commit('pass')
+        postVouchers(_,vouchers){
             return new Promise((resolve, reject)=>{
                 RosApi.postVouchers(vouchers).then(res=>{
                     resolve(res)
@@ -76,8 +62,7 @@ export default {
                 })
             })
         },
-        take_action(context, action){
-            context.commit('pass')
+        take_action(_, action){
             return new Promise((resolve, reject)=>{
                 RosApi.action(action).then(res=>{
                     resolve(res)
@@ -97,8 +82,6 @@ export default {
         setMode(state, data){
             state.mode = data;
         },
-        pass(){
-        }
     },
     getters:{
         connectionFlag(state){

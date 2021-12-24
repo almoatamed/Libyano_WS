@@ -1,1 +1,1 @@
-test:eyes emoji/dollars/26951B/1/110/0|wait/10000
+test:eyes emoji/dollars/26951B/1/110/0

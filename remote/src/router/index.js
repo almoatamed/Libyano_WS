@@ -52,7 +52,17 @@ const router = new Router({
         '../views/act_manager/act_manager.vue'),
       meta: { requiresAuth: true, requiresConnectoin: true }
     },
-    //########################### Act Controller Page ##############################
+
+    //########################### interface  ##############################
+    {
+      path: '/interface_events',
+      name: 'interface_events',
+      component: () => import(/* webpackChunkNam: "interface_events" */
+        '../views/interface_events/interface_events.vue'),
+      meta: { requiresAuth: true, requiresConnectoin: true }
+    },
+
+    //########################### story Controller Page ##############################
 
     {
       path: '/story_manager',
@@ -62,19 +72,7 @@ const router = new Router({
       meta: { requiresAuth: true, requiresConnectoin: true }
     },
 
-    //########################### Startup ##############################
-
-    {
-      path: '/map',
-      name: 'map',
-      component: () => import(/* webpackChunkNam: "map" */
-        '../views/navigation/map.vue'),
-      meta: { requiresAuth: true, requiresConnectoin: true }
-    },
-
-
-
-    //########################### Navigation ###########################
+    //########################### startup ###########################
     {
       path: "/startup",
       name:'startup',
@@ -153,7 +151,7 @@ const router = new Router({
     },
 
     
-    // ####################### Map ###########################################
+    // ####################### startup Map ###########################################
     {
       path: '/startup_map',
       component: ()=>import(/* webpackChunkName: "startup_map" */ '../views/startup/map.vue'),

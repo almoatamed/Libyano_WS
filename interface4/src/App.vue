@@ -57,6 +57,13 @@ export default {
       this.voucher.dialog.counter += 1;
       if (this.voucher.dialog.counter == 2) {
         clearTimeout(this.voucher.timeout);
+        this.$store.dispatch(
+          "Interface/perform_event_acts",
+          "on_topup_received",
+          {
+            root: true,
+          }
+        );
         this.$store.dispatch("Voucher/clear", null, { root: true });
         this.voucher.continue = true;
         this.voucher.dialog.show = false;
@@ -78,10 +85,20 @@ export default {
       if (this.voucher_show) {
         this.voucher.card = this.voucher_message;
         this.voucher.dialog.counter = 0;
+        this.$store.dispatch("Interface/perform_event_acts", "on_topup", {
+          root: true,
+        });
         this.voucher.dialog.show = true;
         this.voucher.continue = false;
         this.voucher.timeout = setTimeout(() => {
           this.$store.dispatch("Voucher/clear", null, { root: true });
+          this.$store.dispatch(
+            "Interface/perform_event_acts",
+            "on_topup_received",
+            {
+              root: true,
+            }
+          );
           this.voucher.continue = true;
           this.voucher.dialog.show = false;
           this.voucher.card = {};
@@ -105,15 +122,21 @@ export default {
     //  Interface Category Check Periodically
     setInterval(() => {
       self.$store
-        .dispatch("Ros/take_action", "interface/_get_set", { root: true })
-        .then((set) => {
+        .dispatch("Ros/take_action", "interface/_get_config", { root: true })
+        .then((config) => {
           // try {
+          config = JSON.parse(config);
+          this.$store.dispatch("Interface/set_interface_config", config, {
+            root: true,
+          });
+          var set = config["current_set"];
           var result = set.split("/");
           if (result.length == 1) {
             if (!this.$route.matched.some((route) => route.name == set)) {
               this.$router.push({ name: this.sets_defualt_routes[set] });
             }
           } else {
+            console.log(result);
             if (!this.$route.matched.some((route) => route.name == result[1])) {
               this.$router.push({ name: result[1] });
             }

@@ -1,15 +1,11 @@
 <template>
-  <v-container fluid style="margin-top:2%">
+  <v-container fluid style="margin-top: 2%">
     <v-row justify="center">
       <!------------------------Five Dinars Card -------------------------->
       <v-col md="4">
         <v-card
           class="mx-auto"
           max-width="400"
-          @click="
-            reveal[5] = true;``
-            get(5);
-          "
         >
           <v-img
             class="white--text align-end"
@@ -19,7 +15,7 @@
           >
           </v-img>
 
-          <v-card-actions style="padding-bottom:10px;">
+          <v-card-actions style="padding-bottom: 10px">
             <v-btn
               color="#92278f"
               :style="
@@ -47,21 +43,17 @@
               outlined
               dark
               color="#92278f"
-              style="
-                position: absolute;
-                top: 0%;
-                height:100%;
-                "
+              style="position: absolute; top: 0%; height: 100%"
             >
-              <v-card-title>{{translate("Five Libyan Dinars")}}</v-card-title>
+              <v-card-title>{{ translate("Five Libyan Dinars") }}</v-card-title>
               <v-card-title
                 class="text-h4 font-weight-bold"
-                style="text-align:center; padding-top:30px;"
+                style="text-align: center; padding-top: 30px"
                 >{{ translate("Please Insert a 5 Dinar bill!") }}</v-card-title
               >
               <v-card-text
                 class="text-h4 font-weight-bold"
-                style="text-align:center; padding-top:10px"
+                style="text-align: center; padding-top: 10px"
               >
                 {{ timer }}
               </v-card-text>
@@ -94,7 +86,7 @@
           >
           </v-img>
 
-          <v-card-actions style="padding-bottom:10px;">
+          <v-card-actions style="padding-bottom: 10px">
             <v-btn
               color="#92278f"
               :style="
@@ -122,21 +114,21 @@
               outlined
               dark
               color="#92278f"
-              style="
-                position: absolute;
-                top: 0%;
-                height:100%;
-                "
+              style="position: absolute; top: 0%; height: 100%"
             >
-              <v-card-title>{{translate('Ten Libyan Dinars')}}</v-card-title>
+              <v-card-title>{{ translate("Ten Libyan Dinars") }}</v-card-title>
               <v-card-title
                 class="text-h4 font-weight-bold"
-                style="text-align:center; padding-top:30px; padding-left:60px;"
+                style="
+                  text-align: center;
+                  padding-top: 30px;
+                  padding-left: 60px;
+                "
                 >{{ translate("Please Insert a 10 Dinar bill!") }}</v-card-title
               >
               <v-card-text
                 class="text-h4 font-weight-bold"
-                style="text-align:center; padding-top:10px"
+                style="text-align: center; padding-top: 10px"
               >
                 {{ timer }}
               </v-card-text>
@@ -173,9 +165,7 @@
       </v-dialog>
     </v-row>
     <v-row
-      ><v-col
-        md="12"
-        style="padding-right:4%; direction:rtl"
+      ><v-col md="12" style="padding-right: 4%; direction: rtl"
         ><v-img
           @click="help = true"
           src="../../assets/help.png"
@@ -187,20 +177,22 @@
       <v-card class="mx-auto" max-width="750" outlined>
         <v-card-text
           class="text--primary"
-          style="padding-top:60px; margin-bottom:20px; height:220px; font-size:18px; text-align:center;"
+          style="
+            padding-top: 60px;
+            margin-bottom: 20px;
+            height: 220px;
+            font-size: 18px;
+            text-align: center;
+          "
         >
-          {{
-            translate(
-              "Help: Top-Up guide"
-            )
-          }}
+          {{ translate("Help: Top-Up guide") }}
         </v-card-text>
 
         <v-divider></v-divider>
 
         <v-card-actions>
           <v-btn text @click="help = false">
-            {{translate("Close")}}
+            {{ translate("Close") }}
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -285,7 +277,13 @@ export default {
       setTimeout(() => {
         this.disable_request_cancel_button = false;
       }, 2e3);
-
+      var cancel_time = 3.5e3;
+      var on_act_timeout = setTimeout(()=>{
+        this.$store.dispatch("Interface/perform_event_acts", "cashreader_on", {
+          root: true,
+        });
+      },cancel_time)
+      var start_time = new Date().getTime()
       this.timer = 40;
       this.timer_interval_holder = setInterval(() => {
         if (this.timer != 0) {
@@ -304,6 +302,14 @@ export default {
             "Dispatched Take in request successfully which resulted in ",
             res
           );
+          clearTimeout(on_act_timeout)
+          if(new Date().getTime() - start_time < cancel_time){
+            null
+          }else{
+            this.$store.dispatch("Interface/perform_event_acts", "cashreader_off", {
+              root: true,
+            });
+          }
           setTimeout(() => {
             this.taking_in = false;
             this.taking_in_loading = false;
@@ -316,50 +322,52 @@ export default {
             res.data.message == "cancelled"
           ) {
             null;
-          } else if (res.data.message == "failed") {
-            this.dialog.show = true;
-            this.dialog.title = this.translate("Something went wrong");
-            this.dialog.text = this.translate(
-              "It seems that an error occured, please try again!"
-            );
-            this.time_out_holder = setTimeout(() => {
-              this.dialog.show = false;
-              this.dialog.text = "";
-              this.dialog.title = "";
-            }, 10e3);
-          } else if (res.data.message == "empty") {
-            this.dialog.show = true;
-            this.dialog.title = this.translate("Sorry we sold out!");
-            this.dialog.text = this.translate(
-              `It seems the we are out of ${val} LYD vouchers`
-            );
-            this.time_out_holder = setTimeout(() => {
-              this.dialog.show = false;
-              this.dialog.text = "";
-              this.dialog.title = "";
-            }, 10e3);
-          } else if (res.data.message == "timeout") {
-            this.dialog.show = true;
-            this.dialog.title = this.translate("Timeout!");
-            this.dialog.text = this.translateMedia(
-              "You have not inserted a bill in the given time!"
-            );
-            this.time_out_holder = setTimeout(() => {
-              this.dialog.show = false;
-              this.dialog.text = "";
-              this.dialog.title = "";
-            }, 10e3);
           } else {
-            this.dialog.show = true;
-            this.dialog.title = this.translate("Bad Bill!");
-            this.dialog.text = this.translate(
-              "It seems that the bill was not inserted properly, or an error occured while inserting it, please try again properly!"
-            );
-            this.time_out_holder = setTimeout(() => {
-              this.dialog.show = false;
-              this.dialog.text = "";
-              this.dialog.title = "";
-            }, 10e3);
+            if (res.data.message == "failed") {
+              this.dialog.show = true;
+              this.dialog.title = this.translate("Something went wrong");
+              this.dialog.text = this.translate(
+                "It seems that an error occured, please try again!"
+              );
+              this.time_out_holder = setTimeout(() => {
+                this.dialog.show = false;
+                this.dialog.text = "";
+                this.dialog.title = "";
+              }, 10e3);
+            } else if (res.data.message == "empty") {
+              this.dialog.show = true;
+              this.dialog.title = this.translate("Sorry we sold out!");
+              this.dialog.text = this.translate(
+                `It seems the we are out of ${val} LYD vouchers`
+              );
+              this.time_out_holder = setTimeout(() => {
+                this.dialog.show = false;
+                this.dialog.text = "";
+                this.dialog.title = "";
+              }, 10e3);
+            } else if (res.data.message == "timeout") {
+              this.dialog.show = true;
+              this.dialog.title = this.translate("Timeout!");
+              this.dialog.text = this.translateMedia(
+                "You have not inserted a bill in the given time!"
+              );
+              this.time_out_holder = setTimeout(() => {
+                this.dialog.show = false;
+                this.dialog.text = "";
+                this.dialog.title = "";
+              }, 10e3);
+            } else {
+              this.dialog.show = true;
+              this.dialog.title = this.translate("Bad Bill!");
+              this.dialog.text = this.translate(
+                "It seems that the bill was not inserted properly, or an error occured while inserting it, please try again properly!"
+              );
+              this.time_out_holder = setTimeout(() => {
+                this.dialog.show = false;
+                this.dialog.text = "";
+                this.dialog.title = "";
+              }, 10e3);
+            }
           }
         })
         .catch((err) => {

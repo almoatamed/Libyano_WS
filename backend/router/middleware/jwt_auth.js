@@ -9,6 +9,7 @@ function auth(req,res,next){
             if(err) {res.status(421).json({message:'invalid token',err});}
             else{
                 req.user = value.data;
+                res.headers["Access-Control-Allow-Origin"] = "*"
                 next();
             }
         })

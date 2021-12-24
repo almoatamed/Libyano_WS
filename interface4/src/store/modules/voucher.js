@@ -9,8 +9,7 @@ export default {
         counter:0,
     },
     actions:{
-        takein({commit},req){
-            commit('add_counter')
+        takein(_,req){
             console.log(`taking in ${req.channel} and ${req.val}`)
             return new Promise((resolve,reject)=>{
                 rosApi.cash_reader_takein(req).then((res)=>{
@@ -21,7 +20,6 @@ export default {
             })
         },
         launch(context){
-            context.commit('add_counter')
             context.commit('clear_relay_timeout')
             return new Promise((resolve, reject)=>{
                 if(context.state.relay_status){
@@ -36,7 +34,6 @@ export default {
             })
         },
         stop(context){
-            context.commit('add_counter')
             return new Promise((resolve)=>{
                 context.commit('set_relay_timeout',setTimeout(()=>{
                     rosApi.relay({number:14,value:0.0}).then(resp=>{
@@ -69,8 +66,7 @@ export default {
         clear({commit}){
             commit('clear')
         },
-        cash_reader_cancel({commit}){
-            commit('add_counter')
+        cash_reader_cancel(){
             return new Promise((resolve, reject)=>{
                 rosApi.cash_reader_cancel().then((x)=>{resolve(x)}).catch((x)=>{reject(x)})
             })

@@ -29,8 +29,24 @@ Gateway=10.0.0.13
 DNS=8.8.8.8 8.8.4.4 10.0.0.13 192.168.1.1 172.16.1.254
 ''')
 file.close()
+file.close()
 os.system('systemctl daemon-reload')
 time.sleep(3)
 os.system('systemctl enable systemd-networkd.service')
 time.sleep(3)
 os.system('systemctl start systemd-networkd.service')
+time.sleep(3)
+os.system('systemctl restart systemd-networkd.service')
+time.sleep(3)
+os.system('systemctl start system-resolved')
+time.sleep(3)
+os.system('systemctl restart system-resolved')
+time.sleep(3)
+
+
+os.system('echo \"10.0.0.3    Libyano_R\" >> /etc/hosts') #-- 
+os.system('echo \"10.0.0.1    Libyano_J\" >> /etc/hosts') #-- 
+os.system('echo \"export ROS_MASTER_URI=http://Libyano_R:11311\" >> $HOME/.bashrc') #-- 
+os.system('echo \"export ROS_HOSTNAME=Libyano_R\" >> $HOME/.bashrc') #-- 
+os.system('echo \"export DISPLAY=:0\" >> $HOME/.bashrc') #-- 
+os.system('echo \"source $HOME/catkin_ws/devel/setup.bash\" >> $HOME/.bashrc') #-- 

@@ -5,8 +5,7 @@ export default {
         counter: 0
     },
     actions:{
-        fetch_sounds({commit}){
-            commit('add_counter')
+        fetch_sounds(){
             return new Promise((resolve, reject)=>{
                 voiceApi.fetch_sounds().then(res=>{
                     console.log('resolving sounds list',res.data)
@@ -17,8 +16,7 @@ export default {
                 })
             })
         },
-        del_file({commit},name){
-            commit('add_counter')
+        del_file(_,name){
             return new Promise((resolve, reject)=>{
                 voiceApi.del_sound(name).then(res=>{
                     console.log('resolving deleting sound',res.data)
@@ -29,8 +27,7 @@ export default {
                 })
             })
         },
-        play_saved_file({commit},args){
-            commit('add_counter')
+        play_saved_file(_,args){
             return new Promise((resolve, reject)=>{
                 voiceApi.play_save_file(args).then(res=>{
                     console.log('resolving playing saved sound',res.data)
@@ -41,8 +38,7 @@ export default {
                 })
             })
         },
-        play_temp({commit},args){
-            commit('add_counter')
+        play_temp(_,args){
             return new Promise((resolve, reject)=>{
                 voiceApi.play_temp(args).then(res=>{
                     console.log('resolving play temp sound',res.data)
@@ -53,8 +49,7 @@ export default {
                 })
             })
         },
-        save_file({commit},args){
-            commit('add_counter')
+        save_file(_,args){
             return new Promise((resolve, reject)=>{
                 voiceApi.save_sound(args).then(res=>{
                     console.log('resolving save sound',res.data)

@@ -46,14 +46,17 @@ def run():
     parent['pause']('charging')
     running = True
     while not rospy.is_shutdown():
-        time.sleep(2)
         if parent['status'] == 'halt':
             break
-        elif current_request['args']['basic_status'].is_charging == 0 or current_request['args']['basic_status'].is_dc_in == 0:
+        elif (current_request['args']['basic_status'].is_charging == 0 or current_request['args']['basic_status'].is_dc_in == 0) and float(current_request['args']['basic_status'].battery_percentage) <= threashold:
+            asq('interface/change_view_set/bootup')
             asq('navigation/go_home')
             time.sleep(30)
-        elif float(current_request['args']['basic_status'].battery_percentage) > threashold:
-            break
+        else:
+            asq('interface/change_view_set/main')
+            if float(current_request['args']['basic_status'].battery_percentage) > threashold:
+                break
+        time.sleep(2)
     running = False
     parent['remove_interrupt'](current_request)
     parent['continue']('charging')

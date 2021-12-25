@@ -34,10 +34,8 @@ def get():
     dev = file.read().strip()
     file.close()
     if dev:
-        #printLine('default found', dev)
         return dev
     else:
-        #printLine('default not found', dev)
         return 'empty'
     
     

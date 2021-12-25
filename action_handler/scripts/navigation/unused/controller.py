@@ -18,13 +18,13 @@ import time
 import glob
 import os
 from geometry_msgs.msg import Pose
-#printLine('Imported General requirents')
+##printLine('Imported General requirents')
 
 from scripts.navigation.actions import go_home_platform as go_home_action
 from scripts.navigation.actions import manual as manual_action
 from  scripts.navigation.actions import pass_action as pass_action
 
-#printLine('Imported Actions')
+##printLine('Imported Actions')
 
 navigation_actions = {
     'go_home': go_home_action, 
@@ -35,11 +35,11 @@ navigation_actions = {
 
 cmd_vel_pub = rospy.Publisher('/cmd_vel', Twist, queue_size=10)
 cancel_action_pub = rospy.Publisher('/slamware_ros_sdk_server_node/cancel_action', CancelActionRequest, queue_size=10)
-#printLine('Publishers have been created')
+##printLine('Publishers have been created')
 cancel_msg = CancelActionRequest()
 twist_msg = Twist()
 def stop():
-    #printLine('Stopping the Robot')
+    ##printLine('Stopping the Robot')
     twist_msg = Twist()
     cancel_action_pub.publish(cancel_msg)
     cmd_vel_pub.publish(twist_msg)
@@ -61,19 +61,19 @@ def switch(nav_mode):
                 time.sleep(3)
                 resp = navigation_actions[nav_mode].start()
                 if resp ==  'failed':
-                    #printLine('Failed to Start Navigation mode')
+                    ##printLine('Failed to Start Navigation mode')
                     navigation_actions['pass'].start()
                     return 'failed'
-                #printLine('Started navigation mode successfully')
+                ##printLine('Started navigation mode successfully')
                 return 'running'
             else:
-                #printLine('Required Navigation mode is not found')
+                ##printLine('Required Navigation mode is not found')
                 return 'not_found'
         else:
-            #printLine('Navigation mode requested is already running')
+            ##printLine('Navigation mode requested is already running')
             return 'already_running'
     else:
-        #printLine('Too rapid changing in naviagion mode')
+        ##printLine('Too rapid changing in naviagion mode')
         return 'too_rapid'
             
     
@@ -91,10 +91,10 @@ home= os.environ['HOME']
 valid_files = ['map.pgm', 'goals.txt','map.stcm']
 def list_maps():
     maps = glob.glob(home+'/catkin_ws/src/public/maps/*/')
-    ##printLine('Attempting to list maps from',home+'/catkin_ws/src/public/maps/*/',*maps)
+    ###printLine('Attempting to list maps from',home+'/catkin_ws/src/public/maps/*/',*maps)
     valid_maps = {}
     for m in maps:
-        #printLine('checking the validity of ', m,type(m))
+        ##printLine('checking the validity of ', m,type(m))
         def delete_map(map_dir):
             os.system('rm -rf '+map_dir)
         files = os.listdir(m)
@@ -116,7 +116,7 @@ def list_maps():
             delete_map(m)
             continue
         else:
-            #printLine('map ', m + ' ' + str(type(m)), 'is valid')
+            ##printLine('map ', m + ' ' + str(type(m)), 'is valid')
             valid_maps[m.split('/')[-2]] = {
                 'map': m+map_type,
                 'pose': m+'pose.txt',
@@ -208,7 +208,7 @@ def set_current_home_pose(pose):
 
 def update_pose_file(pose):
     global current_map
-    #printLine('updating current map position', pose, current_map)
+    ##printLine('updating current map position', pose, current_map)
     map_list = list_maps()
     file = open(map_list[current_map]['pose'],'w+')
     file.write(pose)

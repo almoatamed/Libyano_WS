@@ -71,7 +71,7 @@ if __name__ == "__main__":
     mode_topic = '/mode'
     
     publish_rate = rospy.get_param('/status/status_rate', '5')
-    current_status.power.battery = 90
+    current_status.power.battery = 10
     current_status.power.charging_status = 0
     current_status.mcu = [0]
     node_list = [] 

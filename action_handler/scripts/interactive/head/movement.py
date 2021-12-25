@@ -41,7 +41,6 @@ def relative_move(x,y,speed):
         y = float(y)
         speed = float(speed)
     except Exception as e:
-        #printLine("error while trying to move head",e)
         return 'failed'
     last_speed = speed
     if time.time() - last_time < float(last_speed/1000):
@@ -63,7 +62,6 @@ def move(x='0',y='0',speed='700'):
         y = float(y)
         speed = float(speed)
     except Exception as e:
-        #printLine("error while trying to move head",e)
         return 'failed'
     if x > x_max or x < x_min or y > y_max or y < y_min:
         return 'out_of_boundries'    

@@ -30,7 +30,6 @@ def load_modes_config():
     modes_file.close()
 
 load_modes_config()
-printLine(modes)
 running_mode = ''
 
 is_running  = False 
@@ -59,7 +58,6 @@ string_msg = String()
 def run():
     global running_mode, modes, string_msg
     running_mode = modes['default_mode']
-    printLine('starting with defautl running mode', running_mode, modes['modes'][running_mode])
     operators[running_mode][modes['modes'][running_mode]['on_proceed']]()
     while not rospy.is_shutdown() and is_running:
         string_msg.data = running_mode
@@ -71,19 +69,15 @@ start()
 #api
 def switch(in_mode):
     global running_mode, modes, operators
-    printLine('attempting to switch mode to ' + in_mode)
     if is_running and not rospy.is_shutdown():
         if in_mode == running_mode+'cancel':
-            printLine('current mode is cancelling')
             premode = running_mode
             operators[running_mode][modes['modes'][running_mode]['on_halt']]()
             running_mode = modes['modes'][running_mode]['retract_mode']
             resp = operators[running_mode][modes['modes'][running_mode]['on_proceed']]()
             if resp == 'done': 
-                printLine('switching succeed')
                 return "done"
             else: 
-                printLine('switching failed')
                 running_mode = premode
                 operators[running_mode][modes['modes'][running_mode]['on_proceed']]()
                 return resp
@@ -95,18 +89,14 @@ def switch(in_mode):
                     running_mode = in_mode
                     resp = operators[running_mode][modes['modes'][running_mode]['on_proceed']]()
                     if resp == 'done': 
-                        printLine('switching succeed')
                         return "done"
                     else: 
-                        printLine('switching failed')
                         running_mode = premode
                         operators[running_mode][modes['modes'][running_mode]['on_proceed']]()
                         return resp
                 else:
-                    printLine('mode is not permitted to switch')
                     return 'not_permitted'
             else:
-                printLine('mode is not permitted to switch')
                 return 'not_permitted'
 
 #api

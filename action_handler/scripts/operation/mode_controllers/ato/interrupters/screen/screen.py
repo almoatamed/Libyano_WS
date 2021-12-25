@@ -33,7 +33,7 @@ def asq(action):
         resp = take_action(action)
         return resp.result
     except rospy.ServiceException as e:
-        printLine('error while taking action', e)
+        #printLine('error while taking action', e)
         return 'failed'
     
 running  = False
@@ -77,7 +77,7 @@ def run():
                 time.sleep(0.25)   
         except KeyError: 
             time.sleep(1)
-            printLine('key error on interrupter')
+            #printLine('key error on interrupter')
             
 def stop():
     global running

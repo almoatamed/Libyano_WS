@@ -14,7 +14,7 @@ def printLine(*args):
 t_start = time.time()
 time_out = 21
 
-#printLine('starting action_handler exception handler')
+##printLine('starting action_handler exception handler')
 
 def run(current_status):
     global t_start, time_out
@@ -23,5 +23,5 @@ def run(current_status):
     nodes_list = current_status.nodes_list
     if '/action_handler_J' not in nodes_list and time.time() -t_start > time_out:  
         t_start  = time.time()
-        #printLine('Action Handler is not Running')
+        ##printLine('Action Handler is not Running')
         subprocess.Popen(['roslaunch', 'action_handler', 'action_server_J.launch'])

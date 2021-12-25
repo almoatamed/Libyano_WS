@@ -14,7 +14,7 @@ def printLine(*args):
 t_start = time.time()
 time_out = 21
 
-#printLine('starting status exception handler')
+##printLine('starting status exception handler')
 
 def run(current_status):
     global t_start, time_out
@@ -23,5 +23,5 @@ def run(current_status):
     nodes_list = current_status.nodes_list   
     if '/status_handler' not in nodes_list and time.time() -t_start > time_out:
         t_start  = time.time()
-        #printLine('Status Handler is not Running')
+        ##printLine('Status Handler is not Running')
         subprocess.Popen(['roslaunch', 'mode_and_status_publishers', 'status.launch'])

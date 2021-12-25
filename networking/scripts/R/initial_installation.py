@@ -14,7 +14,7 @@ home = os.environ['HOME']
 user = home.split('/')[-1]    
 ethname = 'enp2s0'
 
-#printLine('User: ' + user, 'Ethernet Terminal '+ ethname)
+##printLine('User: ' + user, 'Ethernet Terminal '+ ethname)
 
 os.chdir('/home/' + user + '/catkin_ws/src/networking/scripts/R/')
 

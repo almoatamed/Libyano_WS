@@ -34,7 +34,7 @@ pub = rospy.Publisher('/current_pose', Pose, queue_size=1)
 pose = Pose()
 def run():
     global pub, rate
-    #printLine('Running Location Estimater')
+    ##printLine('Running Location Estimater')
     while not rospy.is_shutdown():
         time.sleep(0.125)
         trans,rot = transform_pose()

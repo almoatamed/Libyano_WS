@@ -19,7 +19,7 @@ if __name__ == "__main__":
 
     rospy.init_node('serial_mcu_handler')
 
-    #printLine('starting serial mcu handler')
+    ##printLine('starting serial mcu handler')
 
     ###############################################
     #parameters#
@@ -35,9 +35,9 @@ if __name__ == "__main__":
     publish_rate = rospy.get_param('/serial/serial_starter_rate', '0.5')
 
     if specific_port == 'no':
-        #printLine('serial keyword: '+keyword_param)
+        printLine('serial keyword: '+keyword_param)
     else:
-        #printLine('specific  port named ', specific_port_name)
+        printLine('specific  port named ', specific_port_name)
 
 
 
@@ -49,30 +49,31 @@ if __name__ == "__main__":
         rate.sleep()
         serial_ports = []
         if specific_port != 'yes':
-            #printLine('Trying to detect the port automatically')
+            ##printLine('Trying to detect the port automatically')
             try:
                 for port in os.listdir(serial_id_paths):
                     if not os.path.isdir(os.path.join(serial_id_paths, port)) and keyword_param in port:
                         serial_ports.append(os.path.join(serial_id_paths,port))
-                        #printLine('suitable serial port found: ', port)
+                        ##printLine('suitable serial port found: ', port)
             except OSError:
-                #printLine('No serials detected!!')
+                pass
+                ##printLine('No serials detected!!')
             
         else:
-            #printLine('A specfic port is chosen: ', specific_port_name)
+            ##printLine('A specfic port is chosen: ', specific_port_name)
             serial_ports = [specific_port_name]
         
         if not serial_ports :
-            #printLine('\nNo Microcontrollers Detected!\n')
+            printLine('\nNo Microcontrollers Detected!\n')
         else:
-            #printLine('starting connection on port ' + serial_ports[0])
+            ##printLine('starting connection on port ' + serial_ports[0])
             # command = ['roslaunch','serial_starter','serial_node.launch','name:='+node_name,'port:='+serial_ports[0]]
             command = str('rosrun rosserial_arduino serial_node.py '+serial_ports[0]+' __name:='+node_name).split(' ')
             try:
                 p = subprocess.Popen(command,
                                     cwd="/",
                                     universal_newlines=True)
-                #printLine('Serial Controller Started')
+                ##printLine('Serial Controller Started')
                 rate = rospy.Rate(2)
                 while not rospy.is_shutdown() and not p.poll():
                     rate.sleep()
@@ -80,6 +81,7 @@ if __name__ == "__main__":
                     p.terminate()
                 except:
                     pass
-                #printLine('process ended')
+                ##printLine('process ended')
             except Exception as e:
-                #printLine("Error", e)
+                printLine("Error", e)
+                pass

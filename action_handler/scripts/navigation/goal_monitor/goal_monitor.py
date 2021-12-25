@@ -26,12 +26,12 @@ goal_msg = None
 process_flag = False
 def unangled_goal_cb(msg):
     global goal_msg, process_flag
-    # #printLine('Unangled goal was received', msg)
+    # ##printLine('Unangled goal was received', msg)
     goal_msg = msg
     process_flag = True
     
 def angled_goal_cb(msg):
-    # #printLine('Angled goal was received', msg)
+    # ##printLine('Angled goal was received', msg)
     global goal_msg, process_flag
     goal_msg = msg
     process_flag = True
@@ -54,7 +54,7 @@ def start():
     global running_state, global_path_sub, current_pose_sub, angled_goal_sub, unangled_goal_sub
     if running_state != 'running':
         running_state = 'running'
-        #printLine('starting')
+        ##printLine('starting')
         global_path_sub = rospy.Subscriber('/slamware_ros_sdk_server_node/global_plan_path', Path, global_path_cb)
         angled_goal_sub = rospy.Subscriber('/move_base_simple/goal',PoseStamped,angled_goal_cb)
         unangled_goal_sub = rospy.Subscriber('/slamware_ros_sdk_server_node/move_to',MoveToRequest,unangled_goal_cb)
@@ -70,10 +70,10 @@ def run():
     while not rospy.is_shutdown() and running_state == 'running':
         rate.sleep()
         if process_flag:
-            # #printLine('processing')
+            # ##printLine('processing')
             goal_monitor = goal_monitor_msg()
             if type(goal_msg) == PoseStamped:
-                # #printLine('angled goal is being processed')
+                # ##printLine('angled goal is being processed')
                 goal_monitor.is_angled = True
                 goal_monitor.pose.x = goal_msg.pose.position.x
                 goal_monitor.pose.y = goal_msg.pose.position.y
@@ -83,25 +83,25 @@ def run():
                 goal_monitor.orientation.z = goal_msg.pose.orientation.z
                 goal_monitor.orientation.w = goal_msg.pose.orientation.w
             else:
-                # #printLine('unangled goal is being processed')
+                # ##printLine('unangled goal is being processed')
                 goal_monitor.is_angled = False
                 goal_monitor.pose.x = goal_msg.location.x
                 goal_monitor.pose.y = goal_msg.location.y
                 goal_monitor.pose.z = goal_msg.location.z
             if len(global_path_queue) == queue_length:
-                # #printLine('global_path_queue is valid in length')
+                # ##printLine('global_path_queue is valid in length')
                 if all([len(path.poses) >0 for path in global_path_queue]):
-                    # #printLine('global_path_queue is directing currectly',len(global_path_queue[1].poses))
+                    # ##printLine('global_path_queue is directing currectly',len(global_path_queue[1].poses))
                     if abs(global_path_queue[-1].poses[-1].pose.position.x - goal_monitor.pose.x) < 0.3  and abs(global_path_queue[-1].poses[-1].pose.position.y - goal_monitor.pose.y) < 0.3:
                         goal_monitor.state = 'running'
                     else:
                         continue
                 elif all([len(path.poses) == 0 for path in global_path_queue]):
-                    # #printLine('global_path_queue is empty',len(global_path_queue[1].poses))
+                    # ##printLine('global_path_queue is empty',len(global_path_queue[1].poses))
                     if current_pose:
                         # print('line comparing position', abs(current_pose.position.x - goal_monitor.pose.x),abs(current_pose.position.y - goal_monitor.pose.y))
                         if abs(current_pose.position.x - goal_monitor.pose.x) < 0.3  and abs(current_pose.position.y - goal_monitor.pose.y) < 0.3:
-                            # #printLine('succeed')
+                            # ##printLine('succeed')
                             goal_monitor.state = 'succeed'
                         else:
                             goal_monitor.state = 'false'

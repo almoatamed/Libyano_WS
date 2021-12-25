@@ -43,7 +43,6 @@ t.start()
 def speak(file):
     global queue
     file = os.getenv('HOME')+'/catkin_ws/src/action_handler/scripts/interactive/speaking/sounds/'+file
-    printLine(file)
     if not isSpeaking:
         queue.append(file)
         return "running"
@@ -54,9 +53,7 @@ def speak(file):
 def push_to_queue(file):
     global queue
     file = os.getenv('HOME')+'/catkin_ws/src/action_handler/scripts/interactive/speaking/sounds/'+file
-    printLine(file)
     queue.append(file)
-    #printLine('running file ', file)
     return "running"
 
 def set_stop():
@@ -65,14 +62,12 @@ def set_stop():
     return 'Done'
 
 def generate(phrase, lang,name):
-    #printLine('generating sound', phrase, name)
     os.chdir( os.getenv('HOME') + '/catkin_ws/src/action_handler/scripts/interactive/speaking/generaters')
     os.system('/usr/bin/python3 generate_'+lang+'.py "' + phrase + '"' + ' "' + name + '"' )
 
 home = os.environ['HOME']
 sounds_path = home + '/catkin_ws/src/action_handler/scripts/interactive/speaking/sounds/'
 def save_sound(phrase,lang,name):
-    #printLine('saving sound', phrase)
     try:
         generate(phrase,lang,name)
         file = open(sounds_path+name+'_content.txt','w+')
@@ -80,7 +75,6 @@ def save_sound(phrase,lang,name):
         file.close()
         return 'done'
     except Exception as e:
-        #printLine('error while saving sound',e)
         return 'failed'
 
 

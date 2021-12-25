@@ -20,5 +20,5 @@ def run(current_status):
     nodes_list = current_status.nodes_list
     if '/backend' not in nodes_list and time.time() - t_start > time_out:
         t_start  = time.time()
-        #printLine('backend is not Running')
+        ##printLine('backend is not Running')
         subprocess.Popen(['rosrun', 'global', 'backend.py'])

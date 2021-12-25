@@ -20,5 +20,5 @@ def run(current_status):
     nodes_list = current_status.nodes_list
     if '/serial_starter_interactive' not in nodes_list and time.time() - t_start > time_out:
         t_start  = time.time()
-        #printLine('interactive Mcu is not Running')
+        ##printLine('interactive Mcu is not Running')
         subprocess.Popen(['roslaunch', 'serial_starter', 'serial_starter_interactive.launch'])

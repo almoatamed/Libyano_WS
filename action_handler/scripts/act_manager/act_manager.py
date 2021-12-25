@@ -5,6 +5,7 @@ import time
 import threading
 from std_msgs.msg import String
 
+print('###############!!!!!!!!!!!!!!!1 imported act_manager 1!!!!!!!!!!!!#######################')
 
 file_name = __file__.split('/')[-1][:-3]
 if file_name == '__init__' or file_name == '__init__.':
@@ -25,7 +26,6 @@ def asq(action):
         resp = take_action(action)
         return resp.result
     except rospy.ServiceException as e:
-        #printLine('An error occured while trying to take an action ', e)
         return "failed"
     
 
@@ -61,7 +61,6 @@ def get_acts_names():
     
 def add_act(act):
     global acts_file_path, update_acts
-    #printLine('adding act ', act)
     acts = decode_acts()
     act = act.replace('&','/')
     act = act.split(':')
@@ -76,7 +75,6 @@ def add_act(act):
 def del_act(act_name):
     global acts_file_path, update_acts
     acts = decode_acts()
-    printLine('deleting act', act_name)
     if act_name in acts:
         acts.pop(act_name)
         acts = encode_acts(acts)
@@ -91,19 +89,15 @@ act_queue= []
 pause = False
 
 def wait_for_goal_end():
-    printLine('waiting for goal')
     time.sleep(3)
     if asq('navigation/goal_monitor_get_last_state') == 'running':
         time.sleep(0.25)
     return 
 
 def perform_navigation(action_args):
-    printLine('performing navigation action ', action_args)
     if action_args[2] == 'angled':
-        printLine('angled action ', 'navigation/angled_goal/'+'&'.join(action_args[4:]))
         asq('navigation/angled_goal/'+'&'.join(action_args[4:]))
     else:
-        printLine('unngled action ', 'navigation/unangled_goal/'+'&'.join(action_args[4:]))
         asq('navigation/unangled_goal/'+'&'.join(action_args[4:]))
     if action_args[1] == 'wait':
         wait_for_goal_end()
@@ -113,9 +107,7 @@ def perform(action):
     action_args = action.split('/')
     if action_args[0] == 'navigation':
         perform_navigation(action_args)
-        printLine('navigation has been performed')
     elif action_args[0] == 'wait':
-        printLine('waiting ',action_args[1])
         sleep_time = float(action_args[1])/1000
         int_sleep_time = int(sleep_time)
         fraction_sleep_time = sleep_time - int_sleep_time
@@ -131,7 +123,7 @@ def perform(action):
         asq('interactive/set_eyes/'+action_args[1]+'/'+action_args[2]+'/'+action_args[3]+'/'+action_args[4]+'/'+action_args[5])
         time.sleep(mcu_break)
     elif action_args[0] == 'led ring':
-        asq('interactive/set_ring_flow/'+action_args[1]+'/'+action_args[2]+'/'+action_args[3]+'/'+action_args[4]+'/'+action_args[5])
+        asq('interactive/set_ring_flow/'+action_args[1],action_args[2]+'/'+action_args[3]+'/'+action_args[4]+'/'+action_args[5])
         time.sleep(mcu_break)
     elif action_args[0] == 'led strip':
         print('interactive/set_strip_color/'+ action_args[1])
@@ -150,19 +142,14 @@ def perform(action):
 running_action = ''
 def threaded_act_player():
     global act_queue, pause, running_action
-    #printLine('starting Act Manager')
     while not rospy.is_shutdown(): 
         if act_queue and not pause:
             running_action = action = act_queue[0]
-            #printLine('performing action ', action)
-            # t_start= time.time()
             perform(action)
-            printLine('performed act ', action)
             try:
                 act_queue.pop(0)
             except IndexError:
                 pass
-            #printLine('action took ', time.time() - t_start)
         else:
             running_action = ''
             time.sleep(0.3)
@@ -204,7 +191,6 @@ def stop_and_clear():
 
 def push_to_queue_by_act(act):
     global act_queue
-    #printLine('pushing by action', act)
     act = act.replace('&','/')
     act_queue = act_queue + act.split('|')
     return 'Done'
@@ -212,7 +198,6 @@ def push_to_queue_by_act(act):
     
 def play_new_act_by_act(act):
     global act_queue
-    #printLine('playing by action', act)
     act = act.replace('&','/')
     stop_and_clear()
     act_queue = act.split('|')
@@ -222,9 +207,7 @@ def push_to_queue_by_name(act_name):
     global act_queue
     acts = decode_acts()
     if act_name not in acts:
-        printLine('act has not been found', act_name)
         return 'not_found'
-    printLine('pushing by name',act_name, acts[act_name])
     act_queue= act_queue + acts[act_name]
     return 'Done'
 
@@ -234,7 +217,6 @@ def play_new_act_by_name(act_name):
     acts = decode_acts()
     if act_name not in acts:
         return 'not_found'
-    #printLine('playing by name',act_name, acts[act_name])
     stop_and_clear()
     act_queue = acts[act_name]
     return 'Done'

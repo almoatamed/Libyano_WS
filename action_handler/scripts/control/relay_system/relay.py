@@ -17,7 +17,6 @@ msg = mcu_input()
 msg.Element = 21
 
 def set_relay(number, value):
-    printLine(number,value)
     msg.Part_and_function = int(number)
     msg.values = [float(value)]
     pub.publish(msg)

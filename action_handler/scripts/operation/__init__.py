@@ -1,7 +1,7 @@
 from scripts.operation.main import get_is_running as main_get_is_running, get_running_mode as main_get_running_mode, get_status as main_get_status, load_modes_config, switch as main_switch
 print('improted main operation script')
 from scripts.operation.mode_controllers.ato.controller import get_interrupt_queue, change_interrupt_config_json, get_interrupt_config
-from scripts.operation.mode_controllers.ato.story_controller.controller import add_story, del_story, pause_story, continue_story, get_stories, load_stories_json, restart, stop, set_default_story
+from scripts.operation.mode_controllers.ato.story_controller.controller import add_story, del_story, pause_story, continue_story, get_stories, load_stories_json, restart, stop, set_default_story, start as start_story_controller, get_running_state as get_running_state_of_story_controller
 
 print('all packages has been imported on operation controller   ')
 
@@ -23,6 +23,7 @@ Actions = {
  #################################### Story Controller #####################################
 'stop': stop, 
 'restart': restart, 
+
 'pause': pause_story, 
 'continue': continue_story, 
 
@@ -33,5 +34,6 @@ Actions = {
 
 'get_stories': get_stories, 
 
-
+'start_story_controller':start_story_controller,
+'get_running_state_of_story_controller': get_running_state_of_story_controller
 }

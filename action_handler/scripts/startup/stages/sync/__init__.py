@@ -76,7 +76,7 @@ def run():
     global running_state, confirmation, remote_interface, next_stage
     running_state = True
     pick_map()
-    #printLine('running state', running_state)
+    ##printLine('running state', running_state)
     if running_state:
         confirm_location()
     remote_interface = 'loading'

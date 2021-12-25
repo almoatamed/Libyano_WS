@@ -38,7 +38,7 @@ t.start()
 def speak(file):
     global queue
     file = os.getenv('HOME')+'/catkin_ws/src/action_handler/scripts/interactive/speaking/sounds/'+file
-    printLine(file)
+    #printLine(file)
     if not isSpeaking:
         queue.append(file)
         return "running"
@@ -49,7 +49,7 @@ def speak(file):
 def push_to_queue(file):
     global queue
     file = os.getenv('HOME')+'/catkin_ws/src/action_handler/scripts/interactive/speaking/sounds/'+file
-    printLine(file)
+    #printLine(file)
     queue.append(file)
     return "running"
 

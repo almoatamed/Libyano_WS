@@ -26,14 +26,14 @@ def printLine(*args):
     
 def trigger_actions():
     if modes[mode]['change_action'] != 'null':
-        #printLine('taking aciton based on mode change', modes[mode]['change_action'])
+        ##printLine('taking aciton based on mode change', modes[mode]['change_action'])
         if(modes[mode]['action_retry_count'] == '0'):
             counter = action_retry_counter
         else:
             try:
                 counter = int(modes[mode]['action_retry_count'])
             except ValueError as e:
-                #printLine('failed to convert the primary action retry counter for mode', mode,'with error', e)
+                ##printLine('failed to convert the primary action retry counter for mode', mode,'with error', e)
                 counter = action_retry_counter
         for action in modes[mode]['change_action'].split('|'):
             for _ in range(counter):
@@ -64,7 +64,7 @@ if __name__ == '__main__':
 
     # startLogging('mode-handler')
 
-    #printLine('Starting mode publisher')
+    ##printLine('Starting mode publisher')
 
     ###############################################
     #parameters#

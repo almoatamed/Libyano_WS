@@ -42,7 +42,7 @@ def printLine(*args):
     global name
     print(file_name+': '+'\n      - '+'\n      - '.join([str(arg) for arg in list(args)]))
 
-#printLine('Starting Exception Handler',system_type)
+##printLine('Starting Exception Handler',system_type)
 
 R_exception_hanlders = {
     # 'interactive': interactive_run,
@@ -92,7 +92,7 @@ def check_nodes_list():
     except TypeError: 
         current_nodes_list = [node for node in subprocess.check_output('rosnode list', shell=True).decode().split('\n') if node]
       
-printLine(system_type)
+#printLine(system_type)
 
 if __name__ == "__main__":
     rospy.init_node('exceptiun_server')

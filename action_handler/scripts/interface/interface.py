@@ -21,13 +21,11 @@ def printLine(*args):
 ########################################action server proxy#########################################
 def asq(action):
     action_service_name = '/action'
-    # rospy.wait_for_service(action_service_name)
     try:
         take_action = rospy.ServiceProxy(action_service_name, action_srv)
         resp = take_action(action)
         return resp.result
     except rospy.ServiceException as e:
-        printLine('error while taking action', e)
         return 'failed'
     
     
@@ -97,7 +95,6 @@ def validate_acts_from_temp(interface):
                     interface['special_events'][special_event] = [valid_act for valid_act in interface['special_events'][special_event] if valid_act != act]
         return interface 
     except Exception as e: 
-        printLine('Error occured while validating incoming json for inteface config', e)
         return False
 
 #api
@@ -109,7 +106,6 @@ def get_interface_config_json():
 #api
 def change_interface_config_json(json_string):
     global interface
-    printLine('changing interface config', json_string)
     try:
         interface_temp = json.loads(json_string)
     except json.decoder.JSONDecodeError:
@@ -131,9 +127,7 @@ def set_current_route_name(route_name):
 def _get_set():
     global current_set, change_route_holder
     if change_route_holder:
-        printLine('route change request is fetched', change_route_holder)
         ret =  '/'.join([current_set, change_route_holder])
-        printLine('route change request is fetched', ret)
         change_route_holder = ''
         return ret
     return current_set
@@ -150,7 +144,6 @@ def _get_config():
 current_set = 'main'
 def change_set(set_name):
     global current_set
-    printLine('changing set to ', set_name)
     if set_name in interface['sets']:
         current_set = set_name
         return 'changed'
@@ -160,26 +153,22 @@ def change_set(set_name):
 #api
 def change_view_set(set_name):
     global route, current_set
-    printLine('attempting to changing view set contitionally to ', set_name)
     if current_set == 'main':
         if route == 'slide-show':
             return change_set(set_name)
         else:
-            printLine('failed to cange set, serving')
             return 'current_set_is_serving'
     else:
         return change_set(set_name)
     
 #api
 def force_change_view_set(set_name):
-    printLine('forcing to changing view set to ', set_name)
     return change_set(set_name)
 
 #api
 change_route_holder = ''
 def change_route(route_name):
     global change_route_holder
-    printLine('changing route to ', route_name)
     change_route_holder =  route_name
     
 #api    

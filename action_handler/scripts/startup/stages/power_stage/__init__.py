@@ -23,7 +23,7 @@ def action_service_query(action):
         resp = take_action(action)
         return resp.result
     except rospy.ServiceException as e:
-        #printLine('An error occured while trying to take an action ', e)
+        ##printLine('An error occured while trying to take an action ', e)
         return "failed"
 
 
@@ -42,7 +42,7 @@ robot_basic_state = RobotBasicState()
 def robot_basic_state_cb(msg):
     global robot_basic_state, confirmation
     if confirmation == 'no_messages':
-        #printLine('received message')
+        ##printLine('received message')
         confirmation = 'yeah'
     robot_basic_state = msg
     
@@ -52,7 +52,7 @@ def remove_dc_cord():
     global remote_interface, robot_basic_state
     remote_interface = 'remove_dc_cord'
     while robot_basic_state.is_dc_in:
-        #printLine('Dc Cord is in ', robot_basic_state.is_dc_in)
+        ##printLine('Dc Cord is in ', robot_basic_state.is_dc_in)
         time.sleep(1)
     remote_interface = 'loading'
 
@@ -63,7 +63,7 @@ def is_placed_properly():
     time.sleep(3)
     confirmation = 'is_placed_properly'
     while confirmation == 'is_placed_properly':
-        #printLine('waiting for confirmation')
+        ##printLine('waiting for confirmation')
         time.sleep(1)
     remote_interface = 'loading'
     
@@ -74,17 +74,17 @@ def is_the_robot_in_charging_spot():
     time.sleep(2)
     confirmation = 'is_the_robot_charging'
     while confirmation == 'is_the_robot_charging':
-        #printLine('waiting for confirmation')
+        ##printLine('waiting for confirmation')
         time.sleep(1)
     remote_interface = 'loading'
     if confirmation != 'no':
-        #printLine('robot is charging')
+        ##printLine('robot is charging')
         return True
     else:
         return False
 
 def set_zero_pose():
-    #printLine('setting zero pose')
+    ##printLine('setting zero pose')
     pose_pub = rospy.Publisher('/slamware_ros_sdk_server_node/set_pose',Pose,queue_size=1)
     time.sleep(0.3)
     home_pub = rospy.Publisher('/slamware_ros_sdk_server_node/set_home_pose',Pose,queue_size=1)
@@ -104,7 +104,7 @@ def set_zero_pose():
     pose_pub.unregister()
     home_pub.unregister()
     clear_map_pub.unregister()
-    #printLine('finished publishing zero pose')
+    ##printLine('finished publishing zero pose')
     
 def go_home():
     global remote_interface, robot_basic_state
@@ -130,7 +130,7 @@ def run():
     print('changing navigation mode', action_service_query('navigation/switch/pass'))
     time.sleep(2)
     while not rospy.is_shutdown() and confirmation == 'no_messages':
-        printLine(confirmation)
+        #printLine(confirmation)
         time.sleep(1)
     print(robot_basic_state)
     print('Dc cord state: ',robot_basic_state.is_dc_in)

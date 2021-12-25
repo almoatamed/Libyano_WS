@@ -19,8 +19,8 @@ def run(current_status):
     
 
     nodes_list = current_status.nodes_list
-    # printLine('checking for interface' , *nodes_list)
+    # #printLine('checking for interface' , *nodes_list)
     if '/interface' not in nodes_list and time.time() - t_start > time_out:
         t_start  = time.time()
-        printLine('interface is not Running')
+        #printLine('interface is not Running')
         subprocess.Popen(['rosrun', 'global', 'interface.py'])

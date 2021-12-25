@@ -11,10 +11,10 @@ def printLine(*args):
     print(file_name+': '+'\n      - '+'\n      - '.join([str(arg) for arg in list(args)]))
     
 def dispatch(command):
-    #printLine('dispatchign command', command)
+    ##printLine('dispatchign command', command)
     try:
         subprocess.Popen(command)
         return 'done'
     except Exception as e:
-        #printLine('Error in Dispatching Command')
+        ##printLine('Error in Dispatching Command')
         return 'failed'

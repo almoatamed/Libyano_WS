@@ -40,7 +40,7 @@ def goal_scrapper(goals_file):
                 'z':lines[i+7].strip().split(' ')[1],
                 'w':lines[i+8].strip().split(' ')[1],
             }
-    printLine(*goals)
+    #printLine(*goals)
 
 referance_frame = 'map'
 def set_goal(goal_point):

@@ -20,7 +20,7 @@ modes = {}
 def process_csv():
     global modes
     modes = readCSV(csv_path)
-    printLine(*modes)
+    #printLine(*modes)
     for mode in modes:
         temp = {}
         for flag in modes[mode]['mode_flag'].split('/'):
@@ -67,7 +67,7 @@ def try_to_change_mode(target_mode):
 
 def switch(target_mode):
     global current_mode, modes
-    # #printLine('targetmode is ',target_mode, 'available modes are', *[mode for mode in modes])
+    # ##printLine('targetmode is ',target_mode, 'available modes are', *[mode for mode in modes])
     if current_mode == target_mode:
         return 'already_running'
     elif target_mode == current_mode + 'cancel':

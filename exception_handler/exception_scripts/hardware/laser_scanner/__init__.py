@@ -19,5 +19,5 @@ def run(current_status):
     nodes_list = current_status.nodes_list
     if '/rplidarNode' not in nodes_list and time.time() - t_start > time_out:
         t_start  = time.time()
-        #printLine('Laser scanner is not Running')
+        ##printLine('Laser scanner is not Running')
         subprocess.Popen(['roslaunch', 'rplidar_ros', 'rplidar.launch'])

@@ -20,5 +20,5 @@ def run(current_status):
     nodes_list = current_status.nodes_list
     if '/rosbridge_websocket' not in nodes_list and time.time() - t_start > time_out:
         t_start  = time.time()
-        #printLine('Rosbridge is not Running')
+        ##printLine('Rosbridge is not Running')
         subprocess.Popen(['roslaunch', 'rosbridge_server', 'rosbridge_websocket.launch'])

@@ -15,12 +15,12 @@ def printLine(*args):
     
 rospy.init_node('backend')
 
-#printLine('starting backend')
+##printLine('starting backend')
 
 home = os.environ['HOME']
 command = r'/usr/bin/node '+home+'/catkin_ws/src/backend/index.js'
 p = subprocess.Popen(command.split(' '))
-#printLine('started backend')
+##printLine('started backend')
 rate = rospy.Rate(0.5)
 while not rospy.is_shutdown() and not p.poll():
     rate.sleep()
@@ -28,4 +28,4 @@ try:
     p.terminate()
 except:
     pass
-#printLine('backend process died')
+##printLine('backend process died')

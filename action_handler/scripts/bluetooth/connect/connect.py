@@ -24,15 +24,9 @@ def asq(action):
         resp = take_action(action)
         return resp.result
     except rospy.ServiceException as e:
-        #printLine('An error occured while trying to take an action ', e)
         return "failed"
 
 def connect(device):
-    # try:
-    #     subprocess.check_output(['hci','connect',main_device])
-    #     return 'Done'
-    # except subprocess.CalledProcessError:
-    #     return 'failed'
     asq('bluetooth/disconnect')
     home = os.environ['HOME']
     os.system(home+'/catkin_ws/src/action_handler/scripts/bluetooth/connect.sh '+device)

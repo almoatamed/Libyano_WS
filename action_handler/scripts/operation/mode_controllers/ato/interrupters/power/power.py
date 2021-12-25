@@ -23,7 +23,7 @@ def asq(action):
         resp = take_action(action)
         return resp.result
     except rospy.ServiceException as e:
-        printLine('error while taking action', e)
+        #printLine('error while taking action', e)
         return 'failed'
 
 
@@ -48,7 +48,7 @@ def platform_basic_state_cb(state_message):
     current_status = state_message
     if not printed_flag:
         printed_flag = True
-        printLine(request)
+        #printLine(request)
     request['args']['basic_status'] = current_status
 
 platform_basic_state  = rospy.get_param('/platform/basic_state', '/slamware_ros_sdk_server_node/robot_basic_state')
@@ -70,9 +70,12 @@ def run():
                 time.sleep(5)
             elif float(current_status.battery_percentage) <= 15.0 and ( current_status.is_charging == 0 and current_status.is_dc_in == 0):
                 parent['interrupt_request'](request)
+            elif not any([r['handler'] == 'charger' for r in parent['interrupt_queue']]):
+                if asq('interface/get_set') != 'main':
+                    asq('interface/change_view_set/main')
         except KeyError as e:
             time.sleep(1)
-            printLine('Error whiel trying to request power interrupt', e)
+            #printLine('Error whiel trying to request power interrupt', e)
     
     
 def start():

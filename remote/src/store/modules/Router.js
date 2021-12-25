@@ -19,6 +19,7 @@ export default {
                 startup:true,
                 story_manager: true, 
                 points_manager: true, 
+                interface_events: true,
             }
         }
     },

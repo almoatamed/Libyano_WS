@@ -18,19 +18,19 @@ msg = String()
 controlled_processes ={}
 
 def start_controlled_process(command,name):
-    #printLine('starting controlled process', name, command)
+    ##printLine('starting controlled process', name, command)
     try:
         controlled_processes[name] = subprocess.Popen(command.replace('&', '/').split('%'))
         msg.data = '/'.join(controlled_processes.keys())
         pub.publish(msg)
         return 'done'
     except Exception as e:
-        #printLine('Exception while starting Controlled process ', e)
+        ##printLine('Exception while starting Controlled process ', e)
         return 'failed'
     
     
 def kill_process(name):
-    #printLine('killing controlled process ', name)
+    ##printLine('killing controlled process ', name)
     try:
         if name not in controlled_processes:
             return 'not_found'
@@ -40,7 +40,7 @@ def kill_process(name):
         pub.publish(msg)
         return 'done'
     except Exception as e:
-        #printLine('error while killing controlled process', name)
+        ##printLine('error while killing controlled process', name)
         return 'failed'
     
     

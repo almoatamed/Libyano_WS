@@ -35,7 +35,7 @@ def asq(action):
         resp = take_action(action)
         return resp.result
     except rospy.ServiceException as e:
-        printLine('error while taking action', e)
+        #printLine('error while taking action', e)
         return 'failed'
 
 
@@ -44,7 +44,7 @@ parent = {
 }
 def init(obj):
     global parent 
-    printLine('initializing parent on facial detection interrupter')
+    #printLine('initializing parent on facial detection interrupter')
     parent = obj
 
 
@@ -82,11 +82,11 @@ argv = ['', '--input-width=640', '--input-height=480', '/dev/video0', 'rtp://192
 
 try:
 	opt = parser.parse_known_args(args =argv[1:])
-	printLine('parsed options', opt)
+	#printLine('parsed options', opt)
 	opt = opt[0]
-	printLine(sys.argv)
+	#printLine(sys.argv)
 except:
-	printLine("Error on parsing args on the facial detection interrupter")
+	#printLine("Error on parsing args on the facial detection interrupter")
 	parser.print_help()
 	sys.exit(0)
 
@@ -105,7 +105,7 @@ face_net = jetson.inference.detectNet("facenet", threshold=0.5)
 print('finished loading models'.center(80,'#'))
 
 def interrupt():
-    printLine('interrupting based on valid facial detection')
+    #printLine('interrupting based on valid facial detection')
     parent['interrupt_request'](request)
     
 valid_detect_count = 0
@@ -143,7 +143,7 @@ def run():
                     output_vid.Render(img)
         except KeyError:
             time.sleep(1)
-            printLine('key error on facial detection')
+            #printLine('key error on facial detection')
 
 
 def stop():

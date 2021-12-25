@@ -16,7 +16,6 @@ def printLine(*args):
     '''
         prints information on the console screen
     '''
-    global name
     print(file_name+': '+'\n      - '+'\n      - '.join([str(arg) for arg in list(args)]))
 
 #################################### Action Server Query Proxy #####################################
@@ -29,27 +28,10 @@ def asq(action):
         resp = take_action(action)
         return resp.result
     except rospy.ServiceException as e:
-        printLine('error while taking action', e)
         return 'failed'
     
-############################### Importing Interrupters and Handlers ################################
 
-from scripts.operation.mode_controllers.ato.interrupters.power import power as power_interrupter
-from scripts.operation.mode_controllers.ato.interrupters.screen import screen as screen_interrupter 
-interrupters = {
-    'power': power_interrupter,
-    'screen': screen_interrupter,
-}
-
-
-from scripts.operation.mode_controllers.ato.handlers import charger as charger_handler
-from scripts.operation.mode_controllers.ato.handlers import serve as serve_handler
-interrupt_hanlders = {
-    'charger': charger_handler,
-    'serve': serve_handler
-}
-
-##################################### Importing Configuration ######################################
+##################################### Controlling Configuration ######################################
 
 home = os.environ['HOME']
 interrupt_config_json_path = home + '/catkin_ws/src/action_handler/scripts/operation/mode_controllers/ato/interrupt_config.json'
@@ -60,9 +42,9 @@ def load_interrupt_config_json():
     global interrupt_config
     file = open(interrupt_config_json_path, 'r')
     interrupt_config = json.load(file)
+    obj['interrupt_config'] = interrupt_config
     file.close()
 
-load_interrupt_config_json()
 
 def update_interrupt_config_json():
     global interrupt_config
@@ -76,19 +58,16 @@ def validate_config_from_request(request):
     global interrupt_config 
     try:
         for interrupter in request:
-            printLine('validating request interrupter', interrupter,type(request[interrupter]['enabled']) != bool, interrupter not in interrupt_config )
             if type(request[interrupter]['enabled']) != bool or interrupter not in interrupt_config:
                 return False
         return True
     except KeyError:
-        printLine('error in validatin change interrupt config request')
         return False
     
 #api
 def change_interrupt_config_json(json_string):
     global interrupt_config
     request = json.loads(json_string)
-    printLine('attempting to change interrupt configuration ', request)
     if validate_config_from_request(request):
         interrupt_config = request
         update_interrupt_config_json()
@@ -126,6 +105,7 @@ interrupt_queue = []
 def handle_interrupt(request):
     global interrupt_queue
     interrupt_queue.append(request)
+    obj['interrupt_queue'] = interrupt_queue
     thread = threading.Thread(target=interrupt_hanlders[request['handler']].handle,args=(request,))
     thread.start()
 
@@ -179,10 +159,29 @@ obj = {
     'continue': story_ctl.continue_story,
     'interrupt_request': interrupt_request,
     'remove_interrupt': remove_interrupt,
-    'interrupt_queue': interrupt_queue,
+    'interrupt_queue': {},
     'interrupt_config': interrupt_config,
     'stop': stop,
     'start': start,
+}
+
+load_interrupt_config_json()
+
+############################### Importing Interrupters and Handlers ################################
+
+from scripts.operation.mode_controllers.ato.interrupters.power import power as power_interrupter
+from scripts.operation.mode_controllers.ato.interrupters.screen import screen as screen_interrupter 
+interrupters = {
+    'power': power_interrupter,
+    'screen': screen_interrupter,
+}
+
+
+from scripts.operation.mode_controllers.ato.handlers import charger as charger_handler
+from scripts.operation.mode_controllers.ato.handlers import serve as serve_handler
+interrupt_hanlders = {
+    'charger': charger_handler,
+    'serve': serve_handler
 }
 
 story_ctl.init(obj)
@@ -202,3 +201,4 @@ try:
     face_detection_interrupter.start()
 except ImportError:
     printLine('Error while trying to import facial detection models')
+    pass

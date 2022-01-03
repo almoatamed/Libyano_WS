@@ -239,7 +239,8 @@
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item :to="{ name: 'bluetooth' }">
+        <v-list-item :to="{ name: 'bluetooth' }"
+        v-if="!restrictions['bluetooth']">
           <v-list-item-icon>
             <v-icon small class="mx-auto">mdi-bluetooth</v-icon>
           </v-list-item-icon>
@@ -248,7 +249,9 @@
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item :to="{ name: 'voice' }">
+        <v-list-item :to="{ name: 'voice' }"
+        v-if="!restrictions['voice']"
+        >
           <v-list-item-icon>
             <v-icon small class="mx-auto">mdi-pencil</v-icon>
           </v-list-item-icon>

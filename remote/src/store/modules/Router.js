@@ -20,6 +20,8 @@ export default {
                 story_manager: true, 
                 points_manager: true, 
                 interface_events: true,
+                voice: true,
+                bluetooth: true,
             }
         }
     },
